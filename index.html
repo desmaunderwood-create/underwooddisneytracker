@@ -799,3 +799,497 @@
   </script>
 </body>
 </html>
+<!DOCTYPE html>
+<html lang="en" class="h-full bg-slate-900">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+  <title>Carousel Chronicles - WDW Tracker</title>
+  
+  <!-- Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            disney: {
+              blue: '#1e3a8a',
+              dark: '#0f172a',
+              gold: '#f59e0b',
+              light: '#f8fafc'
+            }
+          }
+        }
+      }
+    }
+  </script>
+
+  <!-- PWA & Mobile Meta Tags -->
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="apple-mobile-web-app-title" content="WDW Tracker">
+  <meta name="theme-color" content="#0f172a">
+  
+  <!-- Font Awesome Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+  <!-- Firebase Core & Firestore SDKs -->
+  <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore-compat.js"></script>
+
+  <style>
+    -webkit-tap-highlight-color: transparent;
+    body { touch-action: manipulation; user-select: none; -webkit-user-select: none; }
+    ::-webkit-scrollbar { width: 4px; height: 4px; }
+    ::-webkit-scrollbar-track { background: transparent; }
+    ::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.2); border-radius: 9999px; }
+    .no-scrollbar::-webkit-scrollbar { display: none; }
+    .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+
+    .member-checkbox:checked + label {
+      background: linear-gradient(135deg, #3b82f6, #1d4ed8) !important;
+      color: #ffffff !important;
+      border-color: #60a5fa !important;
+      box-shadow: 0 4px 12px rgba(59, 130, 246, 0.4);
+    }
+    .member-checkbox:checked + label .check-indicator {
+      opacity: 1;
+      transform: scale(1);
+    }
+    
+    .magical-gradient {
+      background: radial-gradient(circle at 50% 0%, #1e293b 0%, #0f172a 100%);
+    }
+  </style>
+</head>
+<body class="h-full flex flex-col text-slate-100 magical-gradient antialiased selection:bg-blue-500 selection:text-white">
+
+  <!-- Top Header Banner -->
+  <header class="sticky top-0 z-30 bg-slate-900/90 backdrop-blur-md border-b border-slate-800 px-4 pt-4 pb-3">
+    <div class="max-w-md mx-auto flex items-center justify-between">
+      <div class="flex items-center space-x-2.5">
+        <div class="w-9 h-9 rounded-xl bg-gradient-to-tr from-amber-500 to-yellow-300 text-slate-950 flex items-center justify-center shadow-lg font-black">
+          <i class="fa-solid fa-castle text-base"></i>
+        </div>
+        <div>
+          <h1 class="text-base font-black tracking-tight text-white flex items-center gap-1">
+            Carousel Chronicles <i class="fa-solid fa-sparkles text-amber-400 text-xs"></i>
+          </h1>
+          <p class="text-[11px] text-slate-400 font-medium">Same Park. More Magic. ♡</p>
+        </div>
+      </div>
+      <button onclick="openSettingsModal()" class="w-9 h-9 rounded-full bg-slate-800 hover:bg-slate-700 text-slate-300 transition flex items-center justify-center">
+        <i class="fa-solid fa-bell text-sm"></i>
+      </button>
+    </div>
+  </header>
+
+  <!-- Main Scrollable Screen Area -->
+  <main class="flex-1 overflow-y-auto pb-28">
+    <div class="max-w-md mx-auto px-4 py-4 space-y-4">
+
+      <!-- Family Character Header Cards (Mockup Style) -->
+      <section class="grid grid-cols-4 gap-2 bg-slate-800/60 p-3 rounded-3xl border border-slate-700/60 shadow-xl">
+        <!-- Greg (Mickey) -->
+        <div class="flex flex-col items-center text-center p-1.5 bg-slate-900/60 rounded-2xl border border-slate-700/40">
+          <img src="https://upload.wikimedia.org/wikipedia/en/d/d4/Mickey_Mouse.png" alt="Greg" class="w-12 h-12 rounded-full object-cover bg-red-950 border-2 border-red-500 mb-1 shadow-md">
+          <span class="text-xs font-black text-white truncate w-full">Greg</span>
+          <span class="text-[9px] text-red-400 font-bold uppercase tracking-tighter">Mickey</span>
+        </div>
+        <!-- Dez (Belle) -->
+        <div class="flex flex-col items-center text-center p-1.5 bg-slate-900/60 rounded-2xl border border-slate-700/40">
+          <img src="https://upload.wikimedia.org/wikipedia/en/b/b1/Belle_Disney.png" alt="Dez" class="w-12 h-12 rounded-full object-cover bg-amber-950 border-2 border-amber-400 mb-1 shadow-md">
+          <span class="text-xs font-black text-white truncate w-full">Dez</span>
+          <span class="text-[9px] text-amber-400 font-bold uppercase tracking-tighter">Belle</span>
+        </div>
+        <!-- Emma (Donald) -->
+        <div class="flex flex-col items-center text-center p-1.5 bg-slate-900/60 rounded-2xl border border-slate-700/40">
+          <img src="https://upload.wikimedia.org/wikipedia/en/7/75/Donald_Duck.png" alt="Emma" class="w-12 h-12 rounded-full object-cover bg-blue-950 border-2 border-blue-400 mb-1 shadow-md">
+          <span class="text-xs font-black text-white truncate w-full">Emma</span>
+          <span class="text-[9px] text-blue-400 font-bold uppercase tracking-tighter">Donald</span>
+        </div>
+        <!-- Harper (Daisy) -->
+        <div class="flex flex-col items-center text-center p-1.5 bg-slate-900/60 rounded-2xl border border-slate-700/40">
+          <img src="https://upload.wikimedia.org/wikipedia/en/c/c2/Daisy_Duck.png" alt="Harper" class="w-12 h-12 rounded-full object-cover bg-purple-950 border-2 border-purple-400 mb-1 shadow-md">
+          <span class="text-xs font-black text-white truncate w-full">Harper</span>
+          <span class="text-[9px] text-purple-400 font-bold uppercase tracking-tighter">Daisy</span>
+        </div>
+      </section>
+
+      <!-- Together We Ride Banner -->
+      <section class="bg-gradient-to-r from-blue-900/50 via-indigo-900/50 to-purple-900/50 p-4 rounded-3xl border border-blue-500/30 flex items-center justify-between shadow-lg">
+        <div>
+          <span class="text-[10px] font-black text-amber-400 uppercase tracking-widest">Quest Active</span>
+          <h3 class="text-sm font-bold text-white mt-0.5">Together We Ride, A Brighter Day</h3>
+        </div>
+        <div class="w-10 h-10 rounded-2xl bg-blue-600/40 border border-blue-400/40 flex items-center justify-center text-amber-300">
+          <i class="fa-solid fa-wand-magic-sparkles"></i>
+        </div>
+      </section>
+
+      <!-- Quick Metrics Counters -->
+      <div class="grid grid-cols-3 gap-2.5">
+        <div class="bg-slate-800/80 p-3 rounded-2xl border border-slate-700/70 text-center shadow">
+          <div class="w-7 h-7 mx-auto mb-1 rounded-xl bg-amber-500/20 text-amber-400 flex items-center justify-center text-xs">
+            <i class="fa-solid fa-ticket"></i>
+          </div>
+          <div id="stat-rides-today" class="text-xl font-black text-white">0</div>
+          <div class="text-[10px] text-slate-400 font-bold uppercase tracking-tight">Rides Today</div>
+        </div>
+
+        <div class="bg-slate-800/80 p-3 rounded-2xl border border-slate-700/70 text-center shadow">
+          <div class="w-7 h-7 mx-auto mb-1 rounded-xl bg-blue-500/20 text-blue-400 flex items-center justify-center text-xs">
+            <i class="fa-solid fa-map-pin"></i>
+          </div>
+          <div class="text-xl font-black text-white">4</div>
+          <div class="text-[10px] text-slate-400 font-bold uppercase tracking-tight">Park Lands</div>
+        </div>
+
+        <div class="bg-slate-800/80 p-3 rounded-2xl border border-slate-700/70 text-center shadow">
+          <div class="w-7 h-7 mx-auto mb-1 rounded-xl bg-purple-500/20 text-purple-400 flex items-center justify-center text-xs">
+            <i class="fa-solid fa-star"></i>
+          </div>
+          <div id="stat-still-to-go" class="text-xl font-black text-white">0</div>
+          <div class="text-[10px] text-slate-400 font-bold uppercase tracking-tight">Still to Go</div>
+        </div>
+      </div>
+
+      <!-- Park Navigation Tabs -->
+      <nav class="flex space-x-2 overflow-x-auto pb-1 no-scrollbar">
+        <button onclick="setActivePark('all')" id="tab-all" class="park-tab shrink-0 px-4 py-2 rounded-2xl font-black text-xs transition flex items-center space-x-1.5 bg-blue-600 text-white shadow-md">
+          <i class="fa-solid fa-layer-group"></i><span>All Parks</span>
+        </button>
+        <button onclick="setActivePark('mk')" id="tab-mk" class="park-tab shrink-0 px-4 py-2 rounded-2xl font-black text-xs transition flex items-center space-x-1.5 bg-slate-800 text-slate-300 border border-slate-700">
+          <i class="fa-solid fa-castle text-amber-400"></i><span>Magic Kingdom</span>
+        </button>
+        <button onclick="setActivePark('ep')" id="tab-ep" class="park-tab shrink-0 px-4 py-2 rounded-2xl font-black text-xs transition flex items-center space-x-1.5 bg-slate-800 text-slate-300 border border-slate-700">
+          <i class="fa-solid fa-globe text-blue-400"></i><span>EPCOT</span>
+        </button>
+        <button onclick="setActivePark('hs')" id="tab-hs" class="park-tab shrink-0 px-4 py-2 rounded-2xl font-black text-xs transition flex items-center space-x-1.5 bg-slate-800 text-slate-300 border border-slate-700">
+          <i class="fa-solid fa-film text-red-400"></i><span>Hollywood Studios</span>
+        </button>
+        <button onclick="setActivePark('ak')" id="tab-ak" class="park-tab shrink-0 px-4 py-2 rounded-2xl font-black text-xs transition flex items-center space-x-1.5 bg-slate-800 text-slate-300 border border-slate-700">
+          <i class="fa-solid fa-tree text-emerald-400"></i><span>Animal Kingdom</span>
+        </button>
+      </nav>
+
+      <!-- Search & Filters -->
+      <section class="bg-slate-800/80 p-3 rounded-2xl border border-slate-700 space-y-2">
+        <div class="relative">
+          <i class="fa-solid fa-magnifying-glass absolute left-3.5 top-1/2 -translate-y-1/2 text-slate-400 text-xs"></i>
+          <input type="text" id="search-input" placeholder="Search attractions or lands..." oninput="handleFilterChange()" class="w-full pl-9 pr-4 py-2 bg-slate-900 border border-slate-700 rounded-xl text-xs text-white focus:outline-none focus:border-blue-500 transition">
+        </div>
+      </section>
+
+      <!-- Attraction Cards Container -->
+      <div id="attractions-container" class="space-y-4">
+        <!-- Rendered via JS -->
+      </div>
+
+    </div>
+  </main>
+
+  <!-- Bottom App Tab Bar (Mockup Match) -->
+  <nav class="fixed bottom-0 left-0 right-0 z-40 bg-slate-900/95 backdrop-blur-lg border-t border-slate-800 px-4 py-2">
+    <div class="max-w-md mx-auto flex items-center justify-around text-slate-400 text-[10px] font-bold">
+      <button onclick="switchView('home')" class="flex flex-col items-center space-y-1 text-blue-400 hover:text-white transition">
+        <i class="fa-solid fa-house text-base"></i>
+        <span>Home</span>
+      </button>
+      <button onclick="switchView('rides')" class="flex flex-col items-center space-y-1 hover:text-white transition">
+        <i class="fa-solid fa-ticket text-base"></i>
+        <span>Rides</span>
+      </button>
+      <button onclick="switchView('map')" class="flex flex-col items-center space-y-1 hover:text-white transition">
+        <i class="fa-solid fa-map-location-dot text-base"></i>
+        <span>Map</span>
+      </button>
+      <button onclick="switchView('stats')" class="flex flex-col items-center space-y-1 hover:text-white transition">
+        <i class="fa-solid fa-chart-pie text-base"></i>
+        <span>Stats</span>
+      </button>
+      <button onclick="openSettingsModal()" class="flex flex-col items-center space-y-1 hover:text-white transition">
+        <i class="fa-solid fa-ellipsis text-base"></i>
+        <span>More</span>
+      </button>
+    </div>
+  </nav>
+
+  <!-- Settings / More Modal -->
+  <div id="settings-modal" class="fixed inset-0 bg-slate-950/80 backdrop-blur-sm z-50 flex items-center justify-center p-4 hidden">
+    <div class="bg-slate-900 rounded-3xl max-w-sm w-full p-6 border border-slate-800 space-y-4 shadow-2xl">
+      <div class="flex justify-between items-center border-b border-slate-800 pb-3">
+        <h3 class="font-black text-white text-base">Adventure Options</h3>
+        <button onclick="closeSettingsModal()" class="w-8 h-8 rounded-full bg-slate-800 text-slate-400 hover:text-white flex items-center justify-center">
+          <i class="fa-solid fa-xmark"></i>
+        </button>
+      </div>
+      <div class="space-y-2">
+        <button onclick="confirmResetAll()" class="w-full py-3 bg-red-500/10 hover:bg-red-500/20 text-red-400 border border-red-500/30 rounded-2xl text-xs font-bold transition">
+          Reset All Progress Data
+        </button>
+        <button onclick="exportData()" class="w-full py-3 bg-slate-800 hover:bg-slate-700 text-slate-200 border border-slate-700 rounded-2xl text-xs font-bold transition">
+          Export Backup JSON
+        </button>
+      </div>
+      <button onclick="closeSettingsModal()" class="w-full py-3 bg-blue-600 hover:bg-blue-500 text-white rounded-2xl font-black text-xs transition">
+        Close
+      </button>
+    </div>
+  </div>
+
+  <!-- Application Script -->
+  <script>
+    const firebaseConfig = {
+      apiKey: "AIzaSyB6Wj_2ZTQxtRkA7W2du-HmKP89X1JI2Go",
+      authDomain: "underwood-disney-tracker.firebaseapp.com",
+      projectId: "underwood-disney-tracker",
+      storageBucket: "underwood-disney-tracker.firebasestorage.app",
+      messagingSenderId: "111496063491",
+      appId: "1:111496063491:web:6038d529f35e88de51fc36"
+    };
+
+    firebase.initializeApp(firebaseConfig);
+    const db = firebase.firestore();
+    const docRef = db.collection("trackers").doc("familyProgress");
+
+    const PARKS_DATA = [
+      {
+        id: 'mk', name: 'Magic Kingdom', icon: 'fa-castle', color: 'text-amber-400',
+        lands: [
+          { name: 'Main Street, U.S.A.', attractions: [{ id: 'mk-1', name: 'Walt Disney World Railroad' }] },
+          { name: 'Adventureland', attractions: [{ id: 'mk-2', name: 'Jungle Cruise' }, { id: 'mk-3', name: 'Pirates of the Caribbean' }, { id: 'mk-4', name: 'The Magic Carpets of Aladdin' }, { id: 'mk-5', name: "Walt Disney's Enchanted Tiki Room" }, { id: 'mk-6', name: 'Swiss Family Treehouse' }] },
+          { name: 'Frontierland', attractions: [{ id: 'mk-7', name: 'Big Thunder Mountain Railroad' }, { id: 'mk-8', name: "Tiana's Bayou Adventure" }, { id: 'mk-9', name: 'Country Bear Musical Jamboree' }] },
+          { name: 'Liberty Square', attractions: [{ id: 'mk-10', name: 'The Haunted Mansion' }, { id: 'mk-11', name: 'The Hall of Presidents' }, { id: 'mk-12', name: 'Liberty Belle Riverboat' }] },
+          { name: 'Fantasyland', attractions: [{ id: 'mk-13', name: 'Seven Dwarfs Mine Train' }, { id: 'mk-14', name: "Peter Pan's Flight" }, { id: 'mk-15', name: '"it\'s a small world"' }, { id: 'mk-16', name: 'Dumbo the Flying Elephant' }, { id: 'mk-17', name: 'Mad Tea Party' }, { id: 'mk-18', name: 'The Many Adventures of Winnie the Pooh' }, { id: 'mk-19', name: 'Under the Sea - Journey of The Little Mermaid' }, { id: 'mk-20', name: 'Prince Charming Regal Carrousel' }, { id: 'mk-21', name: "Mickey's PhilharMagic" }, { id: 'mk-22', name: 'Enchanted Tales with Belle' }] },
+          { name: 'Tomorrowland', attractions: [{ id: 'mk-23', name: 'Space Mountain' }, { id: 'mk-24', name: 'TRON Lightcycle / Run' }, { id: 'mk-25', name: "Buzz Lightyear's Space Ranger Spin" }, { id: 'mk-26', name: 'Tomorrowland Transit Authority PeopleMover' }, { id: 'mk-27', name: 'Astro Orbiter' }, { id: 'mk-28', name: "Walt Disney's Carousel of Progress" }, { id: 'mk-29', name: 'Tomorrowland Speedway' }, { id: 'mk-30', name: 'Monsters, Inc. Laugh Floor' }] }
+        ]
+      },
+      {
+        id: 'ep', name: 'EPCOT', icon: 'fa-globe', color: 'text-blue-400',
+        lands: [
+          { name: 'World Celebration', attractions: [{ id: 'ep-1', name: 'Spaceship Earth' }, { id: 'ep-2', name: 'Disney Pixar Short Film Festival' }] },
+          { name: 'World Discovery', attractions: [{ id: 'ep-3', name: 'Guardians of the Galaxy: Cosmic Rewind' }, { id: 'ep-4', name: 'Test Track' }, { id: 'ep-5', name: 'Mission: SPACE' }] },
+          { name: 'World Nature', attractions: [{ id: 'ep-6', name: "Soarin' Around the World" }, { id: 'ep-7', name: 'Living with the Land' }, { id: 'ep-8', name: 'Awesome Planet' }, { id: 'ep-9', name: 'Journey Into Imagination With Figment' }, { id: 'ep-10', name: 'The Seas with Nemo & Friends' }, { id: 'ep-11', name: 'Turtle Talk with Crush' }, { id: 'ep-12', name: 'Journey of Water, Inspired by Moana' }] },
+          { name: 'World Showcase', attractions: [{ id: 'ep-13', name: 'Gran Fiesta Tour Starring The Three Caballeros (Mexico)' }, { id: 'ep-14', name: 'Frozen Ever After (Norway)' }, { id: 'ep-15', name: 'Reflections of China (China)' }, { id: 'ep-16', name: 'The American Adventure (USA)' }, { id: 'ep-17', name: 'Beauty and the Beast Sing-Along (France)' }, { id: 'ep-18', name: "Remy's Ratatouille Adventure (France)" }, { id: 'ep-19', name: 'Canada Far and Wide (Canada)' }] }
+        ]
+      },
+      {
+        id: 'hs', name: "Disney's Hollywood Studios", icon: 'fa-film', color: 'text-red-400',
+        lands: [
+          { name: 'Hollywood Boulevard & Echo Lake', attractions: [{ id: 'hs-1', name: 'Indiana Jones Epic Stunt Spectacular!' }, { id: 'hs-2', name: 'For the First Time in Forever: A Frozen Sing-Along' }, { id: 'hs-3', name: 'Star Tours - The Adventures Continue' }] },
+          { name: 'Grand Avenue', attractions: [{ id: 'hs-4', name: 'Muppet*Vision 3D' }] },
+          { name: "Star Wars: Galaxy's Edge", attractions: [{ id: 'hs-5', name: 'Star Wars: Rise of the Resistance' }, { id: 'hs-6', name: 'Millennium Falcon: Smugglers Run' }] },
+          { name: 'Toy Story Land', attractions: [{ id: 'hs-7', name: 'Slinky Dog Dash' }, { id: 'hs-8', name: 'Toy Story Mania!' }, { id: 'hs-9', name: 'Alien Swirling Saucers' }] },
+          { name: 'Pixar Plaza & Animation Courtyard', attractions: [{ id: 'hs-10', name: 'Walt Disney Presents' }, { id: 'hs-11', name: 'Disney Junior Play and Dance!' }] },
+          { name: 'Sunset Boulevard', attractions: [{ id: 'hs-12', name: 'The Twilight Zone Tower of Terror' }, { id: 'hs-13', name: "Rock 'n' Roller Coaster Starring Aerosmith" }, { id: 'hs-14', name: 'Beauty and the Beast - Live on Stage' }, { id: 'hs-15', name: 'Fantasmic!' }] }
+        ]
+      },
+      {
+        id: 'ak', name: "Disney's Animal Kingdom", icon: 'fa-tree', color: 'text-emerald-400',
+        lands: [
+          { name: 'Oasis & Discovery Island', attractions: [{ id: 'ak-1', name: "It's Tough to be a Bug! (Tree of Life)" }] },
+          { name: 'Pandora - The World of Avatar', attractions: [{ id: 'ak-2', name: 'Avatar Flight of Passage' }, { id: 'ak-3', name: "Na'vi River Journey" }] },
+          { name: 'Africa', attractions: [{ id: 'ak-4', name: 'Kilimanjaro Safaris' }, { id: 'ak-5', name: 'Festival of the Lion King' }, { id: 'ak-6', name: 'Gorilla Falls Exploration Trail' }] },
+          { name: 'Asia', attractions: [{ id: 'ak-7', name: 'Expedition Everest - Legend of the Forbidden Mountain' }, { id: 'ak-8', name: 'Kali River Rapids' }, { id: 'ak-9', name: 'Feathered Friends in Flight!' }] },
+          { name: 'DinoLand U.S.A.', attractions: [{ id: 'ak-10', name: 'DINOSAUR' }, { id: 'ak-11', name: 'TriceraTop Spin' }, { id: 'ak-12', name: 'Finding Nemo: The Big Blue... and Beyond!' }] }
+        ]
+      }
+    ];
+
+    const FAMILY_MEMBERS = ['greg', 'dez', 'emma', 'harper'];
+    const CHARACTER_META = {
+      greg: { name: 'Greg', sub: 'Mickey' },
+      dez: { name: 'Dez', sub: 'Belle' },
+      emma: { name: 'Emma', sub: 'Donald' },
+      harper: { name: 'Harper', sub: 'Daisy' }
+    };
+    const STORAGE_KEY = 'wdw_carousel_chronicles_v3';
+
+    let appState = { userProgress: {}, activePark: 'all', searchQuery: '' };
+
+    window.addEventListener('DOMContentLoaded', () => {
+      loadLocalFallback();
+      setupFirestoreSync();
+      renderApp();
+    });
+
+    function setupFirestoreSync() {
+      docRef.onSnapshot((doc) => {
+        if (doc.exists) {
+          appState.userProgress = doc.data().attractions || {};
+          localStorage.setItem(STORAGE_KEY, JSON.stringify(appState.userProgress));
+          updateStats();
+          renderApp();
+        } else {
+          docRef.set({ attractions: {} });
+        }
+      });
+    }
+
+    function loadLocalFallback() {
+      try {
+        const saved = localStorage.getItem(STORAGE_KEY);
+        if (saved) appState.userProgress = JSON.parse(saved);
+      } catch (e) {}
+    }
+
+    function saveData() {
+      localStorage.setItem(STORAGE_KEY, JSON.stringify(appState.userProgress));
+      updateStats();
+      docRef.set({ attractions: appState.userProgress }, { merge: true });
+    }
+
+    function toggleMember(attractionId, member) {
+      if (!appState.userProgress[attractionId]) {
+        appState.userProgress[attractionId] = { greg: false, dez: false, emma: false, harper: false };
+      }
+      appState.userProgress[attractionId][member] = !appState.userProgress[attractionId][member];
+      saveData();
+      renderApp();
+    }
+
+    function toggleAllForAttraction(attractionId) {
+      const current = appState.userProgress[attractionId] || {};
+      const allChecked = FAMILY_MEMBERS.every(m => current[m]);
+      appState.userProgress[attractionId] = { greg: !allChecked, dez: !allChecked, emma: !allChecked, harper: !allChecked };
+      saveData();
+      renderApp();
+    }
+
+    function updateStats() {
+      let total = 0, completed = 0;
+      PARKS_DATA.forEach(p => p.lands.forEach(l => l.attractions.forEach(a => {
+        total++;
+        const s = appState.userProgress[a.id] || {};
+        if (FAMILY_MEMBERS.some(m => s[m])) completed++;
+      })));
+      document.getElementById('stat-rides-today').textContent = completed;
+      document.getElementById('stat-still-to-go').textContent = Math.max(0, total - completed);
+    }
+
+    function setActivePark(parkId) {
+      appState.activePark = parkId;
+      document.querySelectorAll('.park-tab').forEach(btn => {
+        btn.className = "park-tab shrink-0 px-4 py-2 rounded-2xl font-black text-xs transition flex items-center space-x-1.5 bg-slate-800 text-slate-300 border border-slate-700";
+      });
+      const activeBtn = document.getElementById(`tab-${parkId}`);
+      if (activeBtn) activeBtn.className = "park-tab shrink-0 px-4 py-2 rounded-2xl font-black text-xs transition flex items-center space-x-1.5 bg-blue-600 text-white shadow-md";
+      renderApp();
+    }
+
+    function handleFilterChange() {
+      appState.searchQuery = document.getElementById('search-input').value.toLowerCase().trim();
+      renderApp();
+    }
+
+    function renderApp() {
+      updateStats();
+      const container = document.getElementById('attractions-container');
+      if (!container) return;
+      container.innerHTML = '';
+
+      const parks = appState.activePark === 'all' ? PARKS_DATA : PARKS_DATA.filter(p => p.id === appState.activePark);
+
+      parks.forEach(park => {
+        let parkHTML = '';
+        park.lands.forEach(land => {
+          const attrs = land.attractions.filter(a => {
+            if (!appState.searchQuery) return true;
+            return a.name.toLowerCase().includes(appState.searchQuery) || land.name.toLowerCase().includes(appState.searchQuery);
+          });
+
+          if (attrs.length > 0) {
+            parkHTML += `
+              <div class="mb-4">
+                <h4 class="text-[11px] font-black text-slate-400 uppercase tracking-wider mb-2 flex items-center gap-1.5">
+                  <span class="w-1.5 h-1.5 rounded-full bg-blue-500"></span> ${land.name}
+                </h4>
+                <div class="space-y-2.5">
+                  ${attrs.map(attr => renderCard(attr)).join('')}
+                </div>
+              </div>
+            `;
+          }
+        });
+
+        if (parkHTML) {
+          const wrap = document.createElement('div');
+          wrap.className = "bg-slate-800/80 rounded-3xl p-4 border border-slate-700/80 shadow-xl space-y-3";
+          wrap.innerHTML = `
+            <div class="flex items-center space-x-3 border-b border-slate-700/60 pb-3">
+              <div class="w-9 h-9 rounded-xl bg-slate-900 flex items-center justify-center">
+                <i class="fa-solid ${park.icon} ${park.color} text-base"></i>
+              </div>
+              <h3 class="font-black text-white text-sm">${park.name}</h3>
+            </div>
+            ${parkHTML}
+          `;
+          container.appendChild(wrap);
+        }
+      });
+    }
+
+    function renderCard(attr) {
+      const status = appState.userProgress[attr.id] || {};
+      const allChecked = FAMILY_MEMBERS.every(m => status[m]);
+
+      return `
+        <div class="bg-slate-900/90 p-3 rounded-2xl border border-slate-700/60 hover:border-slate-600 transition space-y-2.5">
+          <div class="flex items-center justify-between gap-2">
+            <span class="font-bold text-white text-xs leading-snug">${attr.name}</span>
+            <button onclick="toggleAllForAttraction('${attr.id}')" class="shrink-0 px-2.5 py-1 rounded-xl text-[10px] font-black transition border ${allChecked ? 'bg-amber-500/20 text-amber-300 border-amber-500/40' : 'bg-slate-800 text-slate-400 border-slate-700 hover:text-white'}">
+              ${allChecked ? '<i class="fa-solid fa-crown text-[9px]"></i> All 4' : 'Check All'}
+            </button>
+          </div>
+          <div class="grid grid-cols-4 gap-1.5">
+            ${FAMILY_MEMBERS.map(m => {
+              const isChecked = status[m] || false;
+              const meta = CHARACTER_META[m];
+              return `
+                <div>
+                  <input type="checkbox" id="${attr.id}-${m}" class="hidden member-checkbox" ${isChecked ? 'checked' : ''} onchange="toggleMember('${attr.id}', '${m}')">
+                  <label for="${attr.id}-${m}" class="flex flex-col items-center justify-center py-2 px-1 rounded-xl border border-slate-800 bg-slate-800/60 text-slate-300 cursor-pointer transition active:scale-95 text-center relative">
+                    <span class="text-[11px] font-black leading-none mb-0.5">${meta.name}</span>
+                    <span class="text-[9px] text-slate-400 leading-none">${meta.sub}</span>
+                    <div class="check-indicator absolute top-1 right-1 w-3 h-3 rounded-full bg-amber-400 text-slate-950 text-[7px] flex items-center justify-center font-black opacity-0 transition-all scale-50">✓</div>
+                  </label>
+                </div>
+              `;
+            }).join('')}
+          </div>
+        </div>
+      `;
+    }
+
+    function switchView(view) {
+      if (view === 'stats') {
+        alert("Stats view active! Your live progress syncs across your devices automatically.");
+      } else if (view === 'map') {
+        alert("Tip: Use the search bar to find attractions instantly as you walk the parks!");
+      }
+    }
+
+    function openSettingsModal() { document.getElementById('settings-modal').classList.remove('hidden'); }
+    function closeSettingsModal() { document.getElementById('settings-modal').classList.add('hidden'); }
+    function confirmResetAll() {
+      if (confirm("Are you sure you want to reset all app progress?")) {
+        appState.userProgress = {};
+        saveData();
+        renderApp();
+        closeSettingsModal();
+      }
+    }
+    function exportData() {
+      const dataStr = "data:text/json;charset=utf-8," + encodeURIComponent(JSON.stringify(appState.userProgress, null, 2));
+      const anchor = document.createElement('a');
+      anchor.setAttribute("href", dataStr);
+      anchor.setAttribute("download", `carousel_chronicles_backup.json`);
+      document.body.appendChild(anchor);
+      anchor.click();
+      anchor.remove();
+    }
+  </script>
+</body>
+</html>
