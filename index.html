@@ -142,7 +142,7 @@
         <div class="grid grid-cols-2 sm:grid-cols-4 gap-3">
           <!-- Greg (Mickey Mouse) -->
           <div class="bg-[#FAF9F5] p-3 rounded-2xl border border-slate-200/80 flex items-center gap-2.5">
-            <img src="https://img.icons8.com/color/96/mickey-mouse.png" alt="Greg" class="w-9 h-9 rounded-full bg-red-100 p-0.5 shrink-0 border border-red-200">
+            <img src="https://upload.wikimedia.org/wikipedia/en/d/d4/Mickey_Mouse.png" alt="Greg" class="w-9 h-9 rounded-full bg-red-100 object-cover shrink-0 border border-red-200">
             <div class="flex-1 min-w-0">
               <div class="flex justify-between items-center text-xs mb-1">
                 <span class="font-bold text-slate-700 truncate">Greg</span>
@@ -156,7 +156,7 @@
 
           <!-- Dez (Belle) -->
           <div class="bg-[#FAF9F5] p-3 rounded-2xl border border-slate-200/80 flex items-center gap-2.5">
-            <img src="https://img.icons8.com/color/96/beauty-and-the-beast.png" alt="Dez" class="w-9 h-9 rounded-full bg-amber-100 p-0.5 shrink-0 border border-amber-200">
+            <img src="https://upload.wikimedia.org/wikipedia/en/b/b1/Belle_Disney.png" alt="Dez" class="w-9 h-9 rounded-full bg-amber-100 object-cover shrink-0 border border-amber-200">
             <div class="flex-1 min-w-0">
               <div class="flex justify-between items-center text-xs mb-1">
                 <span class="font-bold text-slate-700 truncate">Dez</span>
@@ -170,7 +170,7 @@
 
           <!-- Emma (Donald Duck) -->
           <div class="bg-[#FAF9F5] p-3 rounded-2xl border border-slate-200/80 flex items-center gap-2.5">
-            <img src="https://img.icons8.com/color/96/donald-duck.png" alt="Emma" class="w-9 h-9 rounded-full bg-blue-100 p-0.5 shrink-0 border border-blue-200">
+            <img src="https://upload.wikimedia.org/wikipedia/en/7/75/Donald_Duck.png" alt="Emma" class="w-9 h-9 rounded-full bg-blue-100 object-cover shrink-0 border border-blue-200">
             <div class="flex-1 min-w-0">
               <div class="flex justify-between items-center text-xs mb-1">
                 <span class="font-bold text-slate-700 truncate">Emma</span>
@@ -184,7 +184,7 @@
 
           <!-- Harper (Daisy Duck) -->
           <div class="bg-[#FAF9F5] p-3 rounded-2xl border border-slate-200/80 flex items-center gap-2.5">
-            <img src="https://img.icons8.com/color/96/daisy-duck.png" alt="Harper" class="w-9 h-9 rounded-full bg-purple-100 p-0.5 shrink-0 border border-purple-200">
+            <img src="https://upload.wikimedia.org/wikipedia/en/c/c2/Daisy_Duck.png" alt="Harper" class="w-9 h-9 rounded-full bg-purple-100 object-cover shrink-0 border border-purple-200">
             <div class="flex-1 min-w-0">
               <div class="flex justify-between items-center text-xs mb-1">
                 <span class="font-bold text-slate-700 truncate">Harper</span>
@@ -408,10 +408,10 @@
 
     const FAMILY_MEMBERS = ['greg', 'dez', 'emma', 'harper'];
     const CHARACTER_IMAGES = {
-      greg: 'https://img.icons8.com/color/96/mickey-mouse.png',
-      dez: 'https://img.icons8.com/color/96/beauty-and-the-beast.png',
-      emma: 'https://img.icons8.com/color/96/donald-duck.png',
-      harper: 'https://img.icons8.com/color/96/daisy-duck.png'
+      greg: 'https://upload.wikimedia.org/wikipedia/en/d/d4/Mickey_Mouse.png',
+      dez: 'https://upload.wikimedia.org/wikipedia/en/b/b1/Belle_Disney.png',
+      emma: 'https://upload.wikimedia.org/wikipedia/en/7/75/Donald_Duck.png',
+      harper: 'https://upload.wikimedia.org/wikipedia/en/c/c2/Daisy_Duck.png'
     };
     const STORAGE_KEY = 'wdw_family_tracker_data_v2';
 
@@ -695,7 +695,7 @@
                 <div>
                   <input type="checkbox" id="${attr.id}-${m}" class="hidden member-checkbox" ${isChecked ? 'checked' : ''} onchange="toggleMember('${attr.id}', '${m}')">
                   <label for="${attr.id}-${m}" class="flex flex-col items-center justify-center py-2 px-1 rounded-2xl border border-slate-200 bg-white text-slate-700 cursor-pointer transition active:scale-95 text-center relative overflow-hidden">
-                    <img src="${imgUrl}" alt="${capitalized}" class="w-6 h-6 mb-1 rounded-full object-contain">
+                    <img src="${imgUrl}" alt="${capitalized}" class="w-6 h-6 mb-1 rounded-full object-cover">
                     <span class="text-[11px] font-bold leading-none">${capitalized}</span>
                     <div class="check-badge absolute top-1 right-1 w-3.5 h-3.5 rounded-full bg-forest text-white text-[8px] flex items-center justify-center font-bold opacity-0 transition-all">
                       ✓
