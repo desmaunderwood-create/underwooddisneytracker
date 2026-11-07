@@ -62,17 +62,16 @@
     .no-scrollbar::-webkit-scrollbar { display: none; }
     .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
 
-    /* Custom Checkbox Animations */
+    /* Custom Checkbox Active States */
     .member-checkbox:checked + label {
-      background-color: #1B3B2B;
-      color: #FAF9F5;
-      border-color: #1B3B2B;
-      box-shadow: 0 3px 8px rgba(27, 59, 43, 0.25);
+      background-color: #1B3B2B !important;
+      color: #FAF9F5 !important;
+      border-color: #1B3B2B !important;
+      box-shadow: 0 4px 10px rgba(27, 59, 43, 0.25);
     }
     .member-checkbox:checked + label .check-badge {
-      background-color: #D4AF37;
-      color: #1B3B2B;
       opacity: 1;
+      transform: scale(1);
     }
 
     .glass-header {
@@ -84,15 +83,12 @@
 </head>
 <body class="h-full flex flex-col text-slate-800 bg-[#FAF9F5] antialiased selection:bg-sage-light">
 
-  <!-- Top Header with Graphic Castle Badge -->
+  <!-- Top Header -->
   <header class="glass-header sticky top-0 z-30 border-b border-sage-light/80 px-4 pt-4 pb-3 sm:px-6">
     <div class="max-w-4xl mx-auto flex items-center justify-between">
       <div class="flex items-center space-x-3">
-        <!-- Graphic Castle Avatar -->
         <div class="w-10 h-10 rounded-2xl bg-forest text-gold flex items-center justify-center shadow-md border border-gold/40 shrink-0">
-          <svg class="w-6 h-6 fill-gold" viewBox="0 0 24 24">
-            <path d="M12 2L9 7h6l-3-5zm-5 6l-2 4h14l-2-4H7zm-3 5v9h16v-9H4zm7 7h-2v-4h2v4zm4 0h-2v-4h2v4z"/>
-          </svg>
+          <i class="fa-solid fa-wand-magic-sparkles text-lg"></i>
         </div>
         <div>
           <h1 class="text-lg sm:text-xl font-extrabold tracking-tight text-forest leading-tight flex items-center gap-1.5">
@@ -138,14 +134,16 @@
           <div id="overall-progress-bar" class="bg-forest h-full rounded-full transition-all duration-500" style="width: 0%"></div>
         </div>
 
-        <!-- Family Character Graphic Badges Grid -->
+        <!-- Family Character Badges Grid -->
         <div class="grid grid-cols-2 sm:grid-cols-4 gap-3">
           <!-- Greg (Mickey Mouse) -->
           <div class="bg-[#FAF9F5] p-3 rounded-2xl border border-slate-200/80 flex items-center gap-2.5">
-            <img src="https://upload.wikimedia.org/wikipedia/en/d/d4/Mickey_Mouse.png" alt="Greg" class="w-9 h-9 rounded-full bg-red-100 object-cover shrink-0 border border-red-200">
+            <div class="w-9 h-9 rounded-full bg-red-600 text-white font-extrabold text-xs flex items-center justify-center shrink-0 border-2 border-amber-400 shadow-sm">
+              <i class="fa-solid fa-hat-wizard text-sm"></i>
+            </div>
             <div class="flex-1 min-w-0">
               <div class="flex justify-between items-center text-xs mb-1">
-                <span class="font-bold text-slate-700 truncate">Greg</span>
+                <span class="font-bold text-slate-700 truncate">Greg <span class="text-[10px] text-slate-400 font-normal">(Mickey)</span></span>
                 <span id="stat-greg-count" class="font-extrabold text-forest ml-1">0</span>
               </div>
               <div class="w-full bg-slate-200/80 rounded-full h-1.5 overflow-hidden">
@@ -156,10 +154,12 @@
 
           <!-- Dez (Belle) -->
           <div class="bg-[#FAF9F5] p-3 rounded-2xl border border-slate-200/80 flex items-center gap-2.5">
-            <img src="https://upload.wikimedia.org/wikipedia/en/b/b1/Belle_Disney.png" alt="Dez" class="w-9 h-9 rounded-full bg-amber-100 object-cover shrink-0 border border-amber-200">
+            <div class="w-9 h-9 rounded-full bg-amber-400 text-slate-900 font-extrabold text-xs flex items-center justify-center shrink-0 border-2 border-amber-200 shadow-sm">
+              <i class="fa-solid fa-rose text-sm text-red-600"></i>
+            </div>
             <div class="flex-1 min-w-0">
               <div class="flex justify-between items-center text-xs mb-1">
-                <span class="font-bold text-slate-700 truncate">Dez</span>
+                <span class="font-bold text-slate-700 truncate">Dez <span class="text-[10px] text-slate-400 font-normal">(Belle)</span></span>
                 <span id="stat-dez-count" class="font-extrabold text-forest ml-1">0</span>
               </div>
               <div class="w-full bg-slate-200/80 rounded-full h-1.5 overflow-hidden">
@@ -170,10 +170,12 @@
 
           <!-- Emma (Donald Duck) -->
           <div class="bg-[#FAF9F5] p-3 rounded-2xl border border-slate-200/80 flex items-center gap-2.5">
-            <img src="https://upload.wikimedia.org/wikipedia/en/7/75/Donald_Duck.png" alt="Emma" class="w-9 h-9 rounded-full bg-blue-100 object-cover shrink-0 border border-blue-200">
+            <div class="w-9 h-9 rounded-full bg-blue-600 text-white font-extrabold text-xs flex items-center justify-center shrink-0 border-2 border-yellow-400 shadow-sm">
+              <i class="fa-solid fa-anchor text-sm"></i>
+            </div>
             <div class="flex-1 min-w-0">
               <div class="flex justify-between items-center text-xs mb-1">
-                <span class="font-bold text-slate-700 truncate">Emma</span>
+                <span class="font-bold text-slate-700 truncate">Emma <span class="text-[10px] text-slate-400 font-normal">(Donald)</span></span>
                 <span id="stat-emma-count" class="font-extrabold text-forest ml-1">0</span>
               </div>
               <div class="w-full bg-slate-200/80 rounded-full h-1.5 overflow-hidden">
@@ -184,10 +186,12 @@
 
           <!-- Harper (Daisy Duck) -->
           <div class="bg-[#FAF9F5] p-3 rounded-2xl border border-slate-200/80 flex items-center gap-2.5">
-            <img src="https://upload.wikimedia.org/wikipedia/en/c/c2/Daisy_Duck.png" alt="Harper" class="w-9 h-9 rounded-full bg-purple-100 object-cover shrink-0 border border-purple-200">
+            <div class="w-9 h-9 rounded-full bg-purple-500 text-white font-extrabold text-xs flex items-center justify-center shrink-0 border-2 border-pink-300 shadow-sm">
+              <i class="fa-solid fa-ribbon text-sm"></i>
+            </div>
             <div class="flex-1 min-w-0">
               <div class="flex justify-between items-center text-xs mb-1">
-                <span class="font-bold text-slate-700 truncate">Harper</span>
+                <span class="font-bold text-slate-700 truncate">Harper <span class="text-[10px] text-slate-400 font-normal">(Daisy)</span></span>
                 <span id="stat-harper-count" class="font-extrabold text-forest ml-1">0</span>
               </div>
               <div class="w-full bg-slate-200/80 rounded-full h-1.5 overflow-hidden">
@@ -407,11 +411,11 @@
     ];
 
     const FAMILY_MEMBERS = ['greg', 'dez', 'emma', 'harper'];
-    const CHARACTER_IMAGES = {
-      greg: 'https://upload.wikimedia.org/wikipedia/en/d/d4/Mickey_Mouse.png',
-      dez: 'https://upload.wikimedia.org/wikipedia/en/b/b1/Belle_Disney.png',
-      emma: 'https://upload.wikimedia.org/wikipedia/en/7/75/Donald_Duck.png',
-      harper: 'https://upload.wikimedia.org/wikipedia/en/c/c2/Daisy_Duck.png'
+    const CHARACTER_STYLING = {
+      greg: { label: 'Greg', sub: 'Mickey', bg: 'bg-red-50 text-red-700 border-red-200', icon: 'fa-hat-wizard text-red-600' },
+      dez: { label: 'Dez', sub: 'Belle', bg: 'bg-amber-50 text-amber-800 border-amber-200', icon: 'fa-rose text-red-600' },
+      emma: { label: 'Emma', sub: 'Donald', bg: 'bg-blue-50 text-blue-700 border-blue-200', icon: 'fa-anchor text-blue-600' },
+      harper: { label: 'Harper', sub: 'Daisy', bg: 'bg-purple-50 text-purple-700 border-purple-200', icon: 'fa-ribbon text-purple-600' }
     };
     const STORAGE_KEY = 'wdw_family_tracker_data_v2';
 
@@ -689,15 +693,14 @@
           <div class="grid grid-cols-4 gap-1.5 pt-1">
             ${FAMILY_MEMBERS.map(m => {
               const isChecked = status[m] || false;
-              const capitalized = m.charAt(0).toUpperCase() + m.slice(1);
-              const imgUrl = CHARACTER_IMAGES[m];
+              const style = CHARACTER_STYLING[m];
               return `
                 <div>
                   <input type="checkbox" id="${attr.id}-${m}" class="hidden member-checkbox" ${isChecked ? 'checked' : ''} onchange="toggleMember('${attr.id}', '${m}')">
                   <label for="${attr.id}-${m}" class="flex flex-col items-center justify-center py-2 px-1 rounded-2xl border border-slate-200 bg-white text-slate-700 cursor-pointer transition active:scale-95 text-center relative overflow-hidden">
-                    <img src="${imgUrl}" alt="${capitalized}" class="w-6 h-6 mb-1 rounded-full object-cover">
-                    <span class="text-[11px] font-bold leading-none">${capitalized}</span>
-                    <div class="check-badge absolute top-1 right-1 w-3.5 h-3.5 rounded-full bg-forest text-white text-[8px] flex items-center justify-center font-bold opacity-0 transition-all">
+                    <i class="fa-solid ${style.icon} text-sm mb-1"></i>
+                    <span class="text-[11px] font-bold leading-none">${style.label}</span>
+                    <div class="check-badge absolute top-1 right-1 w-3.5 h-3.5 rounded-full bg-gold text-forest text-[8px] flex items-center justify-center font-bold opacity-0 transition-all scale-50">
                       ✓
                     </div>
                   </label>
