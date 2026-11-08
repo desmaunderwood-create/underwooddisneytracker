@@ -1,382 +1,32 @@
 <!DOCTYPE html>
-<html lang="en" class="h-full bg-[#FAFAFA]">
+<html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
-  <title>WDW Family Tracker</title>
-  
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Underwood Adventures - Disney Ride Tracker</title>
   <!-- Tailwind CSS -->
   <script src="https://cdn.tailwindcss.com"></script>
-  <script>
-    tailwind.config = {
-      theme: {
-        extend: {
-          colors: {
-            forest: {
-              DEFAULT: '#1B3B2B',
-              50: '#F2F7F4',
-              100: '#E1ECE5',
-              600: '#26523C',
-              700: '#1B3B2B',
-              800: '#142C20',
-              900: '#0C1B14',
-            },
-            sage: {
-              DEFAULT: '#8FA89B',
-              light: '#EAF0EC',
-              dark: '#5E7A6C'
-            },
-            gold: {
-              DEFAULT: '#D4AF37',
-              light: '#F8F4E6',
-              dark: '#AA8828'
-            },
-            ivory: '#FAF9F5'
-          },
-          fontFamily: {
-            sans: ['-apple-system', 'BlinkMacSystemFont', 'Segoe UI', 'Roboto', 'Helvetica', 'Arial', 'sans-serif'],
-          }
-        }
-      }
-    }
-  </script>
-
-  <!-- PWA & Mobile Meta Tags -->
-  <meta name="apple-mobile-web-app-capable" content="yes">
-  <meta name="apple-mobile-web-app-status-bar-style" content="default">
-  <meta name="apple-mobile-web-app-title" content="WDW Tracker">
-  <meta name="theme-color" content="#1B3B2B">
-  
-  <!-- Font Awesome Icons -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-
-  <!-- Firebase Core & Firestore SDKs -->
-  <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-app-compat.js"></script>
-  <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore-compat.js"></script>
-
+  <!-- React & ReactDOM -->
+  <script src="https://unpkg.com/react@18/umd/react.production.min.js" crossorigin></script>
+  <script src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js" crossorigin></script>
+  <!-- Babel compiler for JSX -->
+  <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+  <!-- Firebase SDKs -->
+  <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-auth-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore-compat.js"></script>
   <style>
-    /* Custom Touch Optimizations & Aesthetics */
-    -webkit-tap-highlight-color: transparent;
-    
-    body {
-      touch-action: manipulation;
-      user-select: none;
-      -webkit-user-select: none;
-    }
-    
-    /* Smooth Scrollbar */
-    ::-webkit-scrollbar {
-      width: 6px;
-      height: 6px;
-    }
-    ::-webkit-scrollbar-track {
-      background: #FAF9F5;
-    }
-    ::-webkit-scrollbar-thumb {
-      background: #C2D1C8;
-      border-radius: 9999px;
-    }
-
-    .no-scrollbar::-webkit-scrollbar {
-      display: none;
-    }
-    .no-scrollbar {
-      -ms-overflow-style: none;
-      scrollbar-width: none;
-    }
-
-    /* Custom Checkbox Touch Animations */
-    .member-checkbox:checked + label {
-      background-color: #1B3B2B;
-      color: #FAF9F5;
-      border-color: #1B3B2B;
-      box-shadow: 0 2px 5px rgba(27, 59, 43, 0.2);
-    }
-    
-    .member-checkbox:checked + label .check-icon {
-      opacity: 1;
-      transform: scale(1);
-    }
-
-    /* Subtle Glassmorphic Effect */
-    .glass-header {
-      background: rgba(250, 249, 245, 0.92);
-      backdrop-filter: blur(12px);
-      -webkit-backdrop-filter: blur(12px);
-    }
+    .no-scrollbar::-webkit-scrollbar { display: none; }
+    .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
   </style>
 </head>
-<body class="h-full flex flex-col text-slate-800 bg-[#FAF9F5] antialiased selection:bg-sage-light">
+<body class="bg-slate-950 text-slate-100 min-h-screen">
+  <div id="root"></div>
 
-  <!-- Top App Header -->
-  <header class="glass-header sticky top-0 z-30 border-b border-sage-light/80 px-4 pt-4 pb-3 sm:px-6">
-    <div class="max-w-4xl mx-auto flex items-center justify-between">
-      <div class="flex items-center space-x-3">
-        <div class="w-10 h-10 rounded-xl bg-forest text-gold flex items-center justify-center shadow-md border border-gold/30">
-          <i class="fa-solid fa-castle text-lg"></i>
-        </div>
-        <div>
-          <h1 class="text-lg sm:text-xl font-semibold tracking-tight text-forest leading-tight">WDW Family Tracker</h1>
-          <p class="text-xs text-slate-500 font-medium">Walt Disney World Companion</p>
-        </div>
-      </div>
-      
-      <!-- Top Action Buttons -->
-      <div class="flex items-center space-x-2">
-        <button onclick="openSettingsModal()" class="w-9 h-9 rounded-full bg-slate-100 hover:bg-sage-light text-slate-600 hover:text-forest transition flex items-center justify-center" title="Settings & Data">
-          <i class="fa-solid fa-gear text-sm"></i>
-        </button>
-      </div>
-    </div>
-  </header>
+  <script type="text/babel">
+    const { useState, useEffect } = React;
 
-  <!-- Main Scrollable Area -->
-  <main class="flex-1 overflow-y-auto pb-28">
-    <div class="max-w-4xl mx-auto px-4 py-5 space-y-6">
-
-      <!-- Overall Family Progress Dashboard Card -->
-      <section class="bg-white rounded-2xl p-5 border border-sage-light/90 shadow-sm relative overflow-hidden">
-        <div class="absolute top-0 right-0 w-32 h-32 bg-sage-light/30 rounded-full blur-2xl -mr-10 -mt-10 pointer-events-none"></div>
-        
-        <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-4">
-          <div>
-            <span class="text-xs font-bold uppercase tracking-wider text-sage-dark">Overall Progress</span>
-            <div class="flex items-baseline space-x-2">
-              <span id="total-completed-count" class="text-3xl font-bold text-forest">0</span>
-              <span class="text-slate-400 font-medium">/ <span id="total-attractions-count">0</span> Experiences</span>
-            </div>
-          </div>
-          
-          <!-- All 4 Badge -->
-          <div class="inline-flex items-center space-x-2 px-3 py-2 bg-gold-light border border-gold/40 rounded-xl">
-            <i class="fa-solid fa-crown text-gold-dark text-sm"></i>
-            <div>
-              <div class="text-[10px] font-bold tracking-wider text-gold-dark uppercase">All 4 Completed</div>
-              <div id="all-four-count" class="text-base font-bold text-slate-800 leading-none">0 Ridden</div>
-            </div>
-          </div>
-        </div>
-
-        <!-- Overall Progress Bar -->
-        <div class="w-full bg-slate-100 rounded-full h-2.5 overflow-hidden mb-5">
-          <div id="overall-progress-bar" class="bg-forest h-full rounded-full transition-all duration-500" style="width: 0%"></div>
-        </div>
-
-        <!-- Family Member Breakdown Grid with Custom Avatars -->
-        <div class="grid grid-cols-2 sm:grid-cols-4 gap-3">
-          <!-- Greg -->
-          <div class="bg-[#FAF9F5] p-3 rounded-xl border border-slate-200/70">
-            <div class="flex justify-between items-center text-xs mb-1">
-              <span class="font-semibold text-slate-700 flex items-center gap-1.5">
-                <img src="greg.png" alt="Greg" class="w-5 h-5 rounded-full object-cover border border-sage/40"> Greg
-              </span>
-              <span id="stat-greg-count" class="font-bold text-forest">0</span>
-            </div>
-            <div class="w-full bg-slate-200/80 rounded-full h-1.5 overflow-hidden">
-              <div id="bar-greg" class="bg-forest h-full rounded-full transition-all duration-300" style="width: 0%"></div>
-            </div>
-          </div>
-
-          <!-- Dez -->
-          <div class="bg-[#FAF9F5] p-3 rounded-xl border border-slate-200/70">
-            <div class="flex justify-between items-center text-xs mb-1">
-              <span class="font-semibold text-slate-700 flex items-center gap-1.5">
-                <img src="dez.png" alt="Dez" class="w-5 h-5 rounded-full object-cover border border-sage/40"> Dez
-              </span>
-              <span id="stat-dez-count" class="font-bold text-forest">0</span>
-            </div>
-            <div class="w-full bg-slate-200/80 rounded-full h-1.5 overflow-hidden">
-              <div id="bar-dez" class="bg-forest h-full rounded-full transition-all duration-300" style="width: 0%"></div>
-            </div>
-          </div>
-
-          <!-- Emma -->
-          <div class="bg-[#FAF9F5] p-3 rounded-xl border border-slate-200/70">
-            <div class="flex justify-between items-center text-xs mb-1">
-              <span class="font-semibold text-slate-700 flex items-center gap-1.5">
-                <img src="emma.png" alt="Emma" class="w-5 h-5 rounded-full object-cover border border-sage/40"> Emma
-              </span>
-              <span id="stat-emma-count" class="font-bold text-forest">0</span>
-            </div>
-            <div class="w-full bg-slate-200/80 rounded-full h-1.5 overflow-hidden">
-              <div id="bar-emma" class="bg-forest h-full rounded-full transition-all duration-300" style="width: 0%"></div>
-            </div>
-          </div>
-
-          <!-- Harper -->
-          <div class="bg-[#FAF9F5] p-3 rounded-xl border border-slate-200/70">
-            <div class="flex justify-between items-center text-xs mb-1">
-              <span class="font-semibold text-slate-700 flex items-center gap-1.5">
-                <img src="harper.png" alt="Harper" class="w-5 h-5 rounded-full object-cover border border-sage/40"> Harper
-              </span>
-              <span id="stat-harper-count" class="font-bold text-forest">0</span>
-            </div>
-            <div class="w-full bg-slate-200/80 rounded-full h-1.5 overflow-hidden">
-              <div id="bar-harper" class="bg-forest h-full rounded-full transition-all duration-300" style="width: 0%"></div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <!-- Navigation Park Tabs -->
-      <nav class="flex space-x-2 overflow-x-auto pb-1 no-scrollbar -mx-4 px-4 sm:mx-0 sm:px-0">
-        <button onclick="setActivePark('all')" id="tab-all" class="park-tab shrink-0 px-4 py-2.5 rounded-xl font-medium text-xs sm:text-sm transition flex items-center space-x-2 border bg-forest text-white border-forest shadow-sm">
-          <i class="fa-solid fa-layer-group"></i>
-          <span>All Parks</span>
-        </button>
-        <button onclick="setActivePark('mk')" id="tab-mk" class="park-tab shrink-0 px-4 py-2.5 rounded-xl font-medium text-xs sm:text-sm transition flex items-center space-x-2 border bg-white text-slate-600 border-slate-200 hover:border-sage">
-          <i class="fa-solid fa-castle text-amber-600"></i>
-          <span>Magic Kingdom</span>
-        </button>
-        <button onclick="setActivePark('ep')" id="tab-ep" class="park-tab shrink-0 px-4 py-2.5 rounded-xl font-medium text-xs sm:text-sm transition flex items-center space-x-2 border bg-white text-slate-600 border-slate-200 hover:border-sage">
-          <i class="fa-solid fa-globe text-blue-600"></i>
-          <span>EPCOT</span>
-        </button>
-        <button onclick="setActivePark('hs')" id="tab-hs" class="park-tab shrink-0 px-4 py-2.5 rounded-xl font-medium text-xs sm:text-sm transition flex items-center space-x-2 border bg-white text-slate-600 border-slate-200 hover:border-sage">
-          <i class="fa-solid fa-film text-red-600"></i>
-          <span>Hollywood Studios</span>
-        </button>
-        <button onclick="setActivePark('ak')" id="tab-ak" class="park-tab shrink-0 px-4 py-2.5 rounded-xl font-medium text-xs sm:text-sm transition flex items-center space-x-2 border bg-white text-slate-600 border-slate-200 hover:border-sage">
-          <i class="fa-solid fa-tree text-emerald-600"></i>
-          <span>Animal Kingdom</span>
-        </button>
-      </nav>
-
-      <!-- Search & Filters Bar -->
-      <section class="bg-white p-3.5 rounded-2xl border border-sage-light/80 shadow-sm space-y-3">
-        <div class="relative">
-          <i class="fa-solid fa-magnifying-glass absolute left-3.5 top-1/2 -translate-y-1/2 text-slate-400 text-sm"></i>
-          <input 
-            type="text" 
-            id="search-input" 
-            placeholder="Search attractions or lands..." 
-            oninput="handleFilterChange()"
-            class="w-full pl-10 pr-4 py-2.5 bg-[#FAF9F5] border border-slate-200 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-forest/20 focus:border-forest transition"
-          >
-          <button id="clear-search" onclick="clearSearch()" class="hidden absolute right-3 top-1/2 -translate-y-1/2 text-slate-400 hover:text-slate-600 p-1">
-            <i class="fa-solid fa-xmark text-sm"></i>
-          </button>
-        </div>
-
-        <div class="flex items-center space-x-2 overflow-x-auto no-scrollbar pt-1">
-          <span class="text-xs font-semibold text-slate-400 uppercase tracking-wider shrink-0 mr-1"><i class="fa-solid fa-filter text-[10px]"></i> Filter:</span>
-          
-          <button onclick="setFilter('all')" id="filter-all" class="filter-btn shrink-0 px-3 py-1.5 rounded-lg text-xs font-medium bg-forest text-white">All</button>
-          <button onclick="setFilter('unridden')" id="filter-unridden" class="filter-btn shrink-0 px-3 py-1.5 rounded-lg text-xs font-medium bg-slate-100 text-slate-600 hover:bg-slate-200">Unridden by Anyone</button>
-          <button onclick="setFilter('all4')" id="filter-all4" class="filter-btn shrink-0 px-3 py-1.5 rounded-lg text-xs font-medium bg-slate-100 text-slate-600 hover:bg-slate-200">Completed by All 4</button>
-          <button onclick="setFilter('not-greg')" id="filter-not-greg" class="filter-btn shrink-0 px-3 py-1.5 rounded-lg text-xs font-medium bg-slate-100 text-slate-600 hover:bg-slate-200">Needs: Greg</button>
-          <button onclick="setFilter('not-dez')" id="filter-not-dez" class="filter-btn shrink-0 px-3 py-1.5 rounded-lg text-xs font-medium bg-slate-100 text-slate-600 hover:bg-slate-200">Needs: Dez</button>
-          <button onclick="setFilter('not-emma')" id="filter-not-emma" class="filter-btn shrink-0 px-3 py-1.5 rounded-lg text-xs font-medium bg-slate-100 text-slate-600 hover:bg-slate-200">Needs: Emma</button>
-          <button onclick="setFilter('not-harper')" id="filter-not-harper" class="filter-btn shrink-0 px-3 py-1.5 rounded-lg text-xs font-medium bg-slate-100 text-slate-600 hover:bg-slate-200">Needs: Harper</button>
-        </div>
-      </section>
-
-      <!-- Current Filter Summary & Park Header Info -->
-      <div class="flex items-center justify-between px-1">
-        <div id="park-summary-title" class="text-sm font-bold text-forest uppercase tracking-wide">
-          All Parks
-        </div>
-        <div id="results-count" class="text-xs font-medium text-slate-500">
-          Showing 0 attractions
-        </div>
-      </div>
-
-      <!-- Attraction Cards Container -->
-      <div id="attractions-container" class="space-y-6">
-        <!-- Rendered dynamically via JavaScript -->
-      </div>
-
-    </div>
-  </main>
-
-  <!-- Settings & Data Management Modal -->
-  <div id="settings-modal" class="fixed inset-0 bg-slate-900/40 backdrop-blur-sm z-50 flex items-center justify-center p-4 hidden">
-    <div class="bg-white rounded-3xl max-w-md w-full p-6 shadow-2xl border border-sage-light space-y-5 animate-in fade-in zoom-in duration-200">
-      <div class="flex justify-between items-center border-b border-slate-100 pb-3">
-        <h3 class="text-lg font-bold text-forest flex items-center gap-2">
-          <i class="fa-solid fa-sliders text-sage-dark"></i> Options & Data
-        </h3>
-        <button onclick="closeSettingsModal()" class="w-8 h-8 rounded-full bg-slate-100 hover:bg-slate-200 flex items-center justify-center text-slate-500">
-          <i class="fa-solid fa-xmark text-sm"></i>
-        </button>
-      </div>
-
-      <!-- Park Reset Section -->
-      <div class="space-y-2">
-        <label class="text-xs font-bold uppercase tracking-wider text-slate-400">Reset Progress</label>
-        <div class="grid grid-cols-2 gap-2">
-          <button onclick="confirmResetCurrentPark()" class="px-3 py-2 bg-slate-50 hover:bg-red-50 text-slate-700 hover:text-red-600 border border-slate-200 rounded-xl text-xs font-semibold text-left transition flex items-center justify-between">
-            <span>Reset Active Park</span>
-            <i class="fa-solid fa-arrow-rotate-left text-[10px]"></i>
-          </button>
-          <button onclick="confirmResetAll()" class="px-3 py-2 bg-slate-50 hover:bg-red-50 text-slate-700 hover:text-red-600 border border-slate-200 rounded-xl text-xs font-semibold text-left transition flex items-center justify-between">
-            <span>Reset All Data</span>
-            <i class="fa-solid fa-trash text-[10px]"></i>
-          </button>
-        </div>
-      </div>
-
-      <!-- Backup / Restore -->
-      <div class="space-y-2 border-t border-slate-100 pt-3">
-        <label class="text-xs font-bold uppercase tracking-wider text-slate-400">Backup & Manual Sync</label>
-        <div class="flex gap-2">
-          <button onclick="exportData()" class="flex-1 px-4 py-2.5 bg-sage-light/60 hover:bg-sage-light text-forest border border-sage/30 rounded-xl text-xs font-bold transition flex items-center justify-center space-x-2">
-            <i class="fa-solid fa-download"></i>
-            <span>Export Backup</span>
-          </button>
-          <label class="flex-1 px-4 py-2.5 bg-sage-light/60 hover:bg-sage-light text-forest border border-sage/30 rounded-xl text-xs font-bold transition flex items-center justify-center space-x-2 cursor-pointer">
-            <i class="fa-solid fa-upload"></i>
-            <span>Import Backup</span>
-            <input type="file" id="import-file" accept=".json" onchange="importData(event)" class="hidden">
-          </label>
-        </div>
-      </div>
-
-      <!-- PWA Installation Instructions -->
-      <div class="bg-ivory p-4 rounded-2xl border border-sage-light/70 space-y-2">
-        <div class="flex items-center space-x-2 text-xs font-bold text-forest">
-          <i class="fa-brands fa-apple text-sm"></i>
-          <span>Add to iPhone Home Screen</span>
-        </div>
-        <ol class="text-xs text-slate-600 space-y-1 pl-4 list-decimal">
-          <li>Open this app in <strong>Safari</strong> on your iPhone.</li>
-          <li>Tap the <strong>Share button</strong> <i class="fa-solid fa-arrow-up-from-bracket text-[10px] text-blue-600"></i> at the bottom.</li>
-          <li>Scroll down and tap <strong>Add to Home Screen</strong> <i class="fa-solid fa-plus-square text-[10px]"></i>.</li>
-        </ol>
-      </div>
-
-      <button onclick="closeSettingsModal()" class="w-full py-2.5 bg-forest text-white rounded-xl font-semibold text-sm shadow-md hover:bg-forest-600 transition">
-        Done
-      </button>
-    </div>
-  </div>
-
-  <!-- Custom Confirmation Modal -->
-  <div id="confirm-modal" class="fixed inset-0 bg-slate-900/50 backdrop-blur-sm z-50 flex items-center justify-center p-4 hidden">
-    <div class="bg-white rounded-2xl max-w-xs w-full p-5 shadow-2xl border border-slate-100 text-center space-y-4">
-      <div class="w-12 h-12 rounded-full bg-red-100 text-red-600 mx-auto flex items-center justify-center text-xl">
-        <i class="fa-solid fa-triangle-exclamation"></i>
-      </div>
-      <div>
-        <h4 id="confirm-title" class="font-bold text-slate-800 text-base">Are you sure?</h4>
-        <p id="confirm-msg" class="text-xs text-slate-500 mt-1">This action cannot be undone.</p>
-      </div>
-      <div class="grid grid-cols-2 gap-2 pt-2">
-        <button onclick="closeConfirmModal(false)" class="py-2 bg-slate-100 text-slate-700 rounded-xl font-semibold text-xs hover:bg-slate-200 transition">Cancel</button>
-        <button id="confirm-btn-yes" onclick="closeConfirmModal(true)" class="py-2 bg-red-600 text-white rounded-xl font-semibold text-xs hover:bg-red-700 transition shadow-sm">Reset</button>
-      </div>
-    </div>
-  </div>
-
-  <!-- Toast Notification -->
-  <div id="toast" class="fixed bottom-6 left-1/2 -translate-x-1/2 bg-forest text-ivory px-4 py-2.5 rounded-2xl shadow-xl text-xs font-semibold flex items-center space-x-2 z-50 transition-all duration-300 opacity-0 pointer-events-none translate-y-4 border border-gold/30">
-    <i id="toast-icon" class="fa-solid fa-circle-check text-gold"></i>
-    <span id="toast-message">Progress saved</span>
-  </div>
-
-  <!-- Application Logic & Data -->
-  <script>
-    // --- FIREBASE INITIALIZATION ---
+    // --- Real Firebase Configuration ---
     const firebaseConfig = {
       apiKey: "AIzaSyB6Wj_2ZTQxtRkA7W2du-HmKP89X1JI2Go",
       authDomain: "underwood-disney-tracker.firebaseapp.com",
@@ -386,707 +36,533 @@
       appId: "1:111496063491:web:6038d529f35e88de51fc36"
     };
 
-    firebase.initializeApp(firebaseConfig);
-    const db = firebase.firestore();
-    const docRef = db.collection("trackers").doc("familyProgress");
-
-    // --- ATTRACTIONS DATA ---
-    const PARKS_DATA = [
-      {
-        id: 'mk',
-        name: 'Magic Kingdom',
-        icon: 'fa-castle',
-        color: 'text-amber-600',
-        lands: [
-          {
-            name: 'Main Street, U.S.A.',
-            attractions: [
-              { id: 'mk-1', name: 'Walt Disney World Railroad' }
-            ]
-          },
-          {
-            name: 'Adventureland',
-            attractions: [
-              { id: 'mk-2', name: 'Jungle Cruise' },
-              { id: 'mk-3', name: 'Pirates of the Caribbean' },
-              { id: 'mk-4', name: 'The Magic Carpets of Aladdin' },
-              { id: 'mk-5', name: "Walt Disney's Enchanted Tiki Room" },
-              { id: 'mk-6', name: 'Swiss Family Treehouse' }
-            ]
-          },
-          {
-            name: 'Frontierland',
-            attractions: [
-              { id: 'mk-7', name: 'Big Thunder Mountain Railroad' },
-              { id: 'mk-8', name: "Tiana's Bayou Adventure" },
-              { id: 'mk-9', name: 'Country Bear Musical Jamboree' }
-            ]
-          },
-          {
-            name: 'Liberty Square',
-            attractions: [
-              { id: 'mk-10', name: 'The Haunted Mansion' },
-              { id: 'mk-11', name: 'The Hall of Presidents' },
-              { id: 'mk-12', name: 'Liberty Belle Riverboat' }
-            ]
-          },
-          {
-            name: 'Fantasyland',
-            attractions: [
-              { id: 'mk-13', name: 'Seven Dwarfs Mine Train' },
-              { id: 'mk-14', name: "Peter Pan's Flight" },
-              { id: 'mk-15', name: '"it\'s a small world"' },
-              { id: 'mk-16', name: 'Dumbo the Flying Elephant' },
-              { id: 'mk-17', name: 'Mad Tea Party' },
-              { id: 'mk-18', name: 'The Many Adventures of Winnie the Pooh' },
-              { id: 'mk-19', name: 'Under the Sea - Journey of The Little Mermaid' },
-              { id: 'mk-20', name: 'Prince Charming Regal Carrousel' },
-              { id: 'mk-21', name: "Mickey's PhilharMagic" },
-              { id: 'mk-22', name: 'Enchanted Tales with Belle' }
-            ]
-          },
-          {
-            name: 'Tomorrowland',
-            attractions: [
-              { id: 'mk-23', name: 'Space Mountain' },
-              { id: 'mk-24', name: 'TRON Lightcycle / Run' },
-              { id: 'mk-25', name: "Buzz Lightyear's Space Ranger Spin" },
-              { id: 'mk-26', name: 'Tomorrowland Transit Authority PeopleMover' },
-              { id: 'mk-27', name: 'Astro Orbiter' },
-              { id: 'mk-28', name: "Walt Disney's Carousel of Progress" },
-              { id: 'mk-29', name: 'Tomorrowland Speedway' },
-              { id: 'mk-30', name: 'Monsters, Inc. Laugh Floor' }
-            ]
-          }
-        ]
-      },
-      {
-        id: 'ep',
-        name: 'EPCOT',
-        icon: 'fa-globe',
-        color: 'text-blue-600',
-        lands: [
-          {
-            name: 'World Celebration',
-            attractions: [
-              { id: 'ep-1', name: 'Spaceship Earth' },
-              { id: 'ep-2', name: 'Disney Pixar Short Film Festival' }
-            ]
-          },
-          {
-            name: 'World Discovery',
-            attractions: [
-              { id: 'ep-3', name: 'Guardians of the Galaxy: Cosmic Rewind' },
-              { id: 'ep-4', name: 'Test Track' },
-              { id: 'ep-5', name: 'Mission: SPACE' }
-            ]
-          },
-          {
-            name: 'World Nature',
-            attractions: [
-              { id: 'ep-6', name: "Soarin' Around the World" },
-              { id: 'ep-7', name: 'Living with the Land' },
-              { id: 'ep-8', name: 'Awesome Planet' },
-              { id: 'ep-9', name: 'Journey Into Imagination With Figment' },
-              { id: 'ep-10', name: 'The Seas with Nemo & Friends' },
-              { id: 'ep-11', name: 'Turtle Talk with Crush' },
-              { id: 'ep-12', name: 'Journey of Water, Inspired by Moana' }
-            ]
-          },
-          {
-            name: 'World Showcase',
-            attractions: [
-              { id: 'ep-13', name: 'Gran Fiesta Tour Starring The Three Caballeros (Mexico)' },
-              { id: 'ep-14', name: 'Frozen Ever After (Norway)' },
-              { id: 'ep-15', name: 'Reflections of China (China)' },
-              { id: 'ep-16', name: 'The American Adventure (USA)' },
-              { id: 'ep-17', name: 'Beauty and the Beast Sing-Along (France)' },
-              { id: 'ep-18', name: "Remy's Ratatouille Adventure (France)" },
-              { id: 'ep-19', name: 'Canada Far and Wide (Canada)' }
-            ]
-          }
-        ]
-      },
-      {
-        id: 'hs',
-        name: "Disney's Hollywood Studios",
-        icon: 'fa-film',
-        color: 'text-red-600',
-        lands: [
-          {
-            name: 'Hollywood Boulevard & Echo Lake',
-            attractions: [
-              { id: 'hs-1', name: 'Indiana Jones Epic Stunt Spectacular!' },
-              { id: 'hs-2', name: 'For the First Time in Forever: A Frozen Sing-Along' },
-              { id: 'hs-3', name: 'Star Tours - The Adventures Continue' }
-            ]
-          },
-          {
-            name: 'Grand Avenue',
-            attractions: [
-              { id: 'hs-4', name: 'Muppet*Vision 3D' }
-            ]
-          },
-          {
-            name: "Star Wars: Galaxy's Edge",
-            attractions: [
-              { id: 'hs-5', name: 'Star Wars: Rise of the Resistance' },
-              { id: 'hs-6', name: 'Millennium Falcon: Smugglers Run' }
-            ]
-          },
-          {
-            name: 'Toy Story Land',
-            attractions: [
-              { id: 'hs-7', name: 'Slinky Dog Dash' },
-              { id: 'hs-8', name: 'Toy Story Mania!' },
-              { id: 'hs-9', name: 'Alien Swirling Saucers' }
-            ]
-          },
-          {
-            name: 'Pixar Plaza & Animation Courtyard',
-            attractions: [
-              { id: 'hs-10', name: 'Walt Disney Presents' },
-              { id: 'hs-11', name: 'Disney Junior Play and Dance!' }
-            ]
-          },
-          {
-            name: 'Sunset Boulevard',
-            attractions: [
-              { id: 'hs-12', name: 'The Twilight Zone Tower of Terror' },
-              { id: 'hs-13', name: "Rock 'n' Roller Coaster Starring Aerosmith" },
-              { id: 'hs-14', name: 'Beauty and the Beast - Live on Stage' },
-              { id: 'hs-15', name: 'Fantasmic!' }
-            ]
-          }
-        ]
-      },
-      {
-        id: 'ak',
-        name: "Disney's Animal Kingdom",
-        icon: 'fa-tree',
-        color: 'text-emerald-600',
-        lands: [
-          {
-            name: 'Oasis & Discovery Island',
-            attractions: [
-              { id: 'ak-1', name: "It's Tough to be a Bug! (Tree of Life)" }
-            ]
-          },
-          {
-            name: 'Pandora - The World of Avatar',
-            attractions: [
-              { id: 'ak-2', name: 'Avatar Flight of Passage' },
-              { id: 'ak-3', name: "Na'vi River Journey" }
-            ]
-          },
-          {
-            name: 'Africa',
-            attractions: [
-              { id: 'ak-4', name: 'Kilimanjaro Safaris' },
-              { id: 'ak-5', name: 'Festival of the Lion King' },
-              { id: 'ak-6', name: 'Gorilla Falls Exploration Trail' }
-            ]
-          },
-          {
-            name: 'Asia',
-            attractions: [
-              { id: 'ak-7', name: 'Expedition Everest - Legend of the Forbidden Mountain' },
-              { id: 'ak-8', name: 'Kali River Rapids' },
-              { id: 'ak-9', name: 'Feathered Friends in Flight!' }
-            ]
-          },
-          {
-            name: 'DinoLand U.S.A.',
-            attractions: [
-              { id: 'ak-10', name: 'DINOSAUR' },
-              { id: 'ak-11', name: 'TriceraTop Spin' },
-              { id: 'ak-12', name: 'Finding Nemo: The Big Blue... and Beyond!' }
-            ]
-          }
-        ]
+    let db = null;
+    try {
+      if (!firebase.apps.length) {
+        firebase.initializeApp(firebaseConfig);
       }
-    ];
+      db = firebase.firestore();
+    } catch (err) {
+      console.error("Firebase Initialization Error:", err);
+    }
 
-    // Family Members configured with their GitHub filenames
+    // Underwood Family Profiles
     const FAMILY_MEMBERS = [
-      { id: 'greg', name: 'Greg', image: 'greg.png' },
-      { id: 'dez', name: 'Dez', image: 'dez.png' },
-      { id: 'emma', name: 'Emma', image: 'emma.png' },
-      { id: 'harper', name: 'Harper', image: 'harper.png' }
+      {
+        id: 'mom',
+        name: 'Mom',
+        tagline: 'MAKING MAGIC TOGETHER',
+        ribbonStyle: 'bg-gradient-to-r from-pink-300 via-purple-200 to-pink-300 text-purple-950 border-pink-300',
+        barColor: 'from-pink-400 via-purple-400 to-indigo-500',
+        avatarImg: 'https://github.com/desmaunderwood-create/underwooddisneytracker/blob/main/docs/dez.png?raw=true'
+      },
+      {
+        id: 'dad',
+        name: 'Dad',
+        tagline: 'BIG PLANS MORE RIDES',
+        ribbonStyle: 'bg-gradient-to-r from-sky-300 via-blue-200 to-indigo-300 text-slate-950 border-sky-300',
+        barColor: 'from-sky-400 via-blue-500 to-indigo-600',
+        avatarImg: 'https://github.com/desmaunderwood-create/underwooddisneytracker/blob/main/docs/greg.png?raw=true'
+      },
+      {
+        id: 'emma',
+        name: 'Emma',
+        tagline: 'DREAM IT RIDE IT',
+        ribbonStyle: 'bg-gradient-to-r from-rose-300 via-pink-200 to-rose-300 text-rose-950 border-rose-300',
+        barColor: 'from-rose-400 via-pink-400 to-pink-600',
+        avatarImg: 'https://github.com/desmaunderwood-create/underwooddisneytracker/blob/main/docs/emma.png?raw=true'
+      },
+      {
+        id: 'harper',
+        name: 'Harper',
+        tagline: 'MORE SMILES BIGGER ADVENTURES',
+        ribbonStyle: 'bg-gradient-to-r from-amber-200 via-purple-200 to-amber-200 text-purple-950 border-purple-300',
+        barColor: 'from-purple-400 via-pink-400 to-amber-400',
+        avatarImg: 'https://github.com/desmaunderwood-create/underwooddisneytracker/blob/main/docs/harper.png?raw=true'
+      }
     ];
-    
-    const STORAGE_KEY = 'wdw_family_tracker_data_v2';
 
-    // State Variables
-    let appState = {
-      userProgress: {}, // { attractionId: { greg: true, dez: false, ... } }
-      activePark: 'all',
-      activeFilter: 'all',
-      searchQuery: ''
-    };
+    // Disney World Parks Catalog
+    const PARKS_CATALOG = [
+      { id: 'mk', name: 'Magic Kingdom', icon: '🏰' },
+      { id: 'epcot', name: 'EPCOT', icon: '🌐' },
+      { id: 'hs', name: "Hollywood Studios", icon: '🎬' },
+      { id: 'ak', name: "Animal Kingdom", icon: '🌴' }
+    ];
 
-    let confirmCallback = null;
-
-    // --- INITIALIZATION & REAL-TIME SYNC ---
-    window.addEventListener('DOMContentLoaded', () => {
-      loadLocalFallback();
-      setupFirestoreSync();
-      renderApp();
-      setupPWA();
-    });
-
-    function setupFirestoreSync() {
-      docRef.onSnapshot((doc) => {
-        if (doc.exists) {
-          appState.userProgress = doc.data().attractions || {};
-          localStorage.setItem(STORAGE_KEY, JSON.stringify(appState.userProgress));
-          updateDashboardStats();
-          renderApp();
-        } else {
-          docRef.set({ attractions: appState.userProgress || {} });
-        }
-      }, (error) => {
-        console.error("Firestore sync error:", error);
-      });
-    }
-
-    function loadLocalFallback() {
-      try {
-        const saved = localStorage.getItem(STORAGE_KEY);
-        if (saved) {
-          appState.userProgress = JSON.parse(saved);
-        }
-      } catch (e) {
-        console.error('Failed to load local storage:', e);
+    // Rides List with Custom GitHub Image Links
+    const RIDES_CATALOG = [
+      {
+        id: 'space-mountain',
+        parkId: 'mk',
+        name: 'Space Mountain',
+        land: 'Tomorrowland',
+        duration: '3 minutes',
+        thrillLevel: 4,
+        heightRequirement: '44" (112 cm)',
+        rideType: 'Thrill / Indoor Coaster',
+        image: 'https://github.com/desmaunderwood-create/underwooddisneytracker/blob/main/space.jpeg?raw=true',
+        description: 'Dip and dive through outer space on a high-speed rocket flight!'
+      },
+      {
+        id: 'peter-pan',
+        parkId: 'mk',
+        name: "Peter Pan's Flight",
+        land: 'Fantasyland',
+        duration: '3 minutes',
+        thrillLevel: 1,
+        heightRequirement: 'Any Height',
+        rideType: 'Gentle Flying Dark Ride',
+        image: 'https://github.com/desmaunderwood-create/underwooddisneytracker/blob/main/pp.jpeg?raw=true',
+        description: 'Board a magical pirate ship and soar high above London and Never Land!'
+      },
+      {
+        id: 'splash-mountain',
+        parkId: 'mk',
+        name: "Tiana's Bayou Adventure",
+        land: 'Frontierland',
+        duration: '10 minutes',
+        thrillLevel: 3,
+        heightRequirement: '40" (102 cm)',
+        rideType: 'Water Flume Ride',
+        image: 'https://github.com/desmaunderwood-create/underwooddisneytracker/blob/main/splash.jpg?raw=true',
+        description: 'Join Princess Tiana and Louis on a musical bayou adventure ending in a thrilling 50-foot drop!'
+      },
+      {
+        id: 'tron-lightcycle',
+        parkId: 'mk',
+        name: 'TRON Lightcycle / Run',
+        land: 'Tomorrowland',
+        duration: '2 minutes',
+        thrillLevel: 5,
+        heightRequirement: '48" (122 cm)',
+        rideType: 'High-Speed Launch Coaster',
+        image: 'https://github.com/desmaunderwood-create/underwooddisneytracker/blob/main/tron.jpg?raw=true',
+        description: 'Climb aboard your own Lightcycle and race through the Grid in a high-stakes digital competition!'
+      },
+      {
+        id: 'big-thunder',
+        parkId: 'mk',
+        name: 'Big Thunder Mountain Railroad',
+        land: 'Frontierland',
+        duration: '3 minutes',
+        thrillLevel: 3,
+        heightRequirement: '40" (102 cm)',
+        rideType: 'Roller Coaster',
+        image: 'https://images.unsplash.com/photo-1506197603052-3cc9c3a201bd?auto=format&fit=crop&q=80&w=800',
+        description: 'A high-speed train adventure through mining caves, desert canyons and surprising twists and turns!'
+      },
+      {
+        id: 'pirates-caribbean',
+        parkId: 'mk',
+        name: 'Pirates of the Caribbean',
+        land: 'Adventureland',
+        duration: '8.5 minutes',
+        thrillLevel: 1,
+        heightRequirement: 'Any Height',
+        rideType: 'Dark Boat Ride',
+        image: 'https://github.com/desmaunderwood-create/underwooddisneytracker/blob/main/docs/pirates.jpeg?raw=true',
+        description: 'Set sail on a swashbuckling voyage through pirate waters.'
+      },
+      {
+        id: 'haunted-mansion',
+        parkId: 'mk',
+        name: 'Haunted Mansion',
+        land: 'Liberty Square',
+        duration: '9 minutes',
+        thrillLevel: 2,
+        heightRequirement: 'Any Height',
+        rideType: 'Slow Dark Ride',
+        image: 'https://github.com/desmaunderwood-create/underwooddisneytracker/blob/main/docs/hm.jpg?raw=true',
+        description: 'Doom Buggy tour through an estate home to 999 happy haunts.'
+      },
+      {
+        id: 'seven-dwarfs',
+        parkId: 'mk',
+        name: 'Seven Dwarfs Mine Train',
+        land: 'Fantasyland',
+        duration: '2.5 minutes',
+        thrillLevel: 2,
+        heightRequirement: '38" (97 cm)',
+        rideType: 'Family Coaster',
+        image: 'https://github.com/desmaunderwood-create/underwooddisneytracker/blob/main/docs/sd.jpeg?raw=true',
+        description: 'Race through the diamond mine on a swinging coaster car.'
+      },
+      {
+        id: 'guardians-rewind',
+        parkId: 'epcot',
+        name: 'Guardians of the Galaxy: Cosmic Rewind',
+        land: 'World Discovery',
+        duration: '3.5 minutes',
+        thrillLevel: 5,
+        heightRequirement: '42" (107 cm)',
+        rideType: 'Reverse Launch Coaster',
+        image: 'https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&fit=crop&q=80&w=800',
+        description: 'Intergalactic coaster chase through space with Star-Lord.'
+      },
+      {
+        id: 'remys-ratatouille',
+        parkId: 'epcot',
+        name: "Remy's Ratatouille Adventure",
+        land: 'France',
+        duration: '4.5 minutes',
+        thrillLevel: 1,
+        heightRequirement: 'Any Height',
+        rideType: '3D Trackless Dark Ride',
+        image: 'https://images.unsplash.com/photo-1555396273-367ea4eb4db5?auto=format&fit=crop&q=80&w=800',
+        description: 'Shrink down to Remy size and zip through Paris kitchen.'
+      },
+      {
+        id: 'rise-resistance',
+        parkId: 'hs',
+        name: 'Star Wars: Rise of the Resistance',
+        land: "Galaxy's Edge",
+        duration: '18 minutes',
+        thrillLevel: 3,
+        heightRequirement: '40" (102 cm)',
+        rideType: 'Immersive Dark Ride',
+        image: 'https://images.unsplash.com/photo-1579566346927-c68383817a25?auto=format&fit=crop&q=80&w=800',
+        description: 'Join the Resistance in a massive battle against First Order!'
+      },
+      {
+        id: 'slinky-dog',
+        parkId: 'hs',
+        name: 'Slinky Dog Dash',
+        land: 'Toy Story Land',
+        duration: '2 minutes',
+        thrillLevel: 2,
+        heightRequirement: '38" (97 cm)',
+        rideType: 'Family Coaster',
+        image: 'https://images.unsplash.com/photo-1534447677768-be436bb09401?auto=format&fit=crop&q=80&w=800',
+        description: 'Zip around Andy backyard on Slinky Dog mega coaster.'
+      },
+      {
+        id: 'flight-of-passage',
+        parkId: 'ak',
+        name: 'Avatar Flight of Passage',
+        land: 'Pandora',
+        duration: '5 minutes',
+        thrillLevel: 4,
+        heightRequirement: '44" (112 cm)',
+        rideType: '3D Flight Simulator',
+        image: 'https://images.unsplash.com/photo-1518709268805-4e9042af9f23?auto=format&fit=crop&q=80&w=800',
+        description: 'Fly on a mountain banshee over Pandora.'
+      },
+      {
+        id: 'expedition-everest',
+        parkId: 'ak',
+        name: 'Expedition Everest',
+        land: 'Asia',
+        duration: '3.5 minutes',
+        thrillLevel: 4,
+        heightRequirement: '44" (112 cm)',
+        rideType: 'Thrill Coaster',
+        image: 'https://images.unsplash.com/photo-1469854523086-cc02fe5d8800?auto=format&fit=crop&q=80&w=800',
+        description: 'Coaster through icy Himalayan peaks while escaping Yeti.'
       }
-    }
+    ];
 
-    function saveData() {
-      try {
-        localStorage.setItem(STORAGE_KEY, JSON.stringify(appState.userProgress));
-        updateDashboardStats();
+    function App() {
+      const [activeTab, setActiveTab] = useState('home');
+      const [activePark, setActivePark] = useState('mk');
+      const [activeMember, setActiveMember] = useState('mom');
+      const [rideState, setRideState] = useState({});
+      const [selectedRide, setSelectedRide] = useState(null);
+
+      // Listen for updates from Firestore document: trackers/familyProgress
+      useEffect(() => {
+        if (!db) return;
+        const docRef = db.collection('trackers').doc('familyProgress');
+        const unsubscribe = docRef.onSnapshot((doc) => {
+          if (doc.exists && doc.data().rideState) {
+            setRideState(doc.data().rideState);
+          }
+        }, (error) => {
+          console.error("Firestore Listen Error:", error);
+        });
+        return () => unsubscribe();
+      }, []);
+
+      // Toggle person check-off and write to Firestore
+      const togglePerson = (rideId, memberId) => {
+        const currentRiders = rideState[rideId] || [];
+        const isRidden = currentRiders.includes(memberId);
+        const updated = isRidden 
+          ? currentRiders.filter(id => id !== memberId) 
+          : [...currentRiders, memberId];
         
-        // Push directly to Firebase Cloud
-        docRef.set({ attractions: appState.userProgress }, { merge: true })
-          .catch((err) => console.error("Cloud save failed:", err));
-      } catch (e) {
-        console.error('Failed to save data:', e);
-      }
-    }
+        const nextState = { ...rideState, [rideId]: updated };
+        setRideState(nextState);
 
-    // Toggle Checkbox
-    function toggleMember(attractionId, memberId) {
-      if (!appState.userProgress[attractionId]) {
-        appState.userProgress[attractionId] = { greg: false, dez: false, emma: false, harper: false };
-      }
-      appState.userProgress[attractionId][memberId] = !appState.userProgress[attractionId][memberId];
-      
-      saveData();
-      renderApp();
-    }
-
-    // Quick Check All / Uncheck All for an Attraction
-    function toggleAllForAttraction(attractionId) {
-      const current = appState.userProgress[attractionId] || {};
-      const allChecked = FAMILY_MEMBERS.every(m => current[m.id]);
-
-      appState.userProgress[attractionId] = {
-        greg: !allChecked,
-        dez: !allChecked,
-        emma: !allChecked,
-        harper: !allChecked
+        if (db) {
+          db.collection('trackers').doc('familyProgress')
+            .set({ rideState: nextState }, { merge: true })
+            .catch(err => console.error("Firestore Save Error:", err));
+        }
       };
 
-      saveData();
-      renderApp();
-    }
+      const filteredRides = RIDES_CATALOG.filter(r => activePark === 'ALL' || r.parkId === activePark);
 
-    // --- DASHBOARD & STATS CALCULATIONS ---
-    function updateDashboardStats() {
-      let totalAttractions = 0;
-      let totalCompletedAtLeastOne = 0;
-      let allFourCompleted = 0;
-
-      const memberCounts = { greg: 0, dez: 0, emma: 0, harper: 0 };
-
-      PARKS_DATA.forEach(park => {
-        park.lands.forEach(land => {
-          land.attractions.forEach(attr => {
-            totalAttractions++;
-            const status = appState.userProgress[attr.id] || {};
+      return (
+        <div className="flex justify-center p-0 sm:p-4">
+          <div className="w-full max-w-md bg-slate-900 min-h-screen sm:min-h-[850px] sm:rounded-3xl border border-slate-800 flex flex-col overflow-hidden shadow-2xl relative font-sans">
             
-            let riddenByAny = false;
-            let riddenByAll = true;
+            {/* Main Header */}
+            <header className="p-4 bg-gradient-to-b from-purple-950 via-slate-900 to-indigo-950 border-b border-amber-300/30 text-center">
+              <div className="text-[10px] uppercase font-bold text-amber-300 tracking-widest">Happiness Rides Here ♡</div>
+              <h1 className="text-xl font-bold font-serif text-amber-100 mt-1">Underwood Adventures</h1>
+              
+              {/* Family Member Avatars */}
+              <div className="flex justify-around mt-4">
+                {FAMILY_MEMBERS.map(m => (
+                  <button 
+                    key={m.id} 
+                    onClick={() => setActiveMember(m.id)}
+                    className={`flex flex-col items-center transition-all ${activeMember === m.id ? 'scale-110 opacity-100' : 'opacity-70'}`}
+                  >
+                    <div className={`w-12 h-12 rounded-full p-0.5 border-2 ${activeMember === m.id ? 'border-amber-400 ring-2 ring-amber-400/40' : 'border-slate-700'}`}>
+                      <img 
+                        src={m.avatarImg} 
+                        alt={m.name} 
+                        className="w-full h-full rounded-full object-cover" 
+                        onError={(e) => { e.target.src = 'https://placehold.co/100x100/1e293b/f59e0b?text=' + m.name; }}
+                      />
+                    </div>
+                    <span className="text-[10px] font-bold mt-1 text-slate-200">{m.name}</span>
+                  </button>
+                ))}
+              </div>
+            </header>
 
-            FAMILY_MEMBERS.forEach(m => {
-              if (status[m.id]) {
-                memberCounts[m.id]++;
-                riddenByAny = true;
-              } else {
-                riddenByAll = false;
-              }
-            });
+            {/* Content Body */}
+            <main className="flex-1 p-3 space-y-3 overflow-y-auto pb-20">
+              
+              {activeTab === 'home' && (
+                <>
+                  {/* Park Filters */}
+                  <div className="flex gap-1.5 overflow-x-auto no-scrollbar pb-1">
+                    <button 
+                      onClick={() => setActivePark('ALL')} 
+                      className={`px-3 py-1.5 rounded-full text-xs font-bold transition-all ${activePark === 'ALL' ? 'bg-amber-400 text-slate-950' : 'bg-slate-800 text-slate-300'}`}
+                    >
+                      All Parks
+                    </button>
+                    {PARKS_CATALOG.map(p => (
+                      <button 
+                        key={p.id} 
+                        onClick={() => setActivePark(p.id)} 
+                        className={`px-3 py-1.5 rounded-full text-xs font-bold whitespace-nowrap transition-all ${activePark === p.id ? 'bg-purple-600 text-white' : 'bg-slate-800 text-slate-300'}`}
+                      >
+                        {p.icon} {p.name}
+                      </button>
+                    ))}
+                  </div>
 
-            if (riddenByAny) totalCompletedAtLeastOne++;
-            if (riddenByAll) allFourCompleted++;
-          });
-        });
-      });
+                  {/* Ride List */}
+                  <div className="space-y-2.5">
+                    {filteredRides.map(ride => {
+                      const riders = rideState[ride.id] || [];
+                      return (
+                        <div key={ride.id} className="bg-slate-800/80 hover:bg-slate-800 p-3 rounded-2xl border border-slate-700/80 transition-all">
+                          <div className="flex space-x-3 cursor-pointer" onClick={() => setSelectedRide(ride)}>
+                            <img src={ride.image} alt={ride.name} className="w-16 h-16 rounded-xl object-cover shrink-0" />
+                            <div className="flex-1 min-w-0">
+                              <h3 className="text-xs font-bold text-slate-100 flex items-center justify-between">
+                                <span className="truncate">{ride.name}</span>
+                                <span className="text-[10px] text-amber-400 font-semibold shrink-0 ml-1">Details ➔</span>
+                              </h3>
+                              <div className="text-[10px] text-amber-300 font-semibold">{ride.land} • {ride.duration}</div>
+                              <p className="text-[10px] text-slate-400 line-clamp-1 mt-0.5">{ride.description}</p>
+                            </div>
+                          </div>
 
-      // Update DOM elements safely
-      const totalAttrEl = document.getElementById('total-attractions-count');
-      const totalCompEl = document.getElementById('total-completed-count');
-      const allFourEl = document.getElementById('all-four-count');
-      const progressBarEl = document.getElementById('overall-progress-bar');
+                          {/* Family Check-off Row */}
+                          <div className="mt-2.5 pt-2 border-t border-slate-700/60 flex items-center justify-between">
+                            <span className="text-[9px] font-bold text-slate-400 uppercase">Who Rode?</span>
+                            <div className="flex space-x-2">
+                              {FAMILY_MEMBERS.map(m => {
+                                const checked = riders.includes(m.id);
+                                return (
+                                  <button
+                                    key={m.id}
+                                    onClick={(e) => {
+                                      e.stopPropagation();
+                                      togglePerson(ride.id, m.id);
+                                    }}
+                                    className={`relative w-8 h-8 rounded-full overflow-hidden border-2 transition-all ${
+                                      checked ? 'border-emerald-400 ring-2 ring-emerald-400/40 scale-105' : 'border-slate-600 opacity-40 hover:opacity-75'
+                                    }`}
+                                  >
+                                    <img 
+                                      src={m.avatarImg} 
+                                      alt={m.name} 
+                                      className="w-full h-full object-cover" 
+                                      onError={(e) => { e.target.src = 'https://placehold.co/100x100/1e293b/f59e0b?text=' + m.name; }}
+                                    />
+                                    {checked && (
+                                      <div className="absolute inset-0 bg-emerald-500/50 flex items-center justify-center font-bold text-white text-xs">
+                                        ✓
+                                      </div>
+                                    )}
+                                  </button>
+                                );
+                              })}
+                            </div>
+                          </div>
 
-      if (totalAttrEl) totalAttrEl.textContent = totalAttractions;
-      if (totalCompEl) totalCompEl.textContent = totalCompletedAtLeastOne;
-      if (allFourEl) allFourEl.textContent = `${allFourCompleted} / ${totalAttractions}`;
+                        </div>
+                      );
+                    })}
+                  </div>
+                </>
+              )}
 
-      const pctOverall = totalAttractions > 0 ? (totalCompletedAtLeastOne / totalAttractions) * 100 : 0;
-      if (progressBarEl) progressBarEl.style.width = `${pctOverall}%`;
+              {activeTab === 'stats' && (
+                <div className="space-y-4">
+                  <h2 className="text-sm font-bold text-slate-100 uppercase tracking-wide">Family Leaderboard</h2>
+                  <div className="bg-slate-800/90 p-4 rounded-2xl border border-slate-700 space-y-4">
+                    {FAMILY_MEMBERS.map(m => {
+                      const count = Object.values(rideState).filter(r => r.includes(m.id)).length;
+                      const pct = Math.round((count / RIDES_CATALOG.length) * 100);
+                      return (
+                        <div key={m.id} className="space-y-1.5">
+                          <div className="flex items-center justify-between text-xs">
+                            <div className="flex items-center space-x-2">
+                              <img src={m.avatarImg} alt={m.name} className="w-6 h-6 rounded-full object-cover border border-amber-300" onError={(e) => { e.target.src = 'https://placehold.co/100x100/1e293b/f59e0b?text=' + m.name; }} />
+                              <span className="font-bold text-slate-200">{m.name}</span>
+                            </div>
+                            <span className="font-bold text-amber-300">{count} / {RIDES_CATALOG.length} rides ({pct}%)</span>
+                          </div>
+                          <div className="w-full bg-slate-900 h-2.5 rounded-full overflow-hidden p-0.5 border border-slate-800">
+                            <div className={`h-full rounded-full bg-gradient-to-r ${m.barColor} transition-all duration-500`} style={{ width: `${pct}%` }}></div>
+                          </div>
+                        </div>
+                      );
+                    })}
+                  </div>
+                </div>
+              )}
 
-      // Update Individual Member Stats
-      FAMILY_MEMBERS.forEach(m => {
-        const count = memberCounts[m.id];
-        const countEl = document.getElementById(`stat-${m.id}-count`);
-        const barEl = document.getElementById(`bar-${m.id}`);
-        
-        if (countEl) countEl.textContent = `${count}/${totalAttractions}`;
-        const pct = totalAttractions > 0 ? (count / totalAttractions) * 100 : 0;
-        if (barEl) barEl.style.width = `${pct}%`;
-      });
-    }
+            </main>
 
-    // --- NAVIGATION & FILTERING ---
-    function setActivePark(parkId) {
-      appState.activePark = parkId;
-      
-      document.querySelectorAll('.park-tab').forEach(btn => {
-        btn.classList.remove('bg-forest', 'text-white', 'border-forest', 'shadow-sm');
-        btn.classList.add('bg-white', 'text-slate-600', 'border-slate-200');
-      });
+            {/* Detailed Card View (Matching User Screenshot UI) */}
+            {selectedRide && (
+              <div className="absolute inset-0 z-50 bg-[#faf6ed] text-slate-900 flex flex-col overflow-y-auto">
+                {/* Header Image with Back & Heart Buttons */}
+                <div className="relative h-64 w-full shrink-0">
+                  <img src={selectedRide.image} alt={selectedRide.name} className="w-full h-full object-cover" />
+                  <button 
+                    onClick={() => setSelectedRide(null)}
+                    className="absolute top-4 left-4 w-9 h-9 bg-white/90 rounded-full flex items-center justify-center font-bold shadow text-slate-800 active:scale-95"
+                  >
+                    ❮
+                  </button>
+                  <button className="absolute top-4 right-4 w-9 h-9 bg-white/90 rounded-full flex items-center justify-center shadow text-pink-600 font-bold active:scale-95">
+                    ♥
+                  </button>
+                </div>
 
-      const activeBtn = document.getElementById(`tab-${parkId}`);
-      if (activeBtn) {
-        activeBtn.classList.remove('bg-white', 'text-slate-600', 'border-slate-200');
-        activeBtn.classList.add('bg-forest', 'text-white', 'border-forest', 'shadow-sm');
-      }
+                {/* Card Detail Content */}
+                <div className="flex-1 p-5 -mt-6 bg-[#faf6ed] rounded-t-3xl flex flex-col justify-between">
+                  <div className="space-y-4">
+                    <div>
+                      <h2 className="text-2xl font-bold text-[#1b2240] leading-tight font-serif">{selectedRide.name}</h2>
+                      <span className="inline-flex items-center space-x-1 mt-2.5 px-3 py-1 bg-[#f4e6d4] text-[#8c5e31] rounded-full text-xs font-semibold">
+                        <span>🏰</span>
+                        <span>{selectedRide.land}</span>
+                      </span>
+                    </div>
 
-      renderApp();
-    }
+                    <p className="text-xs text-slate-600 leading-relaxed font-medium">
+                      {selectedRide.description}
+                    </p>
 
-    function setFilter(filterType) {
-      appState.activeFilter = filterType;
+                    <div className="space-y-3.5 pt-2 text-xs">
+                      {/* Thrill Level */}
+                      <div className="flex items-center space-x-3.5">
+                        <div className="w-6 text-center text-[#1b2240] text-lg font-bold">🎢</div>
+                        <div>
+                          <div className="font-semibold text-slate-500 text-[10px]">Thrill Level</div>
+                          <div className="flex space-x-1 mt-0.5">
+                            {[1, 2, 3, 4, 5].map((star) => (
+                              <span key={star} className={star <= selectedRide.thrillLevel ? "text-[#1b2240] text-sm" : "text-slate-300 text-sm"}>
+                                🐭
+                              </span>
+                            ))}
+                          </div>
+                        </div>
+                      </div>
 
-      document.querySelectorAll('.filter-btn').forEach(btn => {
-        btn.classList.remove('bg-forest', 'text-white');
-        btn.classList.add('bg-slate-100', 'text-slate-600');
-      });
+                      {/* Height Requirement */}
+                      <div className="flex items-center space-x-3.5">
+                        <div className="w-6 text-center text-[#1b2240] text-lg font-bold">🧍</div>
+                        <div>
+                          <div className="font-semibold text-slate-500 text-[10px]">Height Requirement</div>
+                          <div className="font-bold text-[#1b2240] text-xs">{selectedRide.heightRequirement}</div>
+                        </div>
+                      </div>
 
-      const activeBtn = document.getElementById(`filter-${filterType}`);
-      if (activeBtn) {
-        activeBtn.classList.remove('bg-slate-100', 'text-slate-600');
-        activeBtn.classList.add('bg-forest', 'text-white');
-      }
+                      {/* Ride Type */}
+                      <div className="flex items-center space-x-3.5">
+                        <div className="w-6 text-center text-[#1b2240] text-lg font-bold">🎟️</div>
+                        <div>
+                          <div className="font-semibold text-slate-500 text-[10px]">Ride Type</div>
+                          <div className="font-bold text-[#1b2240] text-xs">{selectedRide.rideType}</div>
+                        </div>
+                      </div>
 
-      renderApp();
-    }
+                      {/* Duration */}
+                      <div className="flex items-center space-x-3.5">
+                        <div className="w-6 text-center text-[#1b2240] text-lg font-bold">⏱️</div>
+                        <div>
+                          <div className="font-semibold text-slate-500 text-[10px]">Duration</div>
+                          <div className="font-bold text-[#1b2240] text-xs">{selectedRide.duration}</div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
 
-    function handleFilterChange() {
-      const val = document.getElementById('search-input').value.trim();
-      appState.searchQuery = val.toLowerCase();
-
-      const clearBtn = document.getElementById('clear-search');
-      if (clearBtn) {
-        if (val.length > 0) {
-          clearBtn.classList.remove('hidden');
-        } else {
-          clearBtn.classList.add('hidden');
-        }
-      }
-      renderApp();
-    }
-
-    function clearSearch() {
-      const input = document.getElementById('search-input');
-      if (input) input.value = '';
-      appState.searchQuery = '';
-      const clearBtn = document.getElementById('clear-search');
-      if (clearBtn) clearBtn.classList.add('hidden');
-      renderApp();
-    }
-
-    // --- RENDER APPLICATION ---
-    function renderApp() {
-      updateDashboardStats();
-
-      const container = document.getElementById('attractions-container');
-      if (!container) return;
-      container.innerHTML = '';
-
-      const selectedParks = appState.activePark === 'all' 
-        ? PARKS_DATA 
-        : PARKS_DATA.filter(p => p.id === appState.activePark);
-
-      let displayedCount = 0;
-
-      selectedParks.forEach(park => {
-        let parkHTML = '';
-        let parkVisibleAttractions = 0;
-
-        park.lands.forEach(land => {
-          const filteredAttractions = land.attractions.filter(attr => {
-            const status = appState.userProgress[attr.id] || {};
-            
-            // Search Query Filter
-            if (appState.searchQuery) {
-              const matchName = attr.name.toLowerCase().includes(appState.searchQuery);
-              const matchLand = land.name.toLowerCase().includes(appState.searchQuery);
-              if (!matchName && !matchLand) return false;
-            }
-
-            // Quick Filter Logic
-            const riddenCount = FAMILY_MEMBERS.filter(m => status[m.id]).length;
-            if (appState.activeFilter === 'unridden') return riddenCount === 0;
-            if (appState.activeFilter === 'all4') return riddenCount === 4;
-            if (appState.activeFilter === 'not-greg') return !status.greg;
-            if (appState.activeFilter === 'not-dez') return !status.dez;
-            if (appState.activeFilter === 'not-emma') return !status.emma;
-            if (appState.activeFilter === 'not-harper') return !status.harper;
-
-            return true;
-          });
-
-          if (filteredAttractions.length > 0) {
-            parkVisibleAttractions += filteredAttractions.length;
-
-            parkHTML += `
-              <div class="mb-5">
-                <h4 class="text-xs font-bold text-slate-500 uppercase tracking-wider mb-2.5 flex items-center gap-1.5">
-                  <span class="w-1.5 h-1.5 rounded-full bg-forest"></span>
-                  ${land.name}
-                </h4>
-                <div class="space-y-2.5">
-                  ${filteredAttractions.map(attr => renderAttractionCard(attr)).join('')}
+                  {/* Mark as Ridden Button */}
+                  <div className="pt-6 pb-2">
+                    <button 
+                      onClick={() => {
+                        togglePerson(selectedRide.id, activeMember);
+                      }}
+                      className={`w-full py-3.5 rounded-full font-bold flex items-center justify-center space-x-2 shadow-md transition-all ${
+                        (rideState[selectedRide.id] || []).includes(activeMember)
+                          ? 'bg-emerald-500 text-white'
+                          : 'bg-[#ffc844] hover:bg-[#f5bc33] text-slate-950'
+                      }`}
+                    >
+                      <span>✓</span>
+                      <span>
+                        {(rideState[selectedRide.id] || []).includes(activeMember) 
+                          ? `Marked as Ridden for ${FAMILY_MEMBERS.find(m=>m.id===activeMember)?.name}`
+                          : `Mark as Ridden for ${FAMILY_MEMBERS.find(m=>m.id===activeMember)?.name}`
+                        }
+                      </span>
+                    </button>
+                  </div>
                 </div>
               </div>
-            `;
-          }
-        });
+            )}
 
-        if (parkVisibleAttractions > 0) {
-          displayedCount += parkVisibleAttractions;
+            {/* Bottom Navigation */}
+            <nav className="h-14 bg-slate-950 border-t border-slate-800 flex justify-around items-center shrink-0">
+              <button onClick={() => setActiveTab('home')} className={`text-xs font-bold ${activeTab === 'home' ? 'text-amber-400' : 'text-slate-400'}`}>
+                🏰 Rides
+              </button>
+              <button onClick={() => setActiveTab('stats')} className={`text-xs font-bold ${activeTab === 'stats' ? 'text-amber-400' : 'text-slate-400'}`}>
+                📊 Leaderboard
+              </button>
+            </nav>
 
-          const parkWrapper = document.createElement('div');
-          parkWrapper.className = "bg-white rounded-2xl p-4 sm:p-5 border border-sage-light/80 shadow-sm space-y-4";
-          parkWrapper.innerHTML = `
-            <div class="flex items-center space-x-3 border-b border-slate-100 pb-3">
-              <div class="w-9 h-9 rounded-xl bg-slate-100 flex items-center justify-center">
-                <i class="fa-solid ${park.icon} ${park.color} text-base"></i>
-              </div>
-              <div>
-                <h3 class="font-bold text-forest text-base sm:text-lg leading-snug">${park.name}</h3>
-                <span class="text-xs text-slate-400 font-medium">${parkVisibleAttractions} attractions listed</span>
-              </div>
-            </div>
-            ${parkHTML}
-          `;
-          container.appendChild(parkWrapper);
-        }
-      });
-
-      if (displayedCount === 0) {
-        container.innerHTML = `
-          <div class="bg-white rounded-2xl p-8 text-center border border-slate-200/80 shadow-sm space-y-3">
-            <div class="w-12 h-12 rounded-full bg-sage-light/50 text-sage-dark mx-auto flex items-center justify-center text-xl">
-              <i class="fa-solid fa-compass"></i>
-            </div>
-            <h3 class="font-bold text-slate-700 text-base">No attractions match your filter</h3>
-            <p class="text-xs text-slate-400 max-w-xs mx-auto">Try clearing your search query or selecting "All" from the filter options.</p>
-            <button onclick="setFilter('all'); clearSearch();" class="px-4 py-2 bg-forest text-white text-xs font-semibold rounded-xl hover:bg-forest-600 transition">
-              Reset Filters
-            </button>
-          </div>
-        `;
-      }
-
-      // Summary Header Update
-      const summaryTitleEl = document.getElementById('park-summary-title');
-      const resultsCountEl = document.getElementById('results-count');
-      
-      if (summaryTitleEl) {
-        summaryTitleEl.textContent = appState.activePark === 'all' 
-          ? 'All Parks' 
-          : PARKS_DATA.find(p => p.id === appState.activePark)?.name || 'Park Detail';
-      }
-      if (resultsCountEl) {
-        resultsCountEl.textContent = `Showing ${displayedCount} attractions`;
-      }
-    }
-
-    function renderAttractionCard(attr) {
-      const status = appState.userProgress[attr.id] || {};
-      const allChecked = FAMILY_MEMBERS.every(m => status[m.id]);
-
-      return `
-        <div class="bg-[#FAF9F5] p-3.5 rounded-xl border border-slate-200/70 hover:border-sage/60 transition space-y-3">
-          <div class="flex items-center justify-between gap-2">
-            <span class="font-semibold text-slate-800 text-sm leading-snug">${attr.name}</span>
-            <button onclick="toggleAllForAttraction('${attr.id}')" 
-                    class="shrink-0 px-2.5 py-1 rounded-lg text-[11px] font-bold transition border ${
-                      allChecked 
-                        ? 'bg-gold-light text-gold-dark border-gold/40' 
-                        : 'bg-white text-slate-500 border-slate-200 hover:bg-slate-100'
-                    }">
-              ${allChecked ? '<i class="fa-solid fa-check text-[10px]"></i> All 4' : 'Check All'}
-            </button>
-          </div>
-
-          <div class="grid grid-cols-4 gap-1.5 pt-1">
-            ${FAMILY_MEMBERS.map(m => {
-              const isChecked = status[m.id] || false;
-              return `
-                <div>
-                  <input type="checkbox" id="${attr.id}-${m.id}" class="hidden member-checkbox" ${isChecked ? 'checked' : ''} onchange="toggleMember('${attr.id}', '${m.id}')">
-                  <label for="${attr.id}-${m.id}" class="flex flex-col items-center justify-center py-2 px-1 rounded-xl border border-slate-200 bg-white text-slate-600 cursor-pointer transition active:scale-95 text-center">
-                    <img src="${m.image}" alt="${m.name}" class="w-7 h-7 rounded-full object-cover mb-1 border border-sage/40 shadow-sm">
-                    <span class="text-[10px] font-bold leading-none mb-1">${m.name}</span>
-                    <i class="fa-solid fa-check check-icon text-[10px] opacity-0 transform scale-50 transition-all duration-200"></i>
-                  </label>
-                </div>
-              `;
-            }).join('')}
           </div>
         </div>
-      `;
-    }
-
-    // --- MODALS & OPTIONS ---
-    function openSettingsModal() {
-      const modal = document.getElementById('settings-modal');
-      if (modal) modal.classList.remove('hidden');
-    }
-
-    function closeSettingsModal() {
-      const modal = document.getElementById('settings-modal');
-      if (modal) modal.classList.add('hidden');
-    }
-
-    function confirmResetCurrentPark() {
-      const parkName = appState.activePark === 'all' 
-        ? 'All Parks' 
-        : PARKS_DATA.find(p => p.id === appState.activePark)?.name;
-
-      showConfirmModal(
-        `Reset ${parkName}?`,
-        `This will uncheck all family members for attractions in ${parkName}.`,
-        () => {
-          PARKS_DATA.forEach(park => {
-            if (appState.activePark === 'all' || park.id === appState.activePark) {
-              park.lands.forEach(land => {
-                land.attractions.forEach(attr => {
-                  delete appState.userProgress[attr.id];
-                });
-              });
-            }
-          });
-          saveData();
-          renderApp();
-          showToast(`Progress for ${parkName} reset`);
-        }
       );
     }
 
-    function confirmResetAll() {
-      showConfirmModal(
-        'Reset Entire Tracker?',
-        'This will clear all checkbox data across all 4 parks.',
-        () => {
-          appState.userProgress = {};
-          saveData();
-          renderApp();
-          showToast('All attraction data has been reset');
-        }
-      );
-    }
-
-    function showConfirmModal(title, msg, onConfirm) {
-      const titleEl = document.getElementById('confirm-title');
-      const msgEl = document.getElementById('confirm-msg');
-      const modal = document.getElementById('confirm-modal');
-
-      if (titleEl) titleEl.textContent = title;
-      if (msgEl) msgEl.textContent = msg;
-      
-      confirmCallback = onConfirm;
-      if (modal) modal.classList.remove('hidden');
-    }
-
-    function closeConfirmModal(confirmed) {
-      const modal = document.getElementById('confirm-modal');
-      if (modal) modal.classList.add('hidden');
-      if (confirmed && confirmCallback) {
-        confirmCallback();
-      }
-      confirmCallback = null;
-    }
-
-    // --- BACKUP / EXPORT / IMPORT ---
-    function exportData() {
-      const dataStr = "data:text/json;charset=utf-8," + encodeURIComponent(JSON.stringify(appState.userProgress, null, 2));
-      const downloadAnchor = document.createElement('a');
-      downloadAnchor.setAttribute("href", dataStr);
-      downloadAnchor.setAttribute("download", `wdw_family_tracker_backup_${new Date().toISOString().slice(0,10)}.json`);
-      document.body.appendChild(downloadAnchor);
-      downloadAnchor.click();
-      downloadAnchor.remove();
-      showToast('Backup exported successfully');
-    }
-
-    function importData(event) {
-      const file = event.target.files[0];
-      if (!file) return;
-
-      const reader = new FileReader();
-      reader.onload = function(e) {
-        try {
-          const imported = JSON.parse(e.target.result);
-          if (typeof imported === 'object') {
-            appState.userProgress = imported;
-            saveData();
-            renderApp();
-            closeSettingsModal();
-            showToast('Backup imported successfully!');
-          }
-        } catch (err) {
-          alert('Invalid backup file structure.');
-        }
-      };
-      reader.readAsText(file);
-    }
-
-    function showToast(msg) {
-      const toast = document.getElementById('toast');
-      const toastMsg = document.getElementById('toast-message');
-      
-      if (!toast || !toastMsg) return;
-
-      toastMsg.textContent = msg;
-      toast.classList.remove('opacity-0', 'pointer-events-none', 'translate-y-4');
-      toast.classList.add('opacity-100', 'translate-y-0');
-
-      setTimeout(() => {
-        toast.classList.remove('opacity-100', 'translate-y-0');
-        toast.classList.add('opacity-0', 'pointer-events-none', 'translate-y-4');
-      }, 2500);
-    }
-
-    function setupPWA() {
-      window.addEventListener('beforeinstallprompt', (e) => {
-        e.preventDefault();
-      });
-    }
+    ReactDOM.createRoot(document.getElementById('root')).render(<App />);
   </script>
 </body>
 </html>
