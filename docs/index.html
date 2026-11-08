@@ -90,7 +90,7 @@
       { id: 'ak', name: "Animal Kingdom", icon: '🌴' }
     ];
 
-    // Rides List with Direct Raw GitHub Image Links
+    // Rides & Pavilions List with Direct Raw GitHub Image Links
     const RIDES_CATALOG = [
       {
         id: 'space-mountain',
@@ -101,7 +101,7 @@
         thrillLevel: 4,
         heightRequirement: '44" (112 cm)',
         rideType: 'Thrill / Indoor Coaster',
-        image: 'https://raw.githubusercontent.com/desmaunderwood-create/underwooddisneytracker/refs/heads/main/space.jpeg',
+        image: 'https://raw.githubusercontent.com/desmaunderwood-create/underwooddisneytracker/main/space.jpeg',
         description: 'Dip and dive through outer space on a high-speed rocket flight!'
       },
       {
@@ -113,7 +113,7 @@
         thrillLevel: 1,
         heightRequirement: 'Any Height',
         rideType: 'Gentle Flying Dark Ride',
-        image: 'https://raw.githubusercontent.com/desmaunderwood-create/underwooddisneytracker/refs/heads/main/pp.jpeg',
+        image: 'https://raw.githubusercontent.com/desmaunderwood-create/underwooddisneytracker/main/pp.jpeg',
         description: 'Board a magical pirate ship and soar high above London and Never Land!'
       },
       {
@@ -125,7 +125,7 @@
         thrillLevel: 3,
         heightRequirement: '40" (102 cm)',
         rideType: 'Water Flume Ride',
-        image: 'https://raw.githubusercontent.com/desmaunderwood-create/underwooddisneytracker/refs/heads/main/splash.jpg',
+        image: 'https://raw.githubusercontent.com/desmaunderwood-create/underwooddisneytracker/main/splash.jpg',
         description: 'Join Princess Tiana and Louis on a musical bayou adventure ending in a thrilling 50-foot drop!'
       },
       {
@@ -137,7 +137,7 @@
         thrillLevel: 5,
         heightRequirement: '48" (122 cm)',
         rideType: 'High-Speed Launch Coaster',
-        image: 'https://raw.githubusercontent.com/desmaunderwood-create/underwooddisneytracker/refs/heads/main/tron.jpg',
+        image: 'https://raw.githubusercontent.com/desmaunderwood-create/underwooddisneytracker/main/tron.jpg',
         description: 'Climb aboard your own Lightcycle and race through the Grid in a high-stakes digital competition!'
       },
       {
@@ -161,7 +161,7 @@
         thrillLevel: 1,
         heightRequirement: 'Any Height',
         rideType: 'Dark Boat Ride',
-        image: 'https://raw.githubusercontent.com/desmaunderwood-create/underwooddisneytracker/refs/heads/main/docs/pirates.jpeg',
+        image: 'https://raw.githubusercontent.com/desmaunderwood-create/underwooddisneytracker/main/docs/pirates.jpeg',
         description: 'Set sail on a swashbuckling voyage through pirate waters.'
       },
       {
@@ -173,7 +173,7 @@
         thrillLevel: 2,
         heightRequirement: 'Any Height',
         rideType: 'Slow Dark Ride',
-        image: 'https://raw.githubusercontent.com/desmaunderwood-create/underwooddisneytracker/refs/heads/main/docs/hm.jpg',
+        image: 'https://raw.githubusercontent.com/desmaunderwood-create/underwooddisneytracker/main/docs/hm.jpg',
         description: 'Doom Buggy tour through an estate home to 999 happy haunts.'
       },
       {
@@ -185,8 +185,224 @@
         thrillLevel: 2,
         heightRequirement: '38" (97 cm)',
         rideType: 'Family Coaster',
-        image: 'https://raw.githubusercontent.com/desmaunderwood-create/underwooddisneytracker/refs/heads/main/docs/sd.jpeg',
+        image: 'https://raw.githubusercontent.com/desmaunderwood-create/underwooddisneytracker/main/docs/sd.jpeg',
         description: 'Race through the diamond mine on a swinging coaster car.'
+      },
+      {
+        id: 'aladdin-carpets',
+        parkId: 'mk',
+        name: "The Magic Carpets of Aladdin",
+        land: 'Adventureland',
+        duration: '1.5 minutes',
+        thrillLevel: 1,
+        heightRequirement: 'Any Height',
+        rideType: 'Aerial Carousel',
+        image: 'https://github.com/desmaunderwood-create/underwooddisneytracker/blob/main/docs/aladdin.jpg?raw=true',
+        description: 'Take flight on a magical flying carpet over Agrabah!'
+      },
+      {
+        id: 'buzz-lightyear',
+        parkId: 'mk',
+        name: "Buzz Lightyear's Space Ranger Spin",
+        land: 'Tomorrowland',
+        duration: '4 minutes',
+        thrillLevel: 1,
+        heightRequirement: 'Any Height',
+        rideType: 'Interactive Dark Ride',
+        image: 'https://github.com/desmaunderwood-create/underwooddisneytracker/blob/main/docs/buzz.jpg?raw=true',
+        description: 'Battle Evil Emperor Zurg by firing lasers to score points.'
+      },
+      {
+        id: 'dumbo-elephant',
+        parkId: 'mk',
+        name: "Dumbo the Flying Elephant",
+        land: 'Fantasyland',
+        duration: '1.5 minutes',
+        thrillLevel: 1,
+        heightRequirement: 'Any Height',
+        rideType: 'Aerial Carousel',
+        image: 'https://github.com/desmaunderwood-create/underwooddisneytracker/blob/main/docs/dumbo.jpg?raw=true',
+        description: 'Soar high in the sky aboard everyone’s favorite flying circus elephant.'
+      },
+      {
+        id: 'under-the-sea',
+        parkId: 'mk',
+        name: "Under the Sea ~ Journey of The Little Mermaid",
+        land: 'Fantasyland',
+        duration: '6 minutes',
+        thrillLevel: 1,
+        heightRequirement: 'Any Height',
+        rideType: 'Slow Dark Ride',
+        image: 'https://github.com/desmaunderwood-create/underwooddisneytracker/blob/main/docs/mermaid.png?raw=true',
+        description: 'Dive into Ariel’s wondrous world and relive scenes from the classic movie.'
+      },
+      {
+        id: 'many-adventures-pooh',
+        parkId: 'mk',
+        name: "The Many Adventures of Winnie the Pooh",
+        land: 'Fantasyland',
+        duration: '4 minutes',
+        thrillLevel: 1,
+        heightRequirement: 'Any Height',
+        rideType: 'Slow Dark Ride',
+        image: 'https://github.com/desmaunderwood-create/underwooddisneytracker/blob/main/docs/pooh.jpg?raw=true',
+        description: 'Bounce through the Hundred Acre Wood in a Hunny Pot.'
+      },
+      {
+        id: 'its-a-small-world',
+        parkId: 'mk',
+        name: "It's a Small World",
+        land: 'Fantasyland',
+        duration: '10 minutes',
+        thrillLevel: 1,
+        heightRequirement: 'Any Height',
+        rideType: 'Boat Cruise',
+        image: 'https://github.com/desmaunderwood-create/underwooddisneytracker/blob/main/docs/sw.jpeg?raw=true',
+        description: 'Embark on a joyful boat tour around the globe singing the classic song.'
+      },
+      {
+        id: 'epcot-american-adventure',
+        parkId: 'epcot',
+        name: 'The American Adventure Pavilion',
+        land: 'World Showcase',
+        duration: '29 minutes',
+        thrillLevel: 1,
+        heightRequirement: 'Any Height',
+        rideType: 'Country Pavilion & Stage Show',
+        image: 'https://github.com/desmaunderwood-create/underwooddisneytracker/blob/main/docs/amer.jpg?raw=true',
+        description: 'Explore patriotic history, traditional colonial architecture, and delicious American classic eats!'
+      },
+      {
+        id: 'epcot-canada',
+        parkId: 'epcot',
+        name: 'Canada Pavilion',
+        land: 'World Showcase',
+        duration: 'Self-guided',
+        thrillLevel: 1,
+        heightRequirement: 'Any Height',
+        rideType: 'Country Pavilion & 360 Film',
+        image: 'https://github.com/desmaunderwood-create/underwooddisneytracker/blob/main/docs/can.jpg?raw=true',
+        description: 'Stroll through gorgeous gardens, waterfalls, and taste famous Canadian snacks and poutine!'
+      },
+      {
+        id: 'epcot-china',
+        parkId: 'epcot',
+        name: 'China Pavilion',
+        land: 'World Showcase',
+        duration: 'Self-guided',
+        thrillLevel: 1,
+        heightRequirement: 'Any Height',
+        rideType: 'Country Pavilion & 360 Film',
+        image: 'https://github.com/desmaunderwood-create/underwooddisneytracker/blob/main/docs/china.jpg?raw=true',
+        description: 'Marvel at the Temple of Heaven, authentic gardens, shopping, and delicious Chinese cuisine!'
+      },
+      {
+        id: 'epcot-france',
+        parkId: 'epcot',
+        name: 'France Pavilion',
+        land: 'World Showcase',
+        duration: 'Self-guided',
+        thrillLevel: 1,
+        heightRequirement: 'Any Height',
+        rideType: 'Country Pavilion & Dining',
+        image: 'https://github.com/desmaunderwood-create/underwooddisneytracker/blob/main/docs/fran.jpg?raw=true',
+        description: 'Enjoy Parisian architecture, authentic bakeries, crêpes, ice cream, and Remy’s Ratatouille Adventure!'
+      },
+      {
+        id: 'frozen-ever-after',
+        parkId: 'epcot',
+        name: 'Frozen Ever After',
+        land: 'World Showcase (Norway)',
+        duration: '5 minutes',
+        thrillLevel: 2,
+        heightRequirement: 'Any Height',
+        rideType: 'Musical Dark Boat Ride',
+        image: 'https://github.com/desmaunderwood-create/underwooddisneytracker/blob/main/docs/frozen.jpg?raw=true',
+        description: 'Voyage to Arendelle on an ancient Nordic vessel and sing along with Anna, Elsa, and Olaf!'
+      },
+      {
+        id: 'epcot-germany',
+        parkId: 'epcot',
+        name: 'Germany Pavilion',
+        land: 'World Showcase',
+        duration: 'Self-guided',
+        thrillLevel: 1,
+        heightRequirement: 'Any Height',
+        rideType: 'Country Pavilion & Dining',
+        image: 'https://github.com/desmaunderwood-create/underwooddisneytracker/blob/main/docs/germ.jpg?raw=true',
+        description: 'Discover fairytale Bavarian architecture, miniature train village, pretzels, and caramel sweets!'
+      },
+      {
+        id: 'epcot-italy',
+        parkId: 'epcot',
+        name: 'Italy Pavilion',
+        land: 'World Showcase',
+        duration: 'Self-guided',
+        thrillLevel: 1,
+        heightRequirement: 'Any Height',
+        rideType: 'Country Pavilion & Dining',
+        image: 'https://github.com/desmaunderwood-create/underwooddisneytracker/blob/main/docs/italy.jpg?raw=true',
+        description: 'Take in Venetian bridges, St. Mark’s Campanile, authentic pizza, gelato, and Italian wines!'
+      },
+      {
+        id: 'epcot-japan',
+        parkId: 'epcot',
+        name: 'Japan Pavilion',
+        land: 'World Showcase',
+        duration: 'Self-guided',
+        thrillLevel: 1,
+        heightRequirement: 'Any Height',
+        rideType: 'Country Pavilion & Shopping',
+        image: 'https://github.com/desmaunderwood-create/underwooddisneytracker/blob/main/docs/japan.jpg?raw=true',
+        description: 'Admire the majestic Torii gate, five-story pagoda, huge Mitsukoshi store, sushi, and shaved ice!'
+      },
+      {
+        id: 'epcot-mexico',
+        parkId: 'epcot',
+        name: 'Mexico Pavilion',
+        land: 'World Showcase',
+        duration: 'Self-guided',
+        thrillLevel: 1,
+        heightRequirement: 'Any Height',
+        rideType: 'Country Pavilion & Boat Ride',
+        image: 'https://github.com/desmaunderwood-create/underwooddisneytracker/blob/main/docs/mexico.jpg?raw=true',
+        description: 'Step inside a Mesoamerican pyramid with twilight market, Gran Fiesta Tour boat ride, and tacos!'
+      },
+      {
+        id: 'epcot-morocco',
+        parkId: 'epcot',
+        name: 'Morocco Pavilion',
+        land: 'World Showcase',
+        duration: 'Self-guided',
+        thrillLevel: 1,
+        heightRequirement: 'Any Height',
+        rideType: 'Country Pavilion & Culture',
+        image: 'https://github.com/desmaunderwood-create/underwooddisneytracker/blob/main/docs/mor.jpg?raw=true',
+        description: 'Wander intricately detailed mosaic bazaars, serene courtyards, and delicious Mediterranean dining!'
+      },
+      {
+        id: 'epcot-norway',
+        parkId: 'epcot',
+        name: 'Norway Pavilion',
+        land: 'World Showcase',
+        duration: 'Self-guided',
+        thrillLevel: 1,
+        heightRequirement: 'Any Height',
+        rideType: 'Country Pavilion & Dark Ride',
+        image: 'https://github.com/desmaunderwood-create/underwooddisneytracker/blob/main/docs/norway.jpeg?raw=true',
+        description: 'Experience Scandinavian charm, School Bread pastries, Viking heritage, and Frozen Ever After!'
+      },
+      {
+        id: 'epcot-uk',
+        parkId: 'epcot',
+        name: 'United Kingdom Pavilion',
+        land: 'World Showcase',
+        duration: 'Self-guided',
+        thrillLevel: 1,
+        heightRequirement: 'Any Height',
+        rideType: 'Country Pavilion & Entertainment',
+        image: 'https://github.com/desmaunderwood-create/underwooddisneytracker/blob/main/docs/uk.jpg?raw=true',
+        description: 'Enjoy cobblestone streets, iconic red phone booths, live music, and classic fish and chips!'
       },
       {
         id: 'guardians-rewind',
@@ -233,7 +449,7 @@
         thrillLevel: 2,
         heightRequirement: '38" (97 cm)',
         rideType: 'Family Coaster',
-        image: 'https://images.unsplash.com/photo-1534447677768-be436bb09401?auto=format&fit=crop&q=80&w=800',
+        image: 'https://github.com/desmaunderwood-create/underwooddisneytracker/blob/main/docs/dog.jpg?raw=true',
         description: 'Zip around Andy backyard on Slinky Dog mega coaster.'
       },
       {
@@ -245,7 +461,7 @@
         thrillLevel: 4,
         heightRequirement: '44" (112 cm)',
         rideType: '3D Flight Simulator',
-        image: 'https://images.unsplash.com/photo-1518709268805-4e9042af9f23?auto=format&fit=crop&q=80&w=800',
+        image: 'https://github.com/desmaunderwood-create/underwooddisneytracker/blob/main/docs/avatar.jpg?raw=true',
         description: 'Fly on a mountain banshee over Pandora.'
       },
       {
@@ -257,7 +473,7 @@
         thrillLevel: 4,
         heightRequirement: '44" (112 cm)',
         rideType: 'Thrill Coaster',
-        image: 'https://images.unsplash.com/photo-1469854523086-cc02fe5d8800?auto=format&fit=crop&q=80&w=800',
+        image: 'https://github.com/desmaunderwood-create/underwooddisneytracker/blob/main/docs/ever.jpg?raw=true',
         description: 'Coaster through icy Himalayan peaks while escaping Yeti.'
       }
     ];
@@ -267,6 +483,7 @@
       const [activePark, setActivePark] = useState('mk');
       const [activeMemberFilter, setActiveMemberFilter] = useState('ALL');
       const [rideState, setRideState] = useState({});
+      const [foodState, setFoodState] = useState({});
       const [selectedRide, setSelectedRide] = useState(null);
 
       // Listen for updates from Firestore document: trackers/familyProgress
@@ -274,8 +491,10 @@
         if (!db) return;
         const docRef = db.collection('trackers').doc('familyProgress');
         const unsubscribe = docRef.onSnapshot((doc) => {
-          if (doc.exists && doc.data().rideState) {
-            setRideState(doc.data().rideState);
+          if (doc.exists) {
+            const data = doc.data();
+            if (data.rideState) setRideState(data.rideState);
+            if (data.foodState) setFoodState(data.foodState);
           }
         }, (error) => {
           console.error("Firestore Listen Error:", error);
@@ -283,7 +502,7 @@
         return () => unsubscribe();
       }, []);
 
-      // Toggle person check-off and write to Firestore
+      // Toggle person ride check-off and write to Firestore
       const togglePerson = (rideId, memberId) => {
         const currentRiders = rideState[rideId] || [];
         const isRidden = currentRiders.includes(memberId);
@@ -301,9 +520,29 @@
         }
       };
 
+      // Toggle person food check-off and write to Firestore
+      const toggleFood = (rideId, memberId) => {
+        const currentEaters = foodState[rideId] || [];
+        const isTried = currentEaters.includes(memberId);
+        const updated = isTried
+          ? currentEaters.filter(id => id !== memberId)
+          : [...currentEaters, memberId];
+
+        const nextFoodState = { ...foodState, [rideId]: updated };
+        setFoodState(nextFoodState);
+
+        if (db) {
+          db.collection('trackers').doc('familyProgress')
+            .set({ foodState: nextFoodState }, { merge: true })
+            .catch(err => console.error("Firestore Food Save Error:", err));
+        }
+      };
+
       const filteredRides = RIDES_CATALOG.filter(r => {
         const matchesPark = activePark === 'ALL' || r.parkId === activePark;
-        const matchesMember = activeMemberFilter === 'ALL' || (rideState[r.id] || []).includes(activeMemberFilter);
+        const matchesMember = activeMemberFilter === 'ALL' || 
+          (rideState[r.id] || []).includes(activeMemberFilter) || 
+          (foodState[r.id] || []).includes(activeMemberFilter);
         return matchesPark && matchesMember;
       });
 
@@ -313,6 +552,14 @@
             
             {/* Main Header */}
             <header className="p-4 bg-gradient-to-b from-purple-950 via-slate-900 to-indigo-950 border-b border-amber-300/30 text-center">
+              <div className="flex justify-center mb-2">
+                <img 
+                  src="https://github.com/desmaunderwood-create/underwooddisneytracker/blob/main/docs/logo2.png?raw=true" 
+                  alt="Underwood Adventures Logo" 
+                  className="h-12 object-contain"
+                  onError={(e) => { e.target.style.display = 'none'; }}
+                />
+              </div>
               <div className="text-[10px] uppercase font-bold text-amber-300 tracking-widest">Happiness Rides Here ♡</div>
               <h1 className="text-xl font-bold font-serif text-amber-100 mt-1">Underwood Adventures</h1>
               
@@ -373,15 +620,16 @@
 
                   {activeMemberFilter !== 'ALL' && (
                     <div className="bg-purple-950/60 border border-purple-500/30 rounded-xl p-2 flex justify-between items-center text-xs text-purple-200">
-                      <span>Showing rides ridden by <strong>{FAMILY_MEMBERS.find(m => m.id === activeMemberFilter)?.name}</strong></span>
+                      <span>Showing items for <strong>{FAMILY_MEMBERS.find(m => m.id === activeMemberFilter)?.name}</strong></span>
                       <button onClick={() => setActiveMemberFilter('ALL')} className="text-amber-300 font-bold underline text-[10px]">Clear Filter</button>
                     </div>
                   )}
 
-                  {/* Ride List */}
+                  {/* Ride & Pavilion List */}
                   <div className="space-y-2.5">
                     {filteredRides.map(ride => {
                       const riders = rideState[ride.id] || [];
+                      const eaters = foodState[ride.id] || [];
                       return (
                         <div key={ride.id} className="bg-slate-800/80 hover:bg-slate-800 p-3 rounded-2xl border border-slate-700/80 transition-all">
                           <div className="flex space-x-3 cursor-pointer" onClick={() => setSelectedRide(ride)}>
@@ -389,7 +637,7 @@
                               src={ride.image} 
                               alt={ride.name} 
                               className="w-16 h-16 rounded-xl object-cover shrink-0" 
-                              onError={(e) => { e.target.src = 'https://placehold.co/100x100/1e293b/f59e0b?text=Ride'; }}
+                              onError={(e) => { e.target.src = 'https://placehold.co/100x100/1e293b/f59e0b?text=Attraction'; }}
                             />
                             <div className="flex-1 min-w-0">
                               <h3 className="text-xs font-bold text-slate-100 flex items-center justify-between">
@@ -401,37 +649,78 @@
                             </div>
                           </div>
 
-                          {/* Family Check-off Row */}
-                          <div className="mt-2.5 pt-2 border-t border-slate-700/60 flex items-center justify-between">
-                            <span className="text-[9px] font-bold text-slate-400 uppercase">Who Rode?</span>
-                            <div className="flex space-x-2">
-                              {FAMILY_MEMBERS.map(m => {
-                                const checked = riders.includes(m.id);
-                                return (
-                                  <button
-                                    key={m.id}
-                                    onClick={(e) => {
-                                      e.stopPropagation();
-                                      togglePerson(ride.id, m.id);
-                                    }}
-                                    className={`relative w-8 h-8 rounded-full overflow-hidden border-2 transition-all ${
-                                      checked ? 'border-emerald-400 ring-2 ring-emerald-400/40 scale-105' : 'border-slate-600 opacity-40 hover:opacity-75'
-                                    }`}
-                                  >
-                                    <img 
-                                      src={m.avatarImg} 
-                                      alt={m.name} 
-                                      className="w-full h-full object-cover" 
-                                      onError={(e) => { e.target.src = 'https://placehold.co/100x100/1e293b/f59e0b?text=' + m.name; }}
-                                    />
-                                    {checked && (
-                                      <div className="absolute inset-0 bg-emerald-500/50 flex items-center justify-center font-bold text-white text-xs">
-                                        ✓
-                                      </div>
-                                    )}
-                                  </button>
-                                );
-                              })}
+                          {/* Family Check-off Rows: Rides & Food */}
+                          <div className="mt-2.5 pt-2 border-t border-slate-700/60 space-y-2">
+                            {/* Who Rode / Visited */}
+                            <div className="flex items-center justify-between">
+                              <span className="text-[9px] font-bold text-slate-400 uppercase">Who Rode/Visited?</span>
+                              <div className="flex space-x-2">
+                                {FAMILY_MEMBERS.map(m => {
+                                  const checked = riders.includes(m.id);
+                                  return (
+                                    <button
+                                      key={m.id}
+                                      onClick={(e) => {
+                                        e.stopPropagation();
+                                        togglePerson(ride.id, m.id);
+                                      }}
+                                      title={`Mark visited for ${m.name}`}
+                                      className={`relative w-7 h-7 rounded-full overflow-hidden border-2 transition-all ${
+                                        checked ? 'border-emerald-400 ring-2 ring-emerald-400/40 scale-105' : 'border-slate-600 opacity-40 hover:opacity-75'
+                                      }`}
+                                    >
+                                      <img 
+                                        src={m.avatarImg} 
+                                        alt={m.name} 
+                                        className="w-full h-full object-cover" 
+                                        onError={(e) => { e.target.src = 'https://placehold.co/100x100/1e293b/f59e0b?text=' + m.name; }}
+                                      />
+                                      {checked && (
+                                        <div className="absolute inset-0 bg-emerald-500/50 flex items-center justify-center font-bold text-white text-[10px]">
+                                          ✓
+                                        </div>
+                                      )}
+                                    </button>
+                                  );
+                                })}
+                              </div>
+                            </div>
+
+                            {/* Who Tried Food */}
+                            <div className="flex items-center justify-between">
+                              <span className="text-[9px] font-bold text-amber-300 uppercase flex items-center gap-0.5">
+                                🍴 Tried Food?
+                              </span>
+                              <div className="flex space-x-2">
+                                {FAMILY_MEMBERS.map(m => {
+                                  const foodChecked = eaters.includes(m.id);
+                                  return (
+                                    <button
+                                      key={m.id}
+                                      onClick={(e) => {
+                                        e.stopPropagation();
+                                        toggleFood(ride.id, m.id);
+                                      }}
+                                      title={`Mark food tried for ${m.name}`}
+                                      className={`relative w-7 h-7 rounded-full overflow-hidden border-2 transition-all ${
+                                        foodChecked ? 'border-amber-400 ring-2 ring-amber-400/40 scale-105' : 'border-slate-600 opacity-40 hover:opacity-75'
+                                      }`}
+                                    >
+                                      <img 
+                                        src={m.avatarImg} 
+                                        alt={m.name} 
+                                        className="w-full h-full object-cover" 
+                                        onError={(e) => { e.target.src = 'https://placehold.co/100x100/1e293b/f59e0b?text=' + m.name; }}
+                                      />
+                                      {foodChecked && (
+                                        <div className="absolute inset-0 bg-amber-500/60 flex items-center justify-center font-bold text-white text-[9px]">
+                                          🍴
+                                        </div>
+                                      )}
+                                    </button>
+                                  );
+                                })}
+                              </div>
                             </div>
                           </div>
 
@@ -445,7 +734,10 @@
               {activeTab === 'stats' && (
                 <div className="space-y-4">
                   <h2 className="text-sm font-bold text-slate-100 uppercase tracking-wide">Family Leaderboard</h2>
+                  
+                  {/* Rides Progress */}
                   <div className="bg-slate-800/90 p-4 rounded-2xl border border-slate-700 space-y-4">
+                    <h3 className="text-xs font-bold text-amber-300 uppercase">🏰 Rides & Pavilions Visited</h3>
                     {FAMILY_MEMBERS.map(m => {
                       const count = Object.values(rideState).filter(r => r.includes(m.id)).length;
                       const pct = Math.round((count / RIDES_CATALOG.length) * 100);
@@ -456,7 +748,7 @@
                               <img src={m.avatarImg} alt={m.name} className="w-6 h-6 rounded-full object-cover border border-amber-300" onError={(e) => { e.target.src = 'https://placehold.co/100x100/1e293b/f59e0b?text=' + m.name; }} />
                               <span className="font-bold text-slate-200">{m.name}</span>
                             </div>
-                            <span className="font-bold text-amber-300">{count} / {RIDES_CATALOG.length} rides ({pct}%)</span>
+                            <span className="font-bold text-amber-300">{count} / {RIDES_CATALOG.length} ({pct}%)</span>
                           </div>
                           <div className="w-full bg-slate-900 h-2.5 rounded-full overflow-hidden p-0.5 border border-slate-800">
                             <div className={`h-full rounded-full bg-gradient-to-r ${m.barColor} transition-all duration-500`} style={{ width: `${pct}%` }}></div>
@@ -465,6 +757,31 @@
                       );
                     })}
                   </div>
+
+                  {/* Food Tracker Leaderboard */}
+                  <div className="bg-slate-800/90 p-4 rounded-2xl border border-slate-700 space-y-4">
+                    <h3 className="text-xs font-bold text-amber-300 uppercase">🍴 World Showcase Foodies</h3>
+                    {FAMILY_MEMBERS.map(m => {
+                      const count = Object.values(foodState).filter(r => r.includes(m.id)).length;
+                      const totalCountries = RIDES_CATALOG.filter(r => r.land.includes('World Showcase')).length;
+                      const pct = Math.round((count / (totalCountries || 1)) * 100);
+                      return (
+                        <div key={m.id} className="space-y-1.5">
+                          <div className="flex items-center justify-between text-xs">
+                            <div className="flex items-center space-x-2">
+                              <img src={m.avatarImg} alt={m.name} className="w-6 h-6 rounded-full object-cover border border-amber-300" onError={(e) => { e.target.src = 'https://placehold.co/100x100/1e293b/f59e0b?text=' + m.name; }} />
+                              <span className="font-bold text-slate-200">{m.name}</span>
+                            </div>
+                            <span className="font-bold text-amber-300">{count} / {totalCountries} locations tried</span>
+                          </div>
+                          <div className="w-full bg-slate-900 h-2.5 rounded-full overflow-hidden p-0.5 border border-slate-800">
+                            <div className={`h-full rounded-full bg-gradient-to-r ${m.barColor} transition-all duration-500`} style={{ width: `${Math.min(pct, 100)}%` }}></div>
+                          </div>
+                        </div>
+                      );
+                    })}
+                  </div>
+
                 </div>
               )}
 
@@ -527,11 +844,11 @@
                         </div>
                       </div>
 
-                      {/* Ride Type */}
+                      {/* Ride / Attraction Type */}
                       <div className="flex items-center space-x-3.5">
                         <div className="w-6 text-center text-[#1b2240] text-lg font-bold">🎟️</div>
                         <div>
-                          <div className="font-semibold text-slate-500 text-[10px]">Ride Type</div>
+                          <div className="font-semibold text-slate-500 text-[10px]">Attraction Type</div>
                           <div className="font-bold text-[#1b2240] text-xs">{selectedRide.rideType}</div>
                         </div>
                       </div>
@@ -548,31 +865,60 @@
                   </div>
 
                   {/* Toggle Per-Person Buttons inside Detail Modal */}
-                  <div className="pt-6 pb-2 space-y-3">
-                    <div className="text-xs font-bold text-slate-700 uppercase tracking-wide">Who Rode This Ride?</div>
-                    <div className="grid grid-cols-2 gap-2">
-                      {FAMILY_MEMBERS.map(m => {
-                        const checked = (rideState[selectedRide.id] || []).includes(m.id);
-                        return (
-                          <button
-                            key={m.id}
-                            onClick={() => togglePerson(selectedRide.id, m.id)}
-                            className={`flex items-center space-x-2 p-2 rounded-xl border transition-all text-xs font-bold ${
-                              checked ? 'bg-emerald-100 border-emerald-500 text-emerald-900' : 'bg-slate-100 border-slate-300 text-slate-600'
-                            }`}
-                          >
-                            <img src={m.avatarImg} alt={m.name} className="w-6 h-6 rounded-full object-cover" />
-                            <span>{m.name}</span>
-                            <span className="ml-auto font-black">{checked ? '✓' : '+'}</span>
-                          </button>
-                        );
-                      })}
+                  <div className="pt-6 pb-2 space-y-4">
+                    {/* Ride/Visit Checkboxes */}
+                    <div className="space-y-2">
+                      <div className="text-xs font-bold text-slate-700 uppercase tracking-wide">Who Visited / Rode?</div>
+                      <div className="grid grid-cols-2 gap-2">
+                        {FAMILY_MEMBERS.map(m => {
+                          const checked = (rideState[selectedRide.id] || []).includes(m.id);
+                          return (
+                            <button
+                              key={m.id}
+                              onClick={() => togglePerson(selectedRide.id, m.id)}
+                              className={`flex items-center space-x-2 p-2 rounded-xl border transition-all text-xs font-bold ${
+                                checked ? 'bg-emerald-100 border-emerald-500 text-emerald-900' : 'bg-slate-100 border-slate-300 text-slate-600'
+                              }`}
+                            >
+                              <img src={m.avatarImg} alt={m.name} className="w-6 h-6 rounded-full object-cover" />
+                              <span>{m.name}</span>
+                              <span className="ml-auto font-black">{checked ? '✓' : '+'}</span>
+                            </button>
+                          );
+                        })}
+                      </div>
                     </div>
+
+                    {/* Food Checkboxes */}
+                    <div className="space-y-2">
+                      <div className="text-xs font-bold text-amber-800 uppercase tracking-wide flex items-center gap-1">
+                        🍴 Who Tried Food Here?
+                      </div>
+                      <div className="grid grid-cols-2 gap-2">
+                        {FAMILY_MEMBERS.map(m => {
+                          const foodChecked = (foodState[selectedRide.id] || []).includes(m.id);
+                          return (
+                            <button
+                              key={m.id}
+                              onClick={() => toggleFood(selectedRide.id, m.id)}
+                              className={`flex items-center space-x-2 p-2 rounded-xl border transition-all text-xs font-bold ${
+                                foodChecked ? 'bg-amber-100 border-amber-500 text-amber-900' : 'bg-slate-100 border-slate-300 text-slate-600'
+                              }`}
+                            >
+                              <img src={m.avatarImg} alt={m.name} className="w-6 h-6 rounded-full object-cover" />
+                              <span>{m.name}</span>
+                              <span className="ml-auto font-black">{foodChecked ? '🍴' : '+'}</span>
+                            </button>
+                          );
+                        })}
+                      </div>
+                    </div>
+
                     <button 
                       onClick={() => setSelectedRide(null)}
                       className="w-full mt-2 py-3 bg-[#ffc844] hover:bg-[#f5bc33] text-slate-950 rounded-2xl font-bold text-xs shadow-md"
                     >
-                      Done / Back to Rides
+                      Done / Back to List
                     </button>
                   </div>
                 </div>
@@ -582,7 +928,7 @@
             {/* Bottom Navigation */}
             <nav className="h-14 bg-slate-950 border-t border-slate-800 flex justify-around items-center shrink-0">
               <button onClick={() => setActiveTab('home')} className={`text-xs font-bold ${activeTab === 'home' ? 'text-amber-400' : 'text-slate-400'}`}>
-                🏰 Rides
+                🏰 Rides & Pavilions
               </button>
               <button onClick={() => setActiveTab('stats')} className={`text-xs font-bold ${activeTab === 'stats' ? 'text-amber-400' : 'text-slate-400'}`}>
                 📊 Leaderboard
@@ -598,9 +944,3 @@
   </script>
 </body>
 </html>
-```
-
-### Steps to see the updates on mobile/desktop:
-1. Copy the code above and save/commit it to `index.html` on GitHub.
-2. Wait **1 to 2 minutes** for GitHub Pages to rebuild the site.
-3. On your phone or browser, perform a hard refresh or open an **Incognito / Private tab** so that the browser does not load the old cached version of your app.
