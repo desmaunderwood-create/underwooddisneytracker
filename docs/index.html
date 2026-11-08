@@ -29,6 +29,7 @@
     const { useState, useEffect } = React;
 
     // --- Firebase Setup ---
+    // Make sure to replace demo values below with your exact keys from Firebase Settings!
     const firebaseConfig = {
       apiKey: "demo-api-key",
       authDomain: "demo-app.firebaseapp.com",
@@ -114,16 +115,20 @@
       const [activePark, setActivePark] = useState('mk');
       const [rideState, setRideState] = useState({});
 
+      // Live Firestore listener targeted at trackers/familyProgress
       useEffect(() => {
-        const docRef = db.collection('artifacts').doc('underwood-tracker').collection('public').doc('global_state');
+        const docRef = db.collection('trackers').doc('familyProgress');
         const unsubscribe = docRef.onSnapshot((doc) => {
           if (doc.exists && doc.data().rideState) {
             setRideState(doc.data().rideState);
           }
+        }, (error) => {
+          console.error("Firestore Listen Error:", error);
         });
         return () => unsubscribe();
       }, []);
 
+      // Toggle person and write to trackers/familyProgress
       const togglePerson = (rideId, memberId) => {
         const currentRiders = rideState[rideId] || [];
         const isRidden = currentRiders.includes(memberId);
@@ -134,9 +139,9 @@
         const nextState = { ...rideState, [rideId]: updated };
         setRideState(nextState);
 
-        db.collection('artifacts').doc('underwood-tracker').collection('public').doc('global_state')
+        db.collection('trackers').doc('familyProgress')
           .set({ rideState: nextState }, { merge: true })
-          .catch(err => console.error(err));
+          .catch(err => console.error("Firestore Save Error:", err));
       };
 
       const filteredRides = RIDES_CATALOG.filter(r => activePark === 'ALL' || r.parkId === activePark);
