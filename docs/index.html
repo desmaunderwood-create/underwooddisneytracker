@@ -980,138 +980,120 @@
 
             {/* Detailed Card View Modal */}
             {selectedRide && (
-              <div className="absolute inset-0 z-50 bg-[#faf6ed] text-slate-900 flex flex-col overflow-y-auto">
-                {/* Header Image with Back & Heart Buttons */}
-                <div className="relative h-64 w-full shrink-0">
-                  <img src={selectedRide.image} alt={selectedRide.name} className="w-full h-full object-cover" />
-                  <button 
-                    onClick={() => setSelectedRide(null)}
-                    className="absolute top-4 left-4 w-9 h-9 bg-white/90 rounded-full flex items-center justify-center font-bold shadow text-slate-800 active:scale-95"
-                  >
-                    ❮
-                  </button>
-                  <button className="absolute top-4 right-4 w-9 h-9 bg-white/90 rounded-full flex items-center justify-center shadow text-pink-600 font-bold active:scale-95">
-                    ♥
-                  </button>
-                </div>
-
-                {/* Card Detail Content */}
-                <div className="flex-1 p-5 -mt-6 bg-[#faf6ed] rounded-t-3xl flex flex-col justify-between">
-                  <div className="space-y-4">
-                    <div>
-                      <h2 className="text-2xl font-bold text-[#1b2240] leading-tight font-serif">{selectedRide.name}</h2>
-                      <span className="inline-flex items-center space-x-1 mt-2.5 px-3 py-1 bg-[#f4e6d4] text-[#8c5e31] rounded-full text-xs font-semibold">
-                        <span>🏰</span>
-                        <span>{selectedRide.land}</span>
-                      </span>
-                    </div>
-
-                    <p className="text-xs text-slate-600 leading-relaxed font-medium">
-                      {selectedRide.description}
-                    </p>
-
-                    <div className="space-y-3.5 pt-2 text-xs">
-                      {/* Thrill Level */}
-                      <div className="flex items-center space-x-3.5">
-                        <div className="w-6 text-center text-[#1b2240] text-lg font-bold">🎢</div>
-                        <div>
-                          <div className="font-semibold text-slate-500 text-[10px]">Thrill Level</div>
-                          <div className="flex space-x-1 mt-0.5">
-                            {[1, 2, 3, 4, 5].map((star) => (
-                              <span key={star} className={star <= selectedRide.thrillLevel ? "text-[#1b2240] text-sm" : "text-slate-300 text-sm"}>
-                                🐭
-                              </span>
-                            ))}
-                          </div>
-                        </div>
-                      </div>
-
-                      {/* Height Requirement */}
-                      <div className="flex items-center space-x-3.5">
-                        <div className="w-6 text-center text-[#1b2240] text-lg font-bold">🧍</div>
-                        <div>
-                          <div className="font-semibold text-slate-500 text-[10px]">Height Requirement</div>
-                          <div className="font-bold text-[#1b2240] text-xs">{selectedRide.heightRequirement}</div>
-                        </div>
-                      </div>
-
-                      {/* Ride / Attraction Type */}
-                      <div className="flex items-center space-x-3.5">
-                        <div className="w-6 text-center text-[#1b2240] text-lg font-bold">🎟️</div>
-                        <div>
-                          <div className="font-semibold text-slate-500 text-[10px]">Attraction Type</div>
-                          <div className="font-bold text-[#1b2240] text-xs">{selectedRide.rideType}</div>
-                        </div>
-                      </div>
-
-                      {/* Duration */}
-                      <div className="flex items-center space-x-3.5">
-                        <div className="w-6 text-center text-[#1b2240] text-lg font-bold">⏱️</div>
-                        <div>
-                          <div className="font-semibold text-slate-500 text-[10px]">Duration</div>
-                          <div className="font-bold text-[#1b2240] text-xs">{selectedRide.duration}</div>
-                        </div>
-                      </div>
-                    </div>
+              <div className="fixed inset-0 z-50 bg-black/70 backdrop-blur-sm flex items-center justify-center p-3">
+                <div className="w-full max-w-sm bg-[#faf6ed] text-slate-900 rounded-3xl overflow-hidden shadow-2xl flex flex-col max-h-[85vh] animate-in fade-in zoom-in-95 duration-200">
+                  
+                  {/* Compact Header Image */}
+                  <div className="relative h-36 w-full shrink-0">
+                    <img src={selectedRide.image} alt={selectedRide.name} className="w-full h-full object-cover" />
+                    <button 
+                      onClick={() => setSelectedRide(null)}
+                      className="absolute top-3 left-3 w-8 h-8 bg-white/90 hover:bg-white rounded-full flex items-center justify-center font-bold shadow-md text-slate-800 text-sm transition-transform active:scale-90"
+                    >
+                      ✕
+                    </button>
                   </div>
 
-                  {/* Toggle Per-Person Buttons inside Detail Modal */}
-                  <div className="pt-6 pb-2 space-y-4">
-                    {/* Ride/Visit Checkboxes */}
-                    <div className="space-y-2">
-                      <div className="text-xs font-bold text-slate-700 uppercase tracking-wide">Who Visited / Rode?</div>
-                      <div className="grid grid-cols-2 gap-2">
+                  {/* Scrollable Content inside Pop-up */}
+                  <div className="p-4 overflow-y-auto space-y-3 flex-1">
+                    <div>
+                      <div className="flex justify-between items-start gap-2">
+                        <h2 className="text-base font-bold text-[#1b2240] leading-tight font-serif">{selectedRide.name}</h2>
+                        <span className="inline-flex items-center space-x-1 px-2 py-0.5 bg-[#f4e6d4] text-[#8c5e31] rounded-full text-[10px] font-semibold shrink-0">
+                          <span>🏰</span>
+                          <span>{selectedRide.land}</span>
+                        </span>
+                      </div>
+                      <p className="text-[11px] text-slate-600 leading-snug mt-1 font-medium">
+                        {selectedRide.description}
+                      </p>
+                    </div>
+
+                    {/* Details Grid */}
+                    <div className="grid grid-cols-2 gap-2 bg-amber-100/50 p-2.5 rounded-xl border border-amber-200/60 text-[10px]">
+                      <div>
+                        <span className="text-slate-500 font-medium">Thrill:</span>
+                        <div className="flex space-x-0.5 mt-0.5">
+                          {[1, 2, 3, 4, 5].map((star) => (
+                            <span key={star} className={star <= selectedRide.thrillLevel ? "text-[#1b2240]" : "text-slate-300"}>
+                              🐭
+                            </span>
+                          ))}
+                        </div>
+                      </div>
+                      <div>
+                        <span className="text-slate-500 font-medium">Height:</span>
+                        <div className="font-bold text-[#1b2240] truncate">{selectedRide.heightRequirement}</div>
+                      </div>
+                      <div>
+                        <span className="text-slate-500 font-medium">Type:</span>
+                        <div className="font-bold text-[#1b2240] truncate">{selectedRide.rideType}</div>
+                      </div>
+                      <div>
+                        <span className="text-slate-500 font-medium">Duration:</span>
+                        <div className="font-bold text-[#1b2240] truncate">{selectedRide.duration}</div>
+                      </div>
+                    </div>
+
+                    {/* Who Rode Checkboxes */}
+                    <div className="space-y-1.5 pt-1">
+                      <div className="text-[10px] font-bold text-slate-700 uppercase tracking-wide">Who Visited / Rode?</div>
+                      <div className="grid grid-cols-2 gap-1.5">
                         {FAMILY_MEMBERS.map(m => {
                           const checked = (rideState[selectedRide.id] || []).includes(m.id);
                           return (
                             <button
                               key={m.id}
                               onClick={() => togglePerson(selectedRide.id, m.id)}
-                              className={`flex items-center space-x-2 p-2 rounded-xl border transition-all text-xs font-bold ${
+                              className={`flex items-center space-x-2 p-1.5 rounded-lg border transition-all text-xs font-bold ${
                                 checked ? 'bg-emerald-100 border-emerald-500 text-emerald-900' : 'bg-slate-100 border-slate-300 text-slate-600'
                               }`}
                             >
-                              <img src={m.avatarImg} alt={m.name} className="w-6 h-6 rounded-full object-cover" />
-                              <span>{m.name}</span>
-                              <span className="ml-auto font-black">{checked ? '✓' : '+'}</span>
+                              <img src={m.avatarImg} alt={m.name} className="w-5 h-5 rounded-full object-cover shrink-0" />
+                              <span className="truncate flex-1 text-left">{m.name}</span>
+                              <span className="text-xs font-black">{checked ? '✓' : '+'}</span>
                             </button>
                           );
                         })}
                       </div>
                     </div>
 
-                    {/* Food Checkboxes */}
-                    <div className="space-y-2">
-                      <div className="text-xs font-bold text-amber-800 uppercase tracking-wide flex items-center gap-1">
+                    {/* Who Tried Food Checkboxes */}
+                    <div className="space-y-1.5">
+                      <div className="text-[10px] font-bold text-amber-800 uppercase tracking-wide flex items-center gap-1">
                         🍴 Who Tried Food Here?
                       </div>
-                      <div className="grid grid-cols-2 gap-2">
+                      <div className="grid grid-cols-2 gap-1.5">
                         {FAMILY_MEMBERS.map(m => {
                           const foodChecked = (foodState[selectedRide.id] || []).includes(m.id);
                           return (
                             <button
                               key={m.id}
                               onClick={() => toggleFood(selectedRide.id, m.id)}
-                              className={`flex items-center space-x-2 p-2 rounded-xl border transition-all text-xs font-bold ${
+                              className={`flex items-center space-x-2 p-1.5 rounded-lg border transition-all text-xs font-bold ${
                                 foodChecked ? 'bg-amber-100 border-amber-500 text-amber-900' : 'bg-slate-100 border-slate-300 text-slate-600'
                               }`}
                             >
-                              <img src={m.avatarImg} alt={m.name} className="w-6 h-6 rounded-full object-cover" />
-                              <span>{m.name}</span>
-                              <span className="ml-auto font-black">{foodChecked ? '🍴' : '+'}</span>
+                              <img src={m.avatarImg} alt={m.name} className="w-5 h-5 rounded-full object-cover shrink-0" />
+                              <span className="truncate flex-1 text-left">{m.name}</span>
+                              <span className="text-xs font-black">{foodChecked ? '🍴' : '+'}</span>
                             </button>
                           );
                         })}
                       </div>
                     </div>
+                  </div>
 
+                  {/* Footer Close Button */}
+                  <div className="p-3 bg-slate-100 border-t border-slate-200 shrink-0">
                     <button 
                       onClick={() => setSelectedRide(null)}
-                      className="w-full mt-2 py-3 bg-[#ffc844] hover:bg-[#f5bc33] text-slate-950 rounded-2xl font-bold text-xs shadow-md"
+                      className="w-full py-2.5 bg-[#ffc844] hover:bg-[#f5bc33] active:scale-98 text-slate-950 rounded-xl font-bold text-xs shadow-sm transition-all"
                     >
-                      Done / Back to List
+                      Done / Close
                     </button>
                   </div>
+
                 </div>
               </div>
             )}
