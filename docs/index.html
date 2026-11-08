@@ -52,7 +52,7 @@ const auth = getAuth(app);
 const db = getFirestore(app);
 const appId = typeof __app_id !== 'undefined' ? __app_id : 'underwood-adventures-app';
 
-// Underwood Family Profiles with your exact GitHub images
+// Underwood Family Profiles matching exact image artwork
 const FAMILY_MEMBERS = [
   {
     id: 'mom',
@@ -418,6 +418,7 @@ export default function App() {
         const data = docSnap.data();
         if (data.rideState) setRideState(data.rideState);
       } else {
+        // Initialize empty ride state on first launch
         setDoc(docRef, { rideState: {} }).catch(err => console.error("Error setting initial doc:", err));
       }
     }, (error) => {
@@ -628,7 +629,7 @@ export default function App() {
                 </div>
               </div>
 
-              {/* Search Bar */}
+              {/* Search and Member Filter Indicator */}
               <div className="relative">
                 <Search className="w-4 h-4 absolute left-3 top-1/2 -translate-y-1/2 text-slate-400" />
                 <input
@@ -693,6 +694,7 @@ export default function App() {
                                   Who Rode This?
                                 </span>
 
+                                {/* Individual Avatars with explicit Check-Off Toggles */}
                                 <div className="flex items-center space-x-2">
                                   {FAMILY_MEMBERS.map(m => {
                                     const hasRidden = riders.includes(m.id);
@@ -713,6 +715,7 @@ export default function App() {
                                           <img src={m.avatarImg} alt={m.name} className="w-full h-full object-cover" />
                                         </div>
 
+                                        {/* Individual Check Overlay Badge */}
                                         <div className={`absolute -bottom-1 -right-1 w-3.5 h-3.5 rounded-full flex items-center justify-center text-[7px] font-black ${
                                           hasRidden 
                                             ? 'bg-emerald-500 text-slate-950 shadow-sm' 
@@ -724,6 +727,7 @@ export default function App() {
                                     );
                                   })}
 
+                                  {/* Quick Toggle All Button */}
                                   <button
                                     onClick={(e) => {
                                       e.stopPropagation();
@@ -763,15 +767,15 @@ export default function App() {
               </div>
 
               {/* Timeframe Tabs */}
-              <div className="grid grid-cols-3 gap-1 bg-slate-900 p-1 rounded-xl border border-slate-800">
+              <div className="grid grid-cols-3 gap-1 bg-slate-900/90 p-1 rounded-xl text-center text-xs font-bold border border-slate-800">
                 {['Today', 'This Trip', 'All Time'].map((tf) => (
                   <button
                     key={tf}
                     onClick={() => setStatTimeframe(tf)}
-                    className={`py-1.5 text-xs font-bold rounded-lg transition-all ${
-                      statTimeframe === tf
-                        ? 'bg-gradient-to-r from-purple-600 to-pink-600 text-white shadow-md'
-                        : 'text-slate-400 hover:text-slate-200'
+                    className={`py-1 rounded-lg transition-all ${
+                      statTimeframe === tf 
+                        ? 'bg-indigo-600 text-white shadow-md font-extrabold' 
+                        : 'text-slate-400 hover:text-white'
                     }`}
                   >
                     {tf}
@@ -779,197 +783,232 @@ export default function App() {
                 ))}
               </div>
 
-              {/* Family Members Progress Leaderboard */}
-              <div className="bg-slate-900/90 border border-slate-800 rounded-2xl p-3.5 space-y-3">
-                <h3 className="text-xs font-bold text-slate-200 uppercase tracking-wider">
-                  Family Leaderboard
+              {/* Family Completion Progress Bars */}
+              <div className="bg-slate-900/90 rounded-2xl p-3.5 border border-slate-800 space-y-3.5">
+                <h3 className="text-xs font-extrabold text-amber-300 uppercase tracking-wider">
+                  Family Quest Leaderboard
                 </h3>
-
-                <div className="space-y-3">
-                  {familyStats.map((member) => (
-                    <div key={member.id} className="space-y-1">
-                      <div className="flex items-center justify-between text-xs">
-                        <div className="flex items-center space-x-2">
-                          <img src={member.avatarImg} alt={member.name} className="w-6 h-6 rounded-full object-cover border border-slate-700" />
-                          <span className="font-bold text-slate-100">{member.name}</span>
-                        </div>
-                        <span className="font-extrabold text-amber-300">
-                          {member.ridesCount} rides <span className="text-[10px] text-slate-400 font-normal">({member.percentage}%)</span>
-                        </span>
-                      </div>
-
-                      {/* Progress bar */}
-                      <div className="w-full bg-slate-950 h-2 rounded-full overflow-hidden p-0.5 border border-slate-800">
-                        <div 
-                          className={`h-full rounded-full bg-gradient-to-r ${member.barColor} transition-all duration-500`}
-                          style={{ width: `${member.percentage}%` }}
+                {familyStats.map((member) => (
+                  <div key={member.id} className="space-y-1">
+                    <div className="flex justify-between items-center text-xs">
+                      <div className="flex items-center space-x-2">
+                        <img 
+                          src={member.avatarImg} 
+                          alt={member.name} 
+                          className="w-7 h-7 rounded-full object-cover border border-slate-700" 
                         />
+                        <div>
+                          <span className="font-bold text-slate-100 text-xs">{member.name}</span>
+                          <span className="text-[10px] text-slate-400 block">{member.ridesCount} rides logged</span>
+                        </div>
                       </div>
+                      <span className="font-extrabold text-amber-300 text-xs">{member.percentage}%</span>
                     </div>
-                  ))}
-                </div>
+
+                    <div className="w-full bg-slate-800 h-2.5 rounded-full overflow-hidden p-0.5">
+                      <div 
+                        className={`h-full bg-gradient-to-r ${member.barColor} transition-all duration-500 rounded-full`} 
+                        style={{ width: `${member.percentage}%` }}
+                      />
+                    </div>
+                  </div>
+                ))}
               </div>
 
-              {/* Summary Metrics Cards */}
+              {/* Stat Quadrants */}
               <div className="grid grid-cols-2 gap-2.5">
-                <div className="bg-slate-900/90 border border-slate-800 rounded-2xl p-3 flex items-center space-x-3">
-                  <div className="w-10 h-10 rounded-xl bg-amber-500/10 border border-amber-500/20 flex items-center justify-center text-amber-400 font-black">
-                    🏰
+                <div className="bg-slate-900/90 border border-slate-800 rounded-2xl p-2.5 flex items-center space-x-2.5">
+                  <div className="p-2 bg-amber-500/20 rounded-xl text-amber-300">
+                    <Zap className="w-4 h-4" />
                   </div>
                   <div>
-                    <div className="text-base font-black text-slate-100">{totalRidesLogged}</div>
-                    <div className="text-[10px] font-bold text-slate-400 uppercase">Total Rides</div>
+                    <span className="text-base font-black text-white">{totalRidesLogged}</span>
+                    <p className="text-[9px] text-slate-400 font-semibold uppercase">Total Ride Check-offs</p>
                   </div>
                 </div>
 
-                <div className="bg-slate-900/90 border border-slate-800 rounded-2xl p-3 flex items-center space-x-3">
-                  <div className="w-10 h-10 rounded-xl bg-rose-500/10 border border-rose-500/20 flex items-center justify-center text-rose-400 font-black">
-                    🗺️
+                <div className="bg-slate-900/90 border border-slate-800 rounded-2xl p-2.5 flex items-center space-x-2.5">
+                  <div className="p-2 bg-rose-500/20 rounded-xl text-rose-300">
+                    <MapPin className="w-4 h-4" />
                   </div>
                   <div>
-                    <div className="text-base font-black text-slate-100">{visitedLands.size}</div>
-                    <div className="text-[10px] font-bold text-slate-400 uppercase">Park Lands</div>
+                    <span className="text-base font-black text-white">{visitedLands.size}</span>
+                    <p className="text-[9px] text-slate-400 font-semibold uppercase">Park Lands Visited</p>
+                  </div>
+                </div>
+
+                <div className="bg-slate-900/90 border border-slate-800 rounded-2xl p-2.5 flex items-center space-x-2.5">
+                  <div className="p-2 bg-amber-400/20 rounded-xl text-amber-300">
+                    <Star className="w-4 h-4" />
+                  </div>
+                  <div>
+                    <span className="text-base font-black text-white">{totalUniqueRidesCompleted}</span>
+                    <p className="text-[9px] text-slate-400 font-semibold uppercase">Unique Rides Done</p>
+                  </div>
+                </div>
+
+                <div className="bg-slate-900/90 border border-slate-800 rounded-2xl p-2.5 flex items-center space-x-2.5">
+                  <div className="p-2 bg-cyan-500/20 rounded-xl text-cyan-300">
+                    <RotateCcw className="w-4 h-4" />
+                  </div>
+                  <div>
+                    <span className="text-base font-black text-white">{totalRidesRemaining}</span>
+                    <p className="text-[9px] text-slate-400 font-semibold uppercase">Rides Remaining</p>
                   </div>
                 </div>
               </div>
 
               {/* Magical Quote Card */}
-              <div className="relative rounded-2xl overflow-hidden p-4 bg-gradient-to-r from-purple-950 via-indigo-950 to-purple-900 text-center border border-amber-300/30 shadow-lg">
-                <Sparkles className="w-5 h-5 text-amber-300 mx-auto mb-1.5" />
-                <p className="text-xs font-serif italic text-amber-100 font-medium">
-                  "Collecting moments, one ride at a time."
+              <div className="bg-gradient-to-r from-purple-900/80 to-indigo-900/80 border border-amber-300/30 rounded-2xl p-3.5 text-center">
+                <p className="text-xs font-serif italic text-amber-200">
+                  “Collecting moments, one ride at a time.” 🏰✨
                 </p>
-                <div className="mt-2 text-[9px] font-bold tracking-widest uppercase text-amber-300/80">
-                  Underwood Family Adventures
-                </div>
               </div>
-
             </div>
           )}
-
         </main>
 
-        {/* Ride Detail Modal Sheet */}
+        {/* RIDE DETAIL MODAL (Matching Middle Screen from Mockup) */}
         {selectedRide && (
-          <div className="absolute inset-0 z-50 bg-black/80 backdrop-blur-sm flex items-end sm:items-center justify-center p-0 sm:p-4 animate-fadeIn">
-            <div className="w-full max-w-md bg-slate-900 border-t sm:border border-slate-800 rounded-t-[32px] sm:rounded-3xl overflow-hidden shadow-2xl max-h-[85vh] flex flex-col">
+          <div className="absolute inset-0 bg-slate-950/85 backdrop-blur-sm z-50 flex items-end sm:items-center justify-center p-0 sm:p-4 animate-fadeIn">
+            <div className="bg-slate-900 border border-slate-800 w-full max-h-[92vh] rounded-t-3xl sm:rounded-3xl overflow-y-auto no-scrollbar shadow-2xl relative text-slate-100">
               
-              <div className="relative h-48 w-full flex-shrink-0">
-                <img src={selectedRide.image} alt={selectedRide.name} className="w-full h-full object-cover" />
-                <div className="absolute inset-0 bg-gradient-to-t from-slate-900 via-transparent to-black/40" />
-                
+              {/* Hero Ride Image */}
+              <div className="relative h-56 w-full">
+                <img 
+                  src={selectedRide.image} 
+                  alt={selectedRide.name} 
+                  className="w-full h-full object-cover" 
+                />
                 <button 
                   onClick={() => setSelectedRide(null)}
-                  className="absolute top-3 right-3 w-8 h-8 rounded-full bg-black/60 text-white flex items-center justify-center hover:bg-black/80 transition-colors"
+                  className="absolute top-4 left-4 p-2 bg-slate-950/80 text-white rounded-full backdrop-blur-md border border-white/20"
                 >
-                  <X className="w-4 h-4" />
+                  <ChevronLeft className="w-5 h-5" />
                 </button>
-
-                <div className="absolute bottom-3 left-4 right-4">
-                  <span className="px-2.5 py-0.5 rounded-full text-[10px] font-bold bg-amber-400 text-slate-950 uppercase tracking-wider">
-                    {selectedRide.land}
-                  </span>
-                  <h3 className="text-lg font-black text-white font-serif mt-1">
-                    {selectedRide.name}
-                  </h3>
-                </div>
               </div>
 
-              <div className="p-4 space-y-4 overflow-y-auto">
-                <p className="text-xs text-slate-300 leading-relaxed">
-                  {selectedRide.description}
-                </p>
+              <div className="p-4 space-y-4">
+                <div>
+                  <h3 className="text-lg font-extrabold text-white leading-tight font-serif">
+                    {selectedRide.name}
+                  </h3>
+                  <span className="inline-block px-2.5 py-0.5 rounded-full text-[11px] font-bold bg-amber-400/20 text-amber-300 border border-amber-400/40 mt-1">
+                    🏜️ {selectedRide.land}
+                  </span>
+                  <p className="text-xs text-slate-300 mt-2 leading-relaxed">
+                    {selectedRide.description}
+                  </p>
+                </div>
 
-                <div className="grid grid-cols-3 gap-2 bg-slate-950/60 p-3 rounded-2xl border border-slate-800 text-center">
-                  <div>
-                    <div className="text-[10px] text-slate-400 font-bold uppercase">Thrill Level</div>
-                    <div className="text-amber-400 font-black text-sm mt-0.5">
-                      {'⭐'.repeat(selectedRide.thrillLevel)}
+                {/* Ride Stats breakdown */}
+                <div className="space-y-2 pt-1">
+                  <div className="flex items-center space-x-3 bg-slate-800/80 p-2.5 rounded-2xl border border-slate-700/60">
+                    <Zap className="w-5 h-5 text-amber-400" />
+                    <div>
+                      <span className="text-[9px] text-slate-400 uppercase font-semibold block">Thrill Level</span>
+                      <div className="flex space-x-1 mt-0.5">
+                        {[1, 2, 3, 4, 5].map((lvl) => (
+                          <span 
+                            key={lvl} 
+                            className={`w-2.5 h-2.5 rounded-full ${lvl <= selectedRide.thrillLevel ? 'bg-amber-400' : 'bg-slate-700'}`} 
+                          />
+                        ))}
+                      </div>
                     </div>
                   </div>
 
-                  <div>
-                    <div className="text-[10px] text-slate-400 font-bold uppercase">Height</div>
-                    <div className="text-slate-200 font-bold text-xs mt-0.5">
-                      {selectedRide.height}
+                  <div className="flex items-center space-x-3 bg-slate-800/80 p-2.5 rounded-2xl border border-slate-700/60">
+                    <Ruler className="w-5 h-5 text-sky-400" />
+                    <div>
+                      <span className="text-[9px] text-slate-400 uppercase font-semibold block">Height Requirement</span>
+                      <span className="text-xs font-bold text-white">{selectedRide.height}</span>
                     </div>
                   </div>
 
-                  <div>
-                    <div className="text-[10px] text-slate-400 font-bold uppercase">Duration</div>
-                    <div className="text-slate-200 font-bold text-xs mt-0.5">
-                      {selectedRide.duration}
+                  <div className="flex items-center space-x-3 bg-slate-800/80 p-2.5 rounded-2xl border border-slate-700/60">
+                    <Clock className="w-5 h-5 text-purple-400" />
+                    <div>
+                      <span className="text-[9px] text-slate-400 uppercase font-semibold block">Duration</span>
+                      <span className="text-xs font-bold text-white">{selectedRide.duration}</span>
                     </div>
                   </div>
                 </div>
 
-                {/* Per-Person Check-off in Modal */}
-                <div className="space-y-2">
-                  <h4 className="text-xs font-bold text-slate-200 uppercase tracking-wider">
-                    Who Completed This Ride?
+                {/* Interactive Member Check-Off Grid in Modal */}
+                <div className="bg-slate-800/60 border border-slate-700 rounded-2xl p-3 space-y-2.5">
+                  <h4 className="text-xs font-extrabold text-amber-300 uppercase tracking-wider">
+                    Check Off Family Members
                   </h4>
-
+                  
                   <div className="grid grid-cols-2 gap-2">
                     {FAMILY_MEMBERS.map(m => {
-                      const hasRidden = (rideState[selectedRide.id] || []).includes(m.id);
+                      const isRidden = (rideState[selectedRide.id] || []).includes(m.id);
                       return (
                         <button
                           key={m.id}
-                          onClick={(e) => togglePersonForRide(selectedRide.id, m.id, e)}
-                          className={`flex items-center space-x-2.5 p-2 rounded-xl border transition-all ${
-                            hasRidden
-                              ? 'bg-emerald-950/40 border-emerald-500/50 text-emerald-200'
-                              : 'bg-slate-950 border-slate-800 text-slate-400 hover:border-slate-700'
+                          onClick={() => togglePersonForRide(selectedRide.id, m.id)}
+                          className={`flex items-center justify-between p-2 rounded-xl border transition-all ${
+                            isRidden 
+                              ? 'bg-emerald-500/20 border-emerald-500 text-white' 
+                              : 'bg-slate-900 border-slate-700 text-slate-400 hover:text-white'
                           }`}
                         >
-                          <img src={m.avatarImg} alt={m.name} className="w-8 h-8 rounded-full object-cover border border-slate-700" />
-                          <div className="text-left flex-1 min-w-0">
-                            <div className="text-xs font-bold text-slate-100">{m.name}</div>
-                            <div className="text-[10px]">{hasRidden ? '✓ Ridden' : 'Tap to mark'}</div>
+                          <div className="flex items-center space-x-2">
+                            <img src={m.avatarImg} alt={m.name} className="w-6 h-6 rounded-full object-cover border border-slate-600" />
+                            <span className="text-xs font-bold">{m.name}</span>
+                          </div>
+                          <div className={`w-4 h-4 rounded-full flex items-center justify-center text-[9px] ${
+                            isRidden ? 'bg-emerald-500 text-slate-950 font-black' : 'border border-slate-600'
+                          }`}>
+                            {isRidden && <Check className="w-3 h-3 stroke-[3]" />}
                           </div>
                         </button>
                       );
                     })}
                   </div>
                 </div>
-              </div>
 
-              <div className="p-4 bg-slate-950 border-t border-slate-800">
+                {/* Close Button */}
                 <button
                   onClick={() => setSelectedRide(null)}
-                  className="w-full py-2.5 bg-gradient-to-r from-amber-400 to-amber-500 text-slate-950 font-black text-xs rounded-xl shadow-lg hover:brightness-110 transition-all"
+                  className="w-full py-3 rounded-2xl font-extrabold text-xs bg-slate-800 text-slate-200 border border-slate-700 hover:bg-slate-700 transition-all"
                 >
                   Done
                 </button>
               </div>
-
             </div>
           </div>
         )}
 
-        {/* Bottom Navigation Bar */}
-        <nav className="absolute bottom-0 left-0 right-0 h-16 bg-slate-950/95 backdrop-blur-md border-t border-slate-800/80 flex items-center justify-around px-4 z-40">
-          <button
-            onClick={() => setActiveTab('home')}
-            className={`flex flex-col items-center space-y-1 transition-colors ${
-              activeTab === 'home' ? 'text-amber-400' : 'text-slate-400 hover:text-slate-200'
-            }`}
-          >
-            <Home className="w-5 h-5" />
-            <span className="text-[10px] font-bold">Rides</span>
-          </button>
-
-          <button
-            onClick={() => setActiveTab('stats')}
-            className={`flex flex-col items-center space-y-1 transition-colors ${
-              activeTab === 'stats' ? 'text-amber-400' : 'text-slate-400 hover:text-slate-200'
-            }`}
-          >
-            <BarChart3 className="w-5 h-5" />
-            <span className="text-[10px] font-bold">Stats</span>
-          </button>
+        {/* BOTTOM NAVIGATION BAR */}
+        <nav className="absolute bottom-0 left-0 right-0 bg-slate-950/95 backdrop-blur-md border-t border-slate-800 px-3 py-2 flex justify-around items-center z-40">
+          {[
+            { id: 'home', label: 'Home', icon: Home },
+            { id: 'rides', label: 'Rides', icon: Compass },
+            { id: 'map', label: 'Map', icon: MapPin },
+            { id: 'stats', label: 'Stats', icon: BarChart3 },
+            { id: 'more', label: 'More', icon: MoreHorizontal }
+          ].map((item) => {
+            const Icon = item.icon;
+            const isActive = activeTab === item.id || (item.id === 'rides' && activeTab === 'home');
+            return (
+              <button
+                key={item.id}
+                onClick={() => {
+                  if (item.id === 'rides') setActiveTab('home');
+                  else setActiveTab(item.id);
+                }}
+                className={`flex flex-col items-center justify-center px-3 py-1 rounded-xl transition-all ${
+                  isActive ? 'text-amber-400 font-bold scale-105' : 'text-slate-500 hover:text-slate-300'
+                }`}
+              >
+                <Icon className={`w-5 h-5 ${isActive ? 'stroke-[2.5]' : 'stroke-2'}`} />
+                <span className="text-[10px] mt-0.5">{item.label}</span>
+              </button>
+            );
+          })}
         </nav>
-
       </div>
     </div>
   );
