@@ -95,6 +95,67 @@
       { id: 'ak', name: "Animal Kingdom", icon: '🌴' }
     ];
 
+    // Character Meet & Greets Catalog by Park
+    const CHARACTERS_CATALOG = [
+      // Magic Kingdom
+      { id: 'mk-cinderella', parkId: 'mk', parkName: 'Magic Kingdom', name: 'Cinderella', location: 'Princess Fairytale Hall' },
+      { id: 'mk-tiana', parkId: 'mk', parkName: 'Magic Kingdom', name: 'Tiana', location: 'Princess Fairytale Hall' },
+      { id: 'mk-ariel', parkId: 'mk', parkName: 'Magic Kingdom', name: 'Ariel', location: 'Ariel\'s Grotto' },
+      { id: 'mk-pooh', parkId: 'mk', parkName: 'Magic Kingdom', name: 'Winnie the Pooh & Friends', location: 'Fantasyland' },
+      { id: 'mk-mirabel', parkId: 'mk', parkName: 'Magic Kingdom', name: 'Mirabel', location: 'Fairytale Garden' },
+      { id: 'mk-peter-pan', parkId: 'mk', parkName: 'Magic Kingdom', name: 'Peter Pan', location: 'Fantasyland' },
+      { id: 'mk-mickey', parkId: 'mk', parkName: 'Magic Kingdom', name: 'Mickey Mouse', location: 'Town Square Theater' },
+      { id: 'mk-minnie', parkId: 'mk', parkName: 'Magic Kingdom', name: 'Minnie Mouse', location: 'Pete\'s Silly Slideshow' },
+      { id: 'mk-goofy', parkId: 'mk', parkName: 'Magic Kingdom', name: 'Goofy', location: 'Pete\'s Silly Slideshow' },
+      { id: 'mk-donald', parkId: 'mk', parkName: 'Magic Kingdom', name: 'Donald Duck', location: 'Pete\'s Silly Slideshow' },
+      { id: 'mk-daisy', parkId: 'mk', parkName: 'Magic Kingdom', name: 'Daisy Duck', location: 'Pete\'s Silly Slideshow' },
+      { id: 'mk-mulan', parkId: 'mk', parkName: 'Magic Kingdom', name: 'Mulan', location: 'Adventureland' },
+      { id: 'mk-aladdin', parkId: 'mk', parkName: 'Magic Kingdom', name: 'Aladdin', location: 'Adventureland' },
+      { id: 'mk-jasmine', parkId: 'mk', parkName: 'Magic Kingdom', name: 'Jasmine', location: 'Adventureland' },
+      { id: 'mk-jack-sparrow', parkId: 'mk', parkName: 'Magic Kingdom', name: 'Jack Sparrow', location: 'Adventureland' },
+      { id: 'mk-belle', parkId: 'mk', parkName: 'Magic Kingdom', name: 'Belle (Enchanted Tales with Belle)', location: 'Fantasyland' },
+
+      // EPCOT
+      { id: 'ep-moana', parkId: 'epcot', parkName: 'EPCOT', name: 'Moana', location: 'World Nature' },
+      { id: 'ep-mickey', parkId: 'epcot', parkName: 'EPCOT', name: 'Mickey Mouse', location: 'Meet Disney Pixar Pals / Magic Eye' },
+      { id: 'ep-figment', parkId: 'epcot', parkName: 'EPCOT', name: 'Figment', location: 'ImageWorks' },
+      { id: 'ep-pluto', parkId: 'epcot', parkName: 'EPCOT', name: 'Pluto', location: 'World Celebration' },
+
+      // Hollywood Studios
+      { id: 'hs-ariel', parkId: 'hs', parkName: 'Hollywood Studios', name: 'Ariel (Live Action)', location: 'Walt Disney Presents' },
+      { id: 'hs-edna', parkId: 'hs', parkName: 'Hollywood Studios', name: 'Edna Mode', location: 'Pixar Place' },
+      { id: 'hs-sulley', parkId: 'hs', parkName: 'Hollywood Studios', name: 'Sulley', location: 'Pixar Place' },
+      { id: 'hs-mrs-incredible', parkId: 'hs', parkName: 'Hollywood Studios', name: 'Mrs. Incredible', location: 'Pixar Place' },
+      { id: 'hs-frozone', parkId: 'hs', parkName: 'Hollywood Studios', name: 'Frozone', location: 'Pixar Place' },
+      { id: 'hs-joy', parkId: 'hs', parkName: 'Hollywood Studios', name: 'Joy', location: 'Pixar Plaza' },
+      { id: 'hs-olaf', parkId: 'hs', parkName: 'Hollywood Studios', name: 'Olaf', location: 'Celebrity Spotlight' },
+      { id: 'hs-darth-vader', parkId: 'hs', parkName: 'Hollywood Studios', name: 'Darth Vader', location: 'Star Wars Launch Bay' },
+      { id: 'hs-mickey', parkId: 'hs', parkName: 'Hollywood Studios', name: 'Mickey Mouse', location: 'Red Carpet Dreams' },
+      { id: 'hs-minnie', parkId: 'hs', parkName: 'Hollywood Studios', name: 'Minnie Mouse', location: 'Red Carpet Dreams' },
+      { id: 'hs-chewbacca', parkId: 'hs', parkName: 'Hollywood Studios', name: 'Chewbacca', location: 'Star Wars Launch Bay' },
+      { id: 'hs-pluto', parkId: 'hs', parkName: 'Hollywood Studios', name: 'Pluto', location: 'Animation Courtyard' },
+      { id: 'hs-chip', parkId: 'hs', parkName: 'Hollywood Studios', name: 'Chip', location: 'Brown Derby Lawn' },
+      { id: 'hs-dale', parkId: 'hs', parkName: 'Hollywood Studios', name: 'Dale', location: 'Brown Derby Lawn' },
+      { id: 'hs-goofy', parkId: 'hs', parkName: 'Hollywood Studios', name: 'Goofy', location: 'Grand Avenue' },
+      { id: 'hs-donald', parkId: 'hs', parkName: 'Hollywood Studios', name: 'Donald Duck', location: 'Echo Lake' },
+      { id: 'hs-mulan', parkId: 'hs', parkName: 'Hollywood Studios', name: 'Mulan', location: 'Animation Courtyard' },
+      { id: 'hs-rapunzel', parkId: 'hs', parkName: 'Hollywood Studios', name: 'Rapunzel', location: 'Animation Courtyard' },
+      { id: 'hs-stitch', parkId: 'hs', parkName: 'Hollywood Studios', name: 'Stitch', location: 'Celebrity Spotlight' },
+
+      // Animal Kingdom
+      { id: 'ak-judy', parkId: 'ak', parkName: 'Animal Kingdom', name: 'Judy Hopps', location: 'Discovery Island' },
+      { id: 'ak-nick', parkId: 'ak', parkName: 'Animal Kingdom', name: 'Nick Wilde', location: 'Discovery Island' },
+      { id: 'ak-dug', parkId: 'ak', parkName: 'Animal Kingdom', name: 'Dug', location: 'Wilderness Explorers Club' },
+      { id: 'ak-russell', parkId: 'ak', parkName: 'Animal Kingdom', name: 'Russell', location: 'Wilderness Explorers Club' },
+      { id: 'ak-moana', parkId: 'ak', parkName: 'Animal Kingdom', name: 'Moana', location: 'Character Landing' },
+      { id: 'ak-kevin', parkId: 'ak', parkName: 'Animal Kingdom', name: 'Kevin', location: 'Discovery Island Roaming' },
+      { id: 'ak-goofy', parkId: 'ak', parkName: 'Animal Kingdom', name: 'Goofy', location: 'DinoLand U.S.A.' },
+      { id: 'ak-pocahontas', parkId: 'ak', parkName: 'Animal Kingdom', name: 'Pocahontas', location: 'Discovery Island Trails' },
+      { id: 'ak-donald', parkId: 'ak', parkName: 'Animal Kingdom', name: 'Donald Duck', location: 'Dino-Suite / Discovery Island' },
+      { id: 'ak-daisy', parkId: 'ak', parkName: 'Animal Kingdom', name: 'Daisy Duck', location: 'DinoLand U.S.A.' },
+      { id: 'ak-pluto', parkId: 'ak', parkName: 'Animal Kingdom', name: 'Pluto', location: 'DinoLand U.S.A.' }
+    ];
+
     // Rides & Pavilions List with Direct Raw GitHub Image Links
     const RIDES_CATALOG = [
       {
@@ -489,6 +550,7 @@
       const [activeMemberFilter, setActiveMemberFilter] = useState('ALL');
       const [rideState, setRideState] = useState({});
       const [foodState, setFoodState] = useState({});
+      const [characterState, setCharacterState] = useState({});
       const [selectedRide, setSelectedRide] = useState(null);
 
       // Listen for updates from Firestore document: trackers/familyProgress
@@ -500,6 +562,7 @@
             const data = doc.data();
             if (data.rideState) setRideState(data.rideState);
             if (data.foodState) setFoodState(data.foodState);
+            if (data.characterState) setCharacterState(data.characterState);
           }
         }, (error) => {
           console.error("Firestore Listen Error:", error);
@@ -543,12 +606,35 @@
         }
       };
 
+      // Toggle person character check-off and write to Firestore
+      const toggleCharacter = (charId, memberId) => {
+        const currentMeeters = characterState[charId] || [];
+        const isMet = currentMeeters.includes(memberId);
+        const updated = isMet
+          ? currentMeeters.filter(id => id !== memberId)
+          : [...currentMeeters, memberId];
+
+        const nextCharState = { ...characterState, [charId]: updated };
+        setCharacterState(nextCharState);
+
+        if (db) {
+          db.collection('trackers').doc('familyProgress')
+            .set({ characterState: nextCharState }, { merge: true })
+            .catch(err => console.error("Firestore Character Save Error:", err));
+        }
+      };
+
       const filteredRides = RIDES_CATALOG.filter(r => {
         const matchesPark = activePark === 'ALL' || r.parkId === activePark;
         const matchesMember = activeMemberFilter === 'ALL' || 
           (rideState[r.id] || []).includes(activeMemberFilter) || 
           (foodState[r.id] || []).includes(activeMemberFilter);
         return matchesPark && matchesMember;
+      });
+
+      const filteredCharacters = CHARACTERS_CATALOG.filter(c => {
+        const matchesMember = activeMemberFilter === 'ALL' || (characterState[c.id] || []).includes(activeMemberFilter);
+        return matchesMember;
       });
 
       return (
@@ -602,27 +688,33 @@
             {/* Content Body */}
             <main className="flex-1 p-3 space-y-3 overflow-y-auto pb-20">
               
+              {/* Top Navigation Options (Parks / Characters) */}
+              <div className="flex gap-1.5 overflow-x-auto no-scrollbar pb-1">
+                <button 
+                  onClick={() => { setActiveTab('home'); setActivePark('ALL'); }} 
+                  className={`px-3 py-1.5 rounded-full text-xs font-bold transition-all ${activeTab === 'home' && activePark === 'ALL' ? 'bg-amber-400 text-slate-950' : 'bg-slate-800 text-slate-300'}`}
+                >
+                  All Parks
+                </button>
+                {PARKS_CATALOG.map(p => (
+                  <button 
+                    key={p.id} 
+                    onClick={() => { setActiveTab('home'); setActivePark(p.id); }} 
+                    className={`px-3 py-1.5 rounded-full text-xs font-bold whitespace-nowrap transition-all ${activeTab === 'home' && activePark === p.id ? 'bg-purple-600 text-white' : 'bg-slate-800 text-slate-300'}`}
+                  >
+                    {p.icon} {p.name}
+                  </button>
+                ))}
+                <button 
+                  onClick={() => setActiveTab('characters')} 
+                  className={`px-3 py-1.5 rounded-full text-xs font-bold whitespace-nowrap transition-all flex items-center gap-1 ${activeTab === 'characters' ? 'bg-pink-600 text-white shadow-lg ring-2 ring-pink-400/50' : 'bg-slate-800 text-pink-300'}`}
+                >
+                  🎭 Characters
+                </button>
+              </div>
+
               {activeTab === 'home' && (
                 <>
-                  {/* Park Filters */}
-                  <div className="flex gap-1.5 overflow-x-auto no-scrollbar pb-1">
-                    <button 
-                      onClick={() => setActivePark('ALL')} 
-                      className={`px-3 py-1.5 rounded-full text-xs font-bold transition-all ${activePark === 'ALL' ? 'bg-amber-400 text-slate-950' : 'bg-slate-800 text-slate-300'}`}
-                    >
-                      All Parks
-                    </button>
-                    {PARKS_CATALOG.map(p => (
-                      <button 
-                        key={p.id} 
-                        onClick={() => setActivePark(p.id)} 
-                        className={`px-3 py-1.5 rounded-full text-xs font-bold whitespace-nowrap transition-all ${activePark === p.id ? 'bg-purple-600 text-white' : 'bg-slate-800 text-slate-300'}`}
-                      >
-                        {p.icon} {p.name}
-                      </button>
-                    ))}
-                  </div>
-
                   {activeMemberFilter !== 'ALL' && (
                     <div className="bg-purple-950/60 border border-purple-500/30 rounded-xl p-2 flex justify-between items-center text-xs text-purple-200">
                       <span>Showing items for <strong>{FAMILY_MEMBERS.find(m => m.id === activeMemberFilter)?.name}</strong></span>
@@ -736,6 +828,77 @@
                 </>
               )}
 
+              {/* Characters Screen View */}
+              {activeTab === 'characters' && (
+                <div className="space-y-4">
+                  <div className="bg-pink-950/50 border border-pink-500/30 rounded-2xl p-3 flex justify-between items-center text-xs text-pink-200">
+                    <div>
+                      <h2 className="font-bold text-pink-100 text-sm">Character Meet & Greets 👑</h2>
+                      <p className="text-[10px] text-pink-300">Check off who met each character across the parks!</p>
+                    </div>
+                  </div>
+
+                  {PARKS_CATALOG.map(park => {
+                    const parkCharacters = filteredCharacters.filter(c => c.parkId === park.id);
+                    if (parkCharacters.length === 0) return null;
+                    return (
+                      <div key={park.id} className="space-y-2">
+                        <div className="flex items-center space-x-1.5 px-1">
+                          <span className="text-base">{park.icon}</span>
+                          <h3 className="text-xs font-bold text-amber-300 uppercase tracking-wider">{park.name}</h3>
+                          <span className="text-[10px] text-slate-500">({parkCharacters.length})</span>
+                        </div>
+
+                        <div className="space-y-2">
+                          {parkCharacters.map(char => {
+                            const meeters = characterState[char.id] || [];
+                            return (
+                              <div key={char.id} className="bg-slate-800/80 p-3 rounded-2xl border border-slate-700/80 flex items-center justify-between">
+                                <div>
+                                  <div className="font-bold text-xs text-slate-100 flex items-center gap-1.5">
+                                    <span>✨</span>
+                                    <span>{char.name}</span>
+                                  </div>
+                                  <div className="text-[10px] text-pink-300 font-medium mt-0.5">📍 {char.location}</div>
+                                </div>
+
+                                <div className="flex space-x-1.5">
+                                  {FAMILY_MEMBERS.map(m => {
+                                    const checked = meeters.includes(m.id);
+                                    return (
+                                      <button
+                                        key={m.id}
+                                        onClick={() => toggleCharacter(char.id, m.id)}
+                                        title={`Mark met ${char.name} for ${m.name}`}
+                                        className={`relative w-8 h-8 rounded-full overflow-hidden border-2 transition-all ${
+                                          checked ? 'border-pink-400 ring-2 ring-pink-400/40 scale-105' : 'border-slate-600 opacity-40 hover:opacity-75'
+                                        }`}
+                                      >
+                                        <img 
+                                          src={m.avatarImg} 
+                                          alt={m.name} 
+                                          className="w-full h-full object-cover" 
+                                          onError={(e) => { e.target.src = 'https://placehold.co/100x100/1e293b/f59e0b?text=' + m.name; }}
+                                        />
+                                        {checked && (
+                                          <div className="absolute inset-0 bg-pink-500/60 flex items-center justify-center font-bold text-white text-xs">
+                                            ♥
+                                          </div>
+                                        )}
+                                      </button>
+                                    );
+                                  })}
+                                </div>
+                              </div>
+                            );
+                          })}
+                        </div>
+                      </div>
+                    );
+                  })}
+                </div>
+              )}
+
               {activeTab === 'stats' && (
                 <div className="space-y-4">
                   <h2 className="text-sm font-bold text-slate-100 uppercase tracking-wide">Family Leaderboard</h2>
@@ -754,6 +917,29 @@
                               <span className="font-bold text-slate-200">{m.name}</span>
                             </div>
                             <span className="font-bold text-amber-300">{count} / {RIDES_CATALOG.length} ({pct}%)</span>
+                          </div>
+                          <div className="w-full bg-slate-900 h-2.5 rounded-full overflow-hidden p-0.5 border border-slate-800">
+                            <div className={`h-full rounded-full bg-gradient-to-r ${m.barColor} transition-all duration-500`} style={{ width: `${pct}%` }}></div>
+                          </div>
+                        </div>
+                      );
+                    })}
+                  </div>
+
+                  {/* Character Leaderboard */}
+                  <div className="bg-slate-800/90 p-4 rounded-2xl border border-slate-700 space-y-4">
+                    <h3 className="text-xs font-bold text-pink-400 uppercase">👑 Character Meet & Greets</h3>
+                    {FAMILY_MEMBERS.map(m => {
+                      const count = Object.values(characterState).filter(r => r.includes(m.id)).length;
+                      const pct = Math.round((count / CHARACTERS_CATALOG.length) * 100);
+                      return (
+                        <div key={m.id} className="space-y-1.5">
+                          <div className="flex items-center justify-between text-xs">
+                            <div className="flex items-center space-x-2">
+                              <img src={m.avatarImg} alt={m.name} className="w-6 h-6 rounded-full object-cover border border-pink-300" onError={(e) => { e.target.src = 'https://placehold.co/100x100/1e293b/f59e0b?text=' + m.name; }} />
+                              <span className="font-bold text-slate-200">{m.name}</span>
+                            </div>
+                            <span className="font-bold text-pink-300">{count} / {CHARACTERS_CATALOG.length} characters ({pct}%)</span>
                           </div>
                           <div className="w-full bg-slate-900 h-2.5 rounded-full overflow-hidden p-0.5 border border-slate-800">
                             <div className={`h-full rounded-full bg-gradient-to-r ${m.barColor} transition-all duration-500`} style={{ width: `${pct}%` }}></div>
@@ -934,6 +1120,9 @@
             <nav className="h-14 bg-slate-950 border-t border-slate-800 flex justify-around items-center shrink-0">
               <button onClick={() => setActiveTab('home')} className={`text-xs font-bold ${activeTab === 'home' ? 'text-amber-400' : 'text-slate-400'}`}>
                 🏰 Rides & Pavilions
+              </button>
+              <button onClick={() => setActiveTab('characters')} className={`text-xs font-bold ${activeTab === 'characters' ? 'text-pink-400' : 'text-slate-400'}`}>
+                🎭 Characters
               </button>
               <button onClick={() => setActiveTab('stats')} className={`text-xs font-bold ${activeTab === 'stats' ? 'text-amber-400' : 'text-slate-400'}`}>
                 📊 Leaderboard
