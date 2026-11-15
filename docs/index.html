@@ -1,3 +1,6 @@
+Here is the complete, fully updated script for your app, featuring all expanded ride catalogs across all 4 parks, along with the **Food & Snack tracker** row (`🥨 Food` with `😋` / `⭕` toggles) on every ride and pavilion card!
+
+```html
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -1039,6 +1042,7 @@
                   <div className="space-y-3">
                     {filteredRides.map(ride => {
                       const riders = rideState[ride.id] || [];
+                      const eaters = foodState[ride.id] || [];
 
                       return (
                         <div key={ride.id} className="bg-slate-800/50 border border-slate-700/60 rounded-2xl overflow-hidden shadow-md">
@@ -1072,21 +1076,47 @@
                             </div>
                           </div>
 
-                          {/* Family Member Checkboxes for this Ride */}
-                          <div className="bg-slate-900/80 px-3 py-2 border-t border-slate-800 flex justify-around items-center">
-                            {FAMILY_MEMBERS.map(member => {
-                              const hasRidden = riders.includes(member.id);
-                              return (
-                                <button
-                                  key={member.id}
-                                  onClick={() => togglePerson(ride.id, member.id)}
-                                  className={`flex items-center gap-1.5 px-2.5 py-1 rounded-lg text-[10px] font-bold transition-all border ${hasRidden ? 'bg-amber-400/20 text-amber-300 border-amber-400/50' : 'bg-slate-800 text-slate-400 border-slate-700 hover:border-slate-600'}`}
-                                >
-                                  <span>{hasRidden ? '✅' : '⭕'}</span>
-                                  <span>{member.name}</span>
-                                </button>
-                              );
-                            })}
+                          {/* Family Member Checkboxes for Rides & Food */}
+                          <div className="bg-slate-900/80 px-3 py-2 border-t border-slate-800 space-y-2">
+                            {/* Ride / Visit Row */}
+                            <div className="flex items-center justify-between">
+                              <span className="text-[10px] font-bold text-slate-400 w-12">🎢 Ride</span>
+                              <div className="flex flex-1 justify-around">
+                                {FAMILY_MEMBERS.map(member => {
+                                  const hasRidden = riders.includes(member.id);
+                                  return (
+                                    <button
+                                      key={member.id}
+                                      onClick={() => togglePerson(ride.id, member.id)}
+                                      className={`flex items-center gap-1 px-2 py-1 rounded-lg text-[10px] font-bold transition-all border ${hasRidden ? 'bg-amber-400/20 text-amber-300 border-amber-400/50' : 'bg-slate-800 text-slate-400 border-slate-700 hover:border-slate-600'}`}
+                                    >
+                                      <span>{hasRidden ? '✅' : '⭕'}</span>
+                                      <span>{member.name}</span>
+                                    </button>
+                                  );
+                                })}
+                              </div>
+                            </div>
+
+                            {/* Food / Snacks Row */}
+                            <div className="flex items-center justify-between pt-1.5 border-t border-slate-800/80">
+                              <span className="text-[10px] font-bold text-slate-400 w-12">🥨 Food</span>
+                              <div className="flex flex-1 justify-around">
+                                {FAMILY_MEMBERS.map(member => {
+                                  const hasEaten = eaters.includes(member.id);
+                                  return (
+                                    <button
+                                      key={member.id}
+                                      onClick={() => toggleFood(ride.id, member.id)}
+                                      className={`flex items-center gap-1 px-2 py-1 rounded-lg text-[10px] font-bold transition-all border ${hasEaten ? 'bg-emerald-400/20 text-emerald-300 border-emerald-400/50' : 'bg-slate-800 text-slate-400 border-slate-700 hover:border-slate-600'}`}
+                                    >
+                                      <span>{hasEaten ? '😋' : '⭕'}</span>
+                                      <span>{member.name}</span>
+                                    </button>
+                                  );
+                                })}
+                              </div>
+                            </div>
                           </div>
                         </div>
                       );
@@ -1141,6 +1171,7 @@
                   
                   {FAMILY_MEMBERS.map(member => {
                     const memberRides = Object.values(rideState).filter(r => r.includes(member.id)).length;
+                    const memberFoods = Object.values(foodState).filter(f => f.includes(member.id)).length;
                     const memberChars = Object.values(characterState).filter(c => c.includes(member.id)).length;
                     const ridePct = Math.round((memberRides / RIDES_CATALOG.length) * 100);
 
@@ -1154,14 +1185,18 @@
                           </div>
                         </div>
 
-                        <div className="grid grid-cols-2 gap-2 pt-2 text-center">
+                        <div className="grid grid-cols-3 gap-2 pt-2 text-center">
                           <div className="bg-slate-900/60 p-2 rounded-xl border border-slate-800">
-                            <div className="text-lg font-bold text-amber-300">{memberRides} / {RIDES_CATALOG.length}</div>
-                            <div className="text-[10px] text-slate-400">Rides Completed</div>
+                            <div className="text-base font-bold text-amber-300">{memberRides} / {RIDES_CATALOG.length}</div>
+                            <div className="text-[9px] text-slate-400">Rides</div>
                           </div>
                           <div className="bg-slate-900/60 p-2 rounded-xl border border-slate-800">
-                            <div className="text-lg font-bold text-pink-300">{memberChars}</div>
-                            <div className="text-[10px] text-slate-400">Characters Met</div>
+                            <div className="text-base font-bold text-emerald-300">{memberFoods}</div>
+                            <div className="text-[9px] text-slate-400">Foods/Snacks</div>
+                          </div>
+                          <div className="bg-slate-900/60 p-2 rounded-xl border border-slate-800">
+                            <div className="text-base font-bold text-pink-300">{memberChars}</div>
+                            <div className="text-[9px] text-slate-400">Characters</div>
                           </div>
                         </div>
 
@@ -1223,3 +1258,5 @@
   </script>
 </body>
 </html>
+
+```
