@@ -97,7 +97,6 @@
 
     // Character Meet & Greets Catalog by Park
     const CHARACTERS_CATALOG = [
-      // Magic Kingdom
       { id: 'mk-cinderella', parkId: 'mk', parkName: 'Magic Kingdom', name: 'Cinderella', location: 'Princess Fairytale Hall' },
       { id: 'mk-tiana', parkId: 'mk', parkName: 'Magic Kingdom', name: 'Tiana', location: 'Princess Fairytale Hall' },
       { id: 'mk-ariel', parkId: 'mk', parkName: 'Magic Kingdom', name: 'Ariel', location: 'Ariel\'s Grotto' },
@@ -115,13 +114,11 @@
       { id: 'mk-jack-sparrow', parkId: 'mk', parkName: 'Magic Kingdom', name: 'Jack Sparrow', location: 'Adventureland' },
       { id: 'mk-belle', parkId: 'mk', parkName: 'Magic Kingdom', name: 'Belle (Enchanted Tales with Belle)', location: 'Fantasyland' },
 
-      // EPCOT
       { id: 'ep-moana', parkId: 'epcot', parkName: 'EPCOT', name: 'Moana', location: 'World Nature' },
       { id: 'ep-mickey', parkId: 'epcot', parkName: 'EPCOT', name: 'Mickey Mouse', location: 'Meet Disney Pixar Pals / Magic Eye' },
       { id: 'ep-figment', parkId: 'epcot', parkName: 'EPCOT', name: 'Figment', location: 'ImageWorks' },
       { id: 'ep-pluto', parkId: 'epcot', parkName: 'EPCOT', name: 'Pluto', location: 'World Celebration' },
 
-      // Hollywood Studios
       { id: 'hs-ariel', parkId: 'hs', parkName: 'Hollywood Studios', name: 'Ariel (Live Action)', location: 'Walt Disney Presents' },
       { id: 'hs-edna', parkId: 'hs', parkName: 'Hollywood Studios', name: 'Edna Mode', location: 'Pixar Place' },
       { id: 'hs-sulley', parkId: 'hs', parkName: 'Hollywood Studios', name: 'Sulley', location: 'Pixar Place' },
@@ -142,7 +139,6 @@
       { id: 'hs-rapunzel', parkId: 'hs', parkName: 'Hollywood Studios', name: 'Rapunzel', location: 'Animation Courtyard' },
       { id: 'hs-stitch', parkId: 'hs', parkName: 'Hollywood Studios', name: 'Stitch', location: 'Celebrity Spotlight' },
 
-      // Animal Kingdom
       { id: 'ak-judy', parkId: 'ak', parkName: 'Animal Kingdom', name: 'Judy Hopps', location: 'Discovery Island' },
       { id: 'ak-nick', parkId: 'ak', parkName: 'Animal Kingdom', name: 'Nick Wilde', location: 'Discovery Island' },
       { id: 'ak-dug', parkId: 'ak', parkName: 'Animal Kingdom', name: 'Dug', location: 'Wilderness Explorers Club' },
@@ -158,6 +154,7 @@
 
     // Rides & Pavilions List with Direct Raw GitHub Image Links
     const RIDES_CATALOG = [
+      // --- MAGIC KINGDOM ---
       {
         id: 'space-mountain',
         parkId: 'mk',
@@ -327,6 +324,128 @@
         description: 'Embark on a joyful boat tour around the globe singing the classic song.'
       },
       {
+        id: 'mad-tea-party',
+        parkId: 'mk',
+        name: 'Mad Tea Party (Tea Cups)',
+        land: 'Fantasyland',
+        duration: '1.5 minutes',
+        thrillLevel: 2,
+        heightRequirement: 'Any Height',
+        rideType: 'Spinning Teacup Ride',
+        image: 'https://github.com/desmaunderwood-create/underwooddisneytracker/blob/main/docs/tc.jpeg?raw=true',
+        description: 'Spin round and round in a giant teacup at the Mad Hatter’s unbirthday party!'
+      },
+      {
+        id: 'peoplemover',
+        parkId: 'mk',
+        name: 'Tomorrowland Transit Authority PeopleMover',
+        land: 'Tomorrowland',
+        duration: '10 minutes',
+        thrillLevel: 1,
+        heightRequirement: 'Any Height',
+        rideType: 'Elevated Tram Tour',
+        image: 'https://github.com/desmaunderwood-create/underwooddisneytracker/blob/main/docs/images-1.jpeg?raw=true',
+        description: 'Take a relaxing, breezy elevated tour above Tomorrowland and peek inside Space Mountain!'
+      },
+      {
+        id: 'jungle-cruise',
+        parkId: 'mk',
+        name: 'Jungle Cruise',
+        land: 'Adventureland',
+        duration: '10 minutes',
+        thrillLevel: 1,
+        heightRequirement: 'Any Height',
+        rideType: 'Guided Riverboat Tour',
+        image: 'https://github.com/desmaunderwood-create/underwooddisneytracker/blob/main/docs/images.jpeg?raw=true',
+        description: 'Embark on a comedic riverboat expedition past exotic wildlife and the eighth wonder of the world!'
+      },
+      {
+        id: 'tomorrowland-speedway',
+        parkId: 'mk',
+        name: 'Tomorrowland Speedway',
+        land: 'Tomorrowland',
+        duration: '4.5 minutes',
+        thrillLevel: 1,
+        heightRequirement: '32" (81 cm)',
+        rideType: 'Guided Race Car Track',
+        image: 'https://github.com/desmaunderwood-create/underwooddisneytracker/blob/main/docs/images-2.jpeg?raw=true',
+        description: 'Get behind the wheel of your own gas-powered race car and cruise around a scenic track!'
+      },
+      {
+        id: 'carousel-of-progress',
+        parkId: 'mk',
+        name: "Walt Disney's Carousel of Progress",
+        land: 'Tomorrowland',
+        duration: '21 minutes',
+        thrillLevel: 1,
+        heightRequirement: 'Any Height',
+        rideType: 'Rotating Theater Show',
+        image: 'https://github.com/desmaunderwood-create/underwooddisneytracker/blob/main/docs/images-3.jpeg?raw=true',
+        description: 'Follow an American family through four generations of technological progress in a rotating theater!'
+      },
+
+      // --- EPCOT ---
+      {
+        id: 'spaceship-earth',
+        parkId: 'epcot',
+        name: 'Spaceship Earth',
+        land: 'World Celebration',
+        duration: '15 minutes',
+        thrillLevel: 1,
+        heightRequirement: 'Any Height',
+        rideType: 'Slow Dark Ride',
+        image: 'https://github.com/desmaunderwood-create/underwooddisneytracker/blob/main/docs/images-4.jpeg?raw=true',
+        description: 'Travel through time inside EPCOT’s iconic geosphere to witness the history of human communication!'
+      },
+      {
+        id: 'journey-into-imagination',
+        parkId: 'epcot',
+        name: 'Journey Into Imagination With Figment',
+        land: 'World Celebration',
+        duration: '6 minutes',
+        thrillLevel: 1,
+        heightRequirement: 'Any Height',
+        rideType: 'Slow Dark Ride',
+        image: 'https://github.com/desmaunderwood-create/underwooddisneytracker/blob/main/docs/images-5.jpeg?raw=true',
+        description: 'Explore the sensory labs with playful purple dragon Figment and discover the power of imagination!'
+      },
+      {
+        id: 'soarin',
+        parkId: 'epcot',
+        name: "Soarin' Around the World",
+        land: 'World Nature',
+        duration: '5 minutes',
+        thrillLevel: 2,
+        heightRequirement: '40" (102 cm)',
+        rideType: 'Hang-Gliding Flight Simulator',
+        image: 'https://github.com/desmaunderwood-create/underwooddisneytracker/blob/main/docs/images-6.jpeg?raw=true',
+        description: 'Take flight on a breathtaking hang-gliding adventure over global wonders with wind and scents!'
+      },
+      {
+        id: 'living-with-the-land',
+        parkId: 'epcot',
+        name: 'Living with the Land',
+        land: 'World Nature',
+        duration: '14 minutes',
+        thrillLevel: 1,
+        heightRequirement: 'Any Height',
+        rideType: 'Indoor Boat Cruise',
+        image: 'https://github.com/desmaunderwood-create/underwooddisneytracker/blob/main/docs/images-7.jpeg?raw=true',
+        description: 'Cruise through ecosystems and futuristic greenhouses showcasing innovative Disney agriculture!'
+      },
+      {
+        id: 'seas-with-nemo',
+        parkId: 'epcot',
+        name: 'The Seas with Nemo & Friends',
+        land: 'World Nature',
+        duration: '4 minutes',
+        thrillLevel: 1,
+        heightRequirement: 'Any Height',
+        rideType: 'Slow Clam-Mobile Dark Ride',
+        image: 'https://github.com/desmaunderwood-create/underwooddisneytracker/blob/main/docs/images.jpeg?raw=true',
+        description: 'Board a "clamobile" and dive under the sea to help Marlin and Dory find Nemo!'
+      },
+      {
         id: 'epcot-american-adventure',
         parkId: 'epcot',
         name: 'The American Adventure Pavilion',
@@ -494,6 +613,8 @@
         image: 'https://images.unsplash.com/photo-1555396273-367ea4eb4db5?auto=format&fit=crop&q=80&w=800',
         description: 'Shrink down to Remy size and zip through Paris kitchen.'
       },
+
+      // --- HOLLYWOOD STUDIOS ---
       {
         id: 'rise-resistance',
         parkId: 'hs',
@@ -519,6 +640,92 @@
         description: 'Zip around Andy backyard on Slinky Dog mega coaster.'
       },
       {
+        id: 'tower-of-terror',
+        parkId: 'hs',
+        name: 'The Twilight Zone Tower of Terror',
+        land: 'Sunset Boulevard',
+        duration: '3.5 minutes',
+        thrillLevel: 5,
+        heightRequirement: '40" (102 cm)',
+        rideType: 'Thrill Drop Elevator Ride',
+        image: 'https://github.com/desmaunderwood-create/underwooddisneytracker/blob/main/docs/tower-of-terror-disney-world-795.jpg?raw=true',
+        description: 'Step into the haunted Hollywood Tower Hotel and plunge down a darkened elevator shaft!'
+      },
+      {
+        id: 'toy-story-mania',
+        parkId: 'hs',
+        name: 'Toy Story Mania!',
+        land: 'Toy Story Land',
+        duration: '6.5 minutes',
+        thrillLevel: 1,
+        heightRequirement: 'Any Height',
+        rideType: '4D Interactive Carnival Ride',
+        image: 'https://github.com/desmaunderwood-create/underwooddisneytracker/blob/main/docs/images-8.jpeg?raw=true',
+        description: 'Put on 3D glasses and compete in fast-paced midway target games hosted by Toy Story pals!'
+      },
+      {
+        id: 'runaway-railway',
+        parkId: 'hs',
+        name: "Mickey & Minnie's Runaway Railway",
+        land: 'Hollywood Boulevard',
+        duration: '4.5 minutes',
+        thrillLevel: 1,
+        heightRequirement: 'Any Height',
+        rideType: 'Trackless Cartoon Dark Ride',
+        image: 'https://github.com/desmaunderwood-create/underwooddisneytracker/blob/main/docs/images-9.jpeg?raw=true',
+        description: 'Burst through the movie screen into a zany Mickey Mouse cartoon world where anything can happen!'
+      },
+      {
+        id: 'rock-n-roller-coaster',
+        parkId: 'hs',
+        name: "Rock 'n' Roller Coaster",
+        land: 'Sunset Boulevard',
+        duration: '1.5 minutes',
+        thrillLevel: 5,
+        heightRequirement: '48" (122 cm)',
+        rideType: 'High-Speed Inverting Launch Coaster',
+        image: 'https://github.com/desmaunderwood-create/underwooddisneytracker/blob/main/docs/images-10.jpeg?raw=true',
+        description: 'Blast off from 0 to 57 mph in 2.8 seconds through loops and corkscrews in a super-stretch limo!'
+      },
+      {
+        id: 'smugglers-run',
+        parkId: 'hs',
+        name: "Millennium Falcon: Smugglers Run",
+        land: "Galaxy's Edge",
+        duration: '4.5 minutes',
+        thrillLevel: 3,
+        heightRequirement: '38" (97 cm)',
+        rideType: 'Interactive Flight Simulator',
+        image: 'https://github.com/desmaunderwood-create/underwooddisneytracker/blob/main/docs/images-11.jpeg?raw=true',
+        description: 'Take the controls as Pilot, Gunner, or Engineer aboard the fastest hunk of junk in the galaxy!'
+      },
+      {
+        id: 'star-tours',
+        parkId: 'hs',
+        name: 'Star Tours – The Adventures Continue',
+        land: 'Echo Lake',
+        duration: '4.5 minutes',
+        thrillLevel: 3,
+        heightRequirement: '40" (102 cm)',
+        rideType: '3D Motion Flight Simulator',
+        image: 'https://github.com/desmaunderwood-create/underwooddisneytracker/blob/main/docs/images-12.jpeg?raw=true',
+        description: 'Embark on an unpredictable 3D hyperspace flight across iconic Star Wars planets with C-3PO!'
+      },
+      {
+        id: 'alien-swirling-saucers',
+        parkId: 'hs',
+        name: 'Alien Swirling Saucers',
+        land: 'Toy Story Land',
+        duration: '1.5 minutes',
+        thrillLevel: 2,
+        heightRequirement: '32" (81 cm)',
+        rideType: 'Spinning Whip Ride',
+        image: 'https://github.com/desmaunderwood-create/underwooddisneytracker/blob/main/docs/images-1.jpeg?raw=true',
+        description: 'Hold on tight as little green Pizza Planet aliens pilot your flying saucer to galactic beats!'
+      },
+
+      // --- ANIMAL KINGDOM ---
+      {
         id: 'flight-of-passage',
         parkId: 'ak',
         name: 'Avatar Flight of Passage',
@@ -541,6 +748,42 @@
         rideType: 'Thrill Coaster',
         image: 'https://github.com/desmaunderwood-create/underwooddisneytracker/blob/main/docs/ever.jpg?raw=true',
         description: 'Coaster through icy Himalayan peaks while escaping Yeti.'
+      },
+      {
+        id: 'kali-river-rapids',
+        parkId: 'ak',
+        name: 'Kali River Rapids',
+        land: 'Asia',
+        duration: '3.5 minutes',
+        thrillLevel: 3,
+        heightRequirement: '38" (97 cm)',
+        rideType: 'Whitewater Raft Ride',
+        image: 'https://github.com/desmaunderwood-create/underwooddisneytracker/blob/main/docs/images-13.jpeg?raw=true',
+        description: 'Plunge down rushing whitewater rapids through a lush rainforest—prepare to get soaked!'
+      },
+      {
+        id: 'kilimanjaro-safaris',
+        parkId: 'ak',
+        name: 'Kilimanjaro Safaris',
+        land: 'Africa',
+        duration: '18 minutes',
+        thrillLevel: 1,
+        heightRequirement: 'Any Height',
+        rideType: 'Open-Air Safari Expedition',
+        image: 'https://github.com/desmaunderwood-create/underwooddisneytracker/blob/main/docs/images-14.jpeg?raw=true',
+        description: 'Board an open-air safari vehicle to spot live giraffes, lions, elephants, and rhinos on the savanna!'
+      },
+      {
+        id: 'wildlife-express-train',
+        parkId: 'ak',
+        name: 'Wildlife Express Train',
+        land: 'Africa',
+        duration: '7 minutes (each way)',
+        thrillLevel: 1,
+        heightRequirement: 'Any Height',
+        rideType: 'Scenic Steam Locomotive',
+        image: 'https://github.com/desmaunderwood-create/underwooddisneytracker/blob/main/docs/images-15.jpeg?raw=true',
+        description: 'Take a relaxing rustic train ride to Rafiki’s Planet Watch and see backstage animal care habitats!'
       }
     ];
 
@@ -665,231 +908,223 @@
                   </div>
                   <span className="text-[9px] font-bold mt-1 text-slate-300">Everyone</span>
                 </button>
-                {FAMILY_MEMBERS.map(m => (
-                  <button 
-                    key={m.id} 
-                    onClick={() => setActiveMemberFilter(prev => prev === m.id ? 'ALL' : m.id)}
-                    className={`flex flex-col items-center transition-all ${activeMemberFilter === m.id ? 'scale-110 opacity-100' : 'opacity-60'}`}
-                  >
-                    <div className={`w-11 h-11 rounded-full p-0.5 border-2 ${activeMemberFilter === m.id ? 'border-amber-400 ring-2 ring-amber-400/40' : 'border-slate-700'}`}>
-                      <img 
-                        src={m.avatarImg} 
-                        alt={m.name} 
-                        className="w-full h-full rounded-full object-cover" 
-                        onError={(e) => { e.target.src = 'https://placehold.co/100x100/1e293b/f59e0b?text=' + m.name; }}
-                      />
-                    </div>
-                    <span className="text-[10px] font-bold mt-1 text-slate-200">{m.name}</span>
-                  </button>
-                ))}
+
+                {FAMILY_MEMBERS.map(member => {
+                  const isSelected = activeMemberFilter === member.id;
+                  return (
+                    <button
+                      key={member.id}
+                      onClick={() => setActiveMemberFilter(member.id)}
+                      className={`flex flex-col items-center transition-all ${isSelected ? 'scale-105 opacity-100' : 'opacity-60'}`}
+                    >
+                      <div className={`w-10 h-10 rounded-full overflow-hidden border-2 bg-slate-800 ${isSelected ? 'border-amber-400 ring-2 ring-amber-400/40' : 'border-slate-700'}`}>
+                        <img 
+                          src={member.avatarImg} 
+                          alt={member.name} 
+                          className="w-full h-full object-cover"
+                          onError={(e) => { e.target.src = 'https://via.placeholder.com/40'; }}
+                        />
+                      </div>
+                      <span className="text-[9px] font-bold mt-1 text-slate-300">{member.name}</span>
+                    </button>
+                  );
+                })}
               </div>
             </header>
 
-            {/* Content Body */}
-            <main className="flex-1 p-3 space-y-3 overflow-y-auto pb-20">
+            {/* Navigation Tabs */}
+            <nav className="flex bg-slate-950 border-b border-slate-800">
+              <button 
+                onClick={() => setActiveTab('home')}
+                className={`flex-1 py-3 text-xs font-bold transition-all border-b-2 ${activeTab === 'home' ? 'border-amber-400 text-amber-300 bg-slate-900' : 'border-transparent text-slate-400 hover:text-slate-200'}`}
+              >
+                🏠 Home
+              </button>
+              <button 
+                onClick={() => setActiveTab('rides')}
+                className={`flex-1 py-3 text-xs font-bold transition-all border-b-2 ${activeTab === 'rides' ? 'border-amber-400 text-amber-300 bg-slate-900' : 'border-transparent text-slate-400 hover:text-slate-200'}`}
+              >
+                🎢 Rides
+              </button>
+              <button 
+                onClick={() => setActiveTab('characters')}
+                className={`flex-1 py-3 text-xs font-bold transition-all border-b-2 ${activeTab === 'characters' ? 'border-amber-400 text-amber-300 bg-slate-900' : 'border-transparent text-slate-400 hover:text-slate-200'}`}
+              >
+                👑 Characters
+              </button>
+              <button 
+                onClick={() => setActiveTab('stats')}
+                className={`flex-1 py-3 text-xs font-bold transition-all border-b-2 ${activeTab === 'stats' ? 'border-amber-400 text-amber-300 bg-slate-900' : 'border-transparent text-slate-400 hover:text-slate-200'}`}
+              >
+                📊 Stats
+              </button>
+            </nav>
+
+            {/* Main Content Area */}
+            <main className="flex-1 overflow-y-auto p-4 pb-20 no-scrollbar">
               
-              {/* Top Navigation Options (Parks / Characters) */}
-              <div className="flex gap-1.5 overflow-x-auto no-scrollbar pb-1">
-                <button 
-                  onClick={() => { setActiveTab('home'); setActivePark('ALL'); }} 
-                  className={`px-3 py-1.5 rounded-full text-xs font-bold transition-all ${activeTab === 'home' && activePark === 'ALL' ? 'bg-amber-400 text-slate-950' : 'bg-slate-800 text-slate-300'}`}
-                >
-                  All Parks
-                </button>
-                {PARKS_CATALOG.map(p => (
-                  <button 
-                    key={p.id} 
-                    onClick={() => { setActiveTab('home'); setActivePark(p.id); }} 
-                    className={`px-3 py-1.5 rounded-full text-xs font-bold whitespace-nowrap transition-all ${activeTab === 'home' && activePark === p.id ? 'bg-purple-600 text-white' : 'bg-slate-800 text-slate-300'}`}
-                  >
-                    {p.icon} {p.name}
-                  </button>
-                ))}
-                <button 
-                  onClick={() => setActiveTab('characters')} 
-                  className={`px-3 py-1.5 rounded-full text-xs font-bold whitespace-nowrap transition-all flex items-center gap-1 ${activeTab === 'characters' ? 'bg-pink-600 text-white shadow-lg ring-2 ring-pink-400/50' : 'bg-slate-800 text-pink-300'}`}
-                >
-                  🎭 Characters
-                </button>
-              </div>
-
+              {/* HOME TAB */}
               {activeTab === 'home' && (
-                <>
-                  {activeMemberFilter !== 'ALL' && (
-                    <div className="bg-purple-950/60 border border-purple-500/30 rounded-xl p-2 flex justify-between items-center text-xs text-purple-200">
-                      <span>Showing items for <strong>{FAMILY_MEMBERS.find(m => m.id === activeMemberFilter)?.name}</strong></span>
-                      <button onClick={() => setActiveMemberFilter('ALL')} className="text-amber-300 font-bold underline text-[10px]">Clear Filter</button>
+                <div className="space-y-4">
+                  <div className="bg-gradient-to-r from-purple-900/40 to-indigo-900/40 border border-purple-500/30 rounded-2xl p-4 text-center">
+                    <h2 className="text-lg font-serif font-bold text-amber-200">Welcome to Underwood Adventures!</h2>
+                    <p className="text-xs text-slate-300 mt-1">Track family ride completions, character greetings, and park snacks all in real-time across devices.</p>
+                  </div>
+
+                  <div className="grid grid-cols-2 gap-3">
+                    <div 
+                      onClick={() => setActiveTab('rides')}
+                      className="bg-slate-800/60 border border-slate-700/60 rounded-xl p-3 text-center cursor-pointer hover:border-amber-400/50 transition-all"
+                    >
+                      <div className="text-2xl mb-1">🎢</div>
+                      <div className="text-xs font-bold text-slate-200">Explore Rides</div>
+                      <div className="text-[10px] text-slate-400">{RIDES_CATALOG.length} attractions cataloged</div>
                     </div>
-                  )}
 
-                  {/* Ride & Pavilion List */}
-                  <div className="space-y-2.5">
-                    {filteredRides.map(ride => {
-                      const riders = rideState[ride.id] || [];
-                      const eaters = foodState[ride.id] || [];
+                    <div 
+                      onClick={() => setActiveTab('characters')}
+                      className="bg-slate-800/60 border border-slate-700/60 rounded-xl p-3 text-center cursor-pointer hover:border-amber-400/50 transition-all"
+                    >
+                      <div className="text-2xl mb-1">👑</div>
+                      <div className="text-xs font-bold text-slate-200">Meet Characters</div>
+                      <div className="text-[10px] text-slate-400">{CHARACTERS_CATALOG.length} locations available</div>
+                    </div>
+                  </div>
+
+                  {/* Family Member Quick Cards */}
+                  <div className="space-y-3 mt-4">
+                    <h3 className="text-xs font-bold uppercase tracking-wider text-amber-300/80">Family Members</h3>
+                    {FAMILY_MEMBERS.map(member => {
+                      const memberCompletedRides = Object.values(rideState).filter(riders => riders.includes(member.id)).length;
+                      const ridePercentage = Math.round((memberCompletedRides / RIDES_CATALOG.length) * 100);
+
                       return (
-                        <div key={ride.id} className="bg-slate-800/80 hover:bg-slate-800 p-3 rounded-2xl border border-slate-700/80 transition-all">
-                          <div className="flex space-x-3 cursor-pointer" onClick={() => setSelectedRide(ride)}>
-                            <img 
-                              src={ride.image} 
-                              alt={ride.name} 
-                              className="w-16 h-16 rounded-xl object-cover shrink-0" 
-                              onError={(e) => { e.target.src = 'https://placehold.co/100x100/1e293b/f59e0b?text=Attraction'; }}
-                            />
-                            <div className="flex-1 min-w-0">
-                              <h3 className="text-xs font-bold text-slate-100 flex items-center justify-between">
-                                <span className="truncate">{ride.name}</span>
-                                <span className="text-[10px] text-amber-400 font-semibold shrink-0 ml-1">Details ➔</span>
-                              </h3>
-                              <div className="text-[10px] text-amber-300 font-semibold">{ride.land} • {ride.duration}</div>
-                              <p className="text-[10px] text-slate-400 line-clamp-1 mt-0.5">{ride.description}</p>
+                        <div key={member.id} className="bg-slate-800/40 border border-slate-700/40 rounded-xl p-3 flex items-center gap-3">
+                          <img src={member.avatarImg} alt={member.name} className="w-12 h-12 rounded-full object-cover border border-amber-400/40" />
+                          <div className="flex-1">
+                            <div className="flex justify-between items-center">
+                              <span className="font-bold text-sm text-slate-100">{member.name}</span>
+                              <span className="text-[10px] px-2 py-0.5 rounded-full bg-slate-700 text-amber-300">{ridePercentage}% Rides</span>
+                            </div>
+                            <div className="text-[10px] text-amber-200/70 tracking-wider font-semibold">{member.tagline}</div>
+                            <div className="w-full bg-slate-700 h-1.5 rounded-full mt-2 overflow-hidden">
+                              <div className={`bg-gradient-to-r ${member.barColor} h-full transition-all duration-500`} style={{ width: `${ridePercentage}%` }}></div>
                             </div>
                           </div>
-
-                          {/* Family Check-off Rows: Rides & Food */}
-                          <div className="mt-2.5 pt-2 border-t border-slate-700/60 space-y-2">
-                            {/* Who Rode / Visited */}
-                            <div className="flex items-center justify-between">
-                              <span className="text-[9px] font-bold text-slate-400 uppercase">Who Rode/Visited?</span>
-                              <div className="flex space-x-2">
-                                {FAMILY_MEMBERS.map(m => {
-                                  const checked = riders.includes(m.id);
-                                  return (
-                                    <button
-                                      key={m.id}
-                                      onClick={(e) => {
-                                        e.stopPropagation();
-                                        togglePerson(ride.id, m.id);
-                                      }}
-                                      title={`Mark visited for ${m.name}`}
-                                      className={`relative w-7 h-7 rounded-full overflow-hidden border-2 transition-all ${
-                                        checked ? 'border-emerald-400 ring-2 ring-emerald-400/40 scale-105' : 'border-slate-600 opacity-40 hover:opacity-75'
-                                      }`}
-                                    >
-                                      <img 
-                                        src={m.avatarImg} 
-                                        alt={m.name} 
-                                        className="w-full h-full object-cover" 
-                                        onError={(e) => { e.target.src = 'https://placehold.co/100x100/1e293b/f59e0b?text=' + m.name; }}
-                                      />
-                                      {checked && (
-                                        <div className="absolute inset-0 bg-emerald-500/50 flex items-center justify-center font-bold text-white text-[10px]">
-                                          ✓
-                                        </div>
-                                      )}
-                                    </button>
-                                  );
-                                })}
-                              </div>
-                            </div>
-
-                            {/* Who Tried Food */}
-                            <div className="flex items-center justify-between">
-                              <span className="text-[9px] font-bold text-amber-300 uppercase flex items-center gap-0.5">
-                                🍴 Tried Food?
-                              </span>
-                              <div className="flex space-x-2">
-                                {FAMILY_MEMBERS.map(m => {
-                                  const foodChecked = eaters.includes(m.id);
-                                  return (
-                                    <button
-                                      key={m.id}
-                                      onClick={(e) => {
-                                        e.stopPropagation();
-                                        toggleFood(ride.id, m.id);
-                                      }}
-                                      title={`Mark food tried for ${m.name}`}
-                                      className={`relative w-7 h-7 rounded-full overflow-hidden border-2 transition-all ${
-                                        foodChecked ? 'border-amber-400 ring-2 ring-amber-400/40 scale-105' : 'border-slate-600 opacity-40 hover:opacity-75'
-                                      }`}
-                                    >
-                                      <img 
-                                        src={m.avatarImg} 
-                                        alt={m.name} 
-                                        className="w-full h-full object-cover" 
-                                        onError={(e) => { e.target.src = 'https://placehold.co/100x100/1e293b/f59e0b?text=' + m.name; }}
-                                      />
-                                      {foodChecked && (
-                                        <div className="absolute inset-0 bg-amber-500/60 flex items-center justify-center font-bold text-white text-[9px]">
-                                          🍴
-                                        </div>
-                                      )}
-                                    </button>
-                                  );
-                                })}
-                              </div>
-                            </div>
-                          </div>
-
                         </div>
                       );
                     })}
                   </div>
-                </>
+                </div>
               )}
 
-              {/* Characters Screen View */}
-              {activeTab === 'characters' && (
-                <div className="space-y-4">
-                  <div className="bg-pink-950/50 border border-pink-500/30 rounded-2xl p-3 flex justify-between items-center text-xs text-pink-200">
-                    <div>
-                      <h2 className="font-bold text-pink-100 text-sm">Character Meet & Greets 👑</h2>
-                      <p className="text-[10px] text-pink-300">Check off who met each character across the parks!</p>
-                    </div>
+              {/* RIDES TAB */}
+              {activeTab === 'rides' && (
+                <div>
+                  {/* Parks Filter Tabs */}
+                  <div className="flex gap-2 overflow-x-auto pb-2 mb-3 no-scrollbar">
+                    {PARKS_CATALOG.map(park => (
+                      <button
+                        key={park.id}
+                        onClick={() => setActivePark(park.id)}
+                        className={`px-3 py-1.5 rounded-xl text-xs font-bold whitespace-nowrap transition-all flex items-center gap-1.5 ${activePark === park.id ? 'bg-amber-400 text-slate-950 font-extrabold shadow-lg shadow-amber-400/20' : 'bg-slate-800 text-slate-300 hover:bg-slate-700'}`}
+                      >
+                        <span>{park.icon}</span>
+                        <span>{park.name}</span>
+                      </button>
+                    ))}
                   </div>
 
-                  {PARKS_CATALOG.map(park => {
-                    const parkCharacters = filteredCharacters.filter(c => c.parkId === park.id);
-                    if (parkCharacters.length === 0) return null;
+                  {/* Rides List */}
+                  <div className="space-y-3">
+                    {filteredRides.map(ride => {
+                      const riders = rideState[ride.id] || [];
+
+                      return (
+                        <div key={ride.id} className="bg-slate-800/50 border border-slate-700/60 rounded-2xl overflow-hidden shadow-md">
+                          <div className="flex p-3 gap-3">
+                            <img 
+                              src={ride.image} 
+                              alt={ride.name} 
+                              className="w-20 h-20 rounded-xl object-cover border border-slate-700 cursor-pointer"
+                              onClick={() => setSelectedRide(ride)}
+                              onError={(e) => { e.target.src = 'https://via.placeholder.com/80'; }}
+                            />
+                            <div className="flex-1">
+                              <div className="flex justify-between items-start gap-2">
+                                <h4 
+                                  className="font-bold text-sm text-amber-100 cursor-pointer hover:text-amber-300"
+                                  onClick={() => setSelectedRide(ride)}
+                                >
+                                  {ride.name}
+                                </h4>
+                                <span className="text-[10px] bg-slate-900 text-slate-400 px-2 py-0.5 rounded-md border border-slate-700 whitespace-nowrap">
+                                  {ride.land}
+                                </span>
+                              </div>
+                              <p className="text-[11px] text-slate-300 mt-1 line-clamp-2">{ride.description}</p>
+                              
+                              <div className="flex items-center gap-2 mt-2 text-[10px] text-slate-400">
+                                <span>⏱️ {ride.duration}</span>
+                                <span>•</span>
+                                <span>⚠️ Thrill: {ride.thrillLevel}/5</span>
+                              </div>
+                            </div>
+                          </div>
+
+                          {/* Family Member Checkboxes for this Ride */}
+                          <div className="bg-slate-900/80 px-3 py-2 border-t border-slate-800 flex justify-around items-center">
+                            {FAMILY_MEMBERS.map(member => {
+                              const hasRidden = riders.includes(member.id);
+                              return (
+                                <button
+                                  key={member.id}
+                                  onClick={() => togglePerson(ride.id, member.id)}
+                                  className={`flex items-center gap-1.5 px-2.5 py-1 rounded-lg text-[10px] font-bold transition-all border ${hasRidden ? 'bg-amber-400/20 text-amber-300 border-amber-400/50' : 'bg-slate-800 text-slate-400 border-slate-700 hover:border-slate-600'}`}
+                                >
+                                  <span>{hasRidden ? '✅' : '⭕'}</span>
+                                  <span>{member.name}</span>
+                                </button>
+                              );
+                            })}
+                          </div>
+                        </div>
+                      );
+                    })}
+                  </div>
+                </div>
+              )}
+
+              {/* CHARACTERS TAB */}
+              {activeTab === 'characters' && (
+                <div className="space-y-3">
+                  <div className="bg-slate-800/40 border border-slate-700/50 p-3 rounded-xl text-xs text-slate-300 text-center">
+                    👑 Tap family members below to check off character meet & greets!
+                  </div>
+
+                  {filteredCharacters.map(char => {
+                    const meeters = characterState[char.id] || [];
                     return (
-                      <div key={park.id} className="space-y-2">
-                        <div className="flex items-center space-x-1.5 px-1">
-                          <span className="text-base">{park.icon}</span>
-                          <h3 className="text-xs font-bold text-amber-300 uppercase tracking-wider">{park.name}</h3>
-                          <span className="text-[10px] text-slate-500">({parkCharacters.length})</span>
+                      <div key={char.id} className="bg-slate-800/50 border border-slate-700/60 rounded-2xl p-3 flex flex-col gap-2">
+                        <div className="flex justify-between items-start">
+                          <div>
+                            <h4 className="font-bold text-sm text-amber-100">{char.name}</h4>
+                            <p className="text-[11px] text-slate-400">📍 {char.location} ({char.parkName})</p>
+                          </div>
                         </div>
 
-                        <div className="space-y-2">
-                          {parkCharacters.map(char => {
-                            const meeters = characterState[char.id] || [];
+                        <div className="flex justify-around items-center pt-2 border-t border-slate-800">
+                          {FAMILY_MEMBERS.map(member => {
+                            const isMet = meeters.includes(member.id);
                             return (
-                              <div key={char.id} className="bg-slate-800/80 p-3 rounded-2xl border border-slate-700/80 flex items-center justify-between">
-                                <div>
-                                  <div className="font-bold text-xs text-slate-100 flex items-center gap-1.5">
-                                    <span>✨</span>
-                                    <span>{char.name}</span>
-                                  </div>
-                                  <div className="text-[10px] text-pink-300 font-medium mt-0.5">📍 {char.location}</div>
-                                </div>
-
-                                <div className="flex space-x-1.5">
-                                  {FAMILY_MEMBERS.map(m => {
-                                    const checked = meeters.includes(m.id);
-                                    return (
-                                      <button
-                                        key={m.id}
-                                        onClick={() => toggleCharacter(char.id, m.id)}
-                                        title={`Mark met ${char.name} for ${m.name}`}
-                                        className={`relative w-8 h-8 rounded-full overflow-hidden border-2 transition-all ${
-                                          checked ? 'border-pink-400 ring-2 ring-pink-400/40 scale-105' : 'border-slate-600 opacity-40 hover:opacity-75'
-                                        }`}
-                                      >
-                                        <img 
-                                          src={m.avatarImg} 
-                                          alt={m.name} 
-                                          className="w-full h-full object-cover" 
-                                          onError={(e) => { e.target.src = 'https://placehold.co/100x100/1e293b/f59e0b?text=' + m.name; }}
-                                        />
-                                        {checked && (
-                                          <div className="absolute inset-0 bg-pink-500/60 flex items-center justify-center font-bold text-white text-xs">
-                                            ♥
-                                          </div>
-                                        )}
-                                      </button>
-                                    );
-                                  })}
-                                </div>
-                              </div>
+                              <button
+                                key={member.id}
+                                onClick={() => toggleCharacter(char.id, member.id)}
+                                className={`flex items-center gap-1.5 px-2.5 py-1 rounded-lg text-[10px] font-bold transition-all border ${isMet ? 'bg-pink-500/20 text-pink-300 border-pink-500/50' : 'bg-slate-800 text-slate-400 border-slate-700'}`}
+                              >
+                                <span>{isMet ? '💖' : '🤍'}</span>
+                                <span>{member.name}</span>
+                              </button>
                             );
                           })}
                         </div>
@@ -899,224 +1134,92 @@
                 </div>
               )}
 
+              {/* STATS TAB */}
               {activeTab === 'stats' && (
                 <div className="space-y-4">
-                  <h2 className="text-sm font-bold text-slate-100 uppercase tracking-wide">Family Leaderboard</h2>
+                  <h2 className="text-md font-serif font-bold text-amber-200 text-center">Family Adventure Progress</h2>
                   
-                  {/* Rides Progress */}
-                  <div className="bg-slate-800/90 p-4 rounded-2xl border border-slate-700 space-y-4">
-                    <h3 className="text-xs font-bold text-amber-300 uppercase">🏰 Rides & Pavilions Visited</h3>
-                    {FAMILY_MEMBERS.map(m => {
-                      const count = Object.values(rideState).filter(r => r.includes(m.id)).length;
-                      const pct = Math.round((count / RIDES_CATALOG.length) * 100);
-                      return (
-                        <div key={m.id} className="space-y-1.5">
-                          <div className="flex items-center justify-between text-xs">
-                            <div className="flex items-center space-x-2">
-                              <img src={m.avatarImg} alt={m.name} className="w-6 h-6 rounded-full object-cover border border-amber-300" onError={(e) => { e.target.src = 'https://placehold.co/100x100/1e293b/f59e0b?text=' + m.name; }} />
-                              <span className="font-bold text-slate-200">{m.name}</span>
-                            </div>
-                            <span className="font-bold text-amber-300">{count} / {RIDES_CATALOG.length} ({pct}%)</span>
-                          </div>
-                          <div className="w-full bg-slate-900 h-2.5 rounded-full overflow-hidden p-0.5 border border-slate-800">
-                            <div className={`h-full rounded-full bg-gradient-to-r ${m.barColor} transition-all duration-500`} style={{ width: `${pct}%` }}></div>
+                  {FAMILY_MEMBERS.map(member => {
+                    const memberRides = Object.values(rideState).filter(r => r.includes(member.id)).length;
+                    const memberChars = Object.values(characterState).filter(c => c.includes(member.id)).length;
+                    const ridePct = Math.round((memberRides / RIDES_CATALOG.length) * 100);
+
+                    return (
+                      <div key={member.id} className="bg-slate-800/60 border border-slate-700/60 rounded-2xl p-4 space-y-2">
+                        <div className="flex items-center gap-3">
+                          <img src={member.avatarImg} alt={member.name} className="w-10 h-10 rounded-full object-cover border border-amber-400" />
+                          <div>
+                            <h3 className="font-bold text-sm text-slate-100">{member.name}</h3>
+                            <p className="text-[10px] text-amber-300 font-semibold">{member.tagline}</p>
                           </div>
                         </div>
-                      );
-                    })}
-                  </div>
 
-                  {/* Character Leaderboard */}
-                  <div className="bg-slate-800/90 p-4 rounded-2xl border border-slate-700 space-y-4">
-                    <h3 className="text-xs font-bold text-pink-400 uppercase">👑 Character Meet & Greets</h3>
-                    {FAMILY_MEMBERS.map(m => {
-                      const count = Object.values(characterState).filter(r => r.includes(m.id)).length;
-                      const pct = Math.round((count / CHARACTERS_CATALOG.length) * 100);
-                      return (
-                        <div key={m.id} className="space-y-1.5">
-                          <div className="flex items-center justify-between text-xs">
-                            <div className="flex items-center space-x-2">
-                              <img src={m.avatarImg} alt={m.name} className="w-6 h-6 rounded-full object-cover border border-pink-300" onError={(e) => { e.target.src = 'https://placehold.co/100x100/1e293b/f59e0b?text=' + m.name; }} />
-                              <span className="font-bold text-slate-200">{m.name}</span>
-                            </div>
-                            <span className="font-bold text-pink-300">{count} / {CHARACTERS_CATALOG.length} characters ({pct}%)</span>
+                        <div className="grid grid-cols-2 gap-2 pt-2 text-center">
+                          <div className="bg-slate-900/60 p-2 rounded-xl border border-slate-800">
+                            <div className="text-lg font-bold text-amber-300">{memberRides} / {RIDES_CATALOG.length}</div>
+                            <div className="text-[10px] text-slate-400">Rides Completed</div>
                           </div>
-                          <div className="w-full bg-slate-900 h-2.5 rounded-full overflow-hidden p-0.5 border border-slate-800">
-                            <div className={`h-full rounded-full bg-gradient-to-r ${m.barColor} transition-all duration-500`} style={{ width: `${pct}%` }}></div>
+                          <div className="bg-slate-900/60 p-2 rounded-xl border border-slate-800">
+                            <div className="text-lg font-bold text-pink-300">{memberChars}</div>
+                            <div className="text-[10px] text-slate-400">Characters Met</div>
                           </div>
                         </div>
-                      );
-                    })}
-                  </div>
 
-                  {/* Food Tracker Leaderboard */}
-                  <div className="bg-slate-800/90 p-4 rounded-2xl border border-slate-700 space-y-4">
-                    <h3 className="text-xs font-bold text-amber-300 uppercase">🍴 World Showcase Foodies</h3>
-                    {FAMILY_MEMBERS.map(m => {
-                      const count = Object.values(foodState).filter(r => r.includes(m.id)).length;
-                      const totalCountries = RIDES_CATALOG.filter(r => r.land.includes('World Showcase')).length;
-                      const pct = Math.round((count / (totalCountries || 1)) * 100);
-                      return (
-                        <div key={m.id} className="space-y-1.5">
-                          <div className="flex items-center justify-between text-xs">
-                            <div className="flex items-center space-x-2">
-                              <img src={m.avatarImg} alt={m.name} className="w-6 h-6 rounded-full object-cover border border-amber-300" onError={(e) => { e.target.src = 'https://placehold.co/100x100/1e293b/f59e0b?text=' + m.name; }} />
-                              <span className="font-bold text-slate-200">{m.name}</span>
-                            </div>
-                            <span className="font-bold text-amber-300">{count} / {totalCountries} locations tried</span>
-                          </div>
-                          <div className="w-full bg-slate-900 h-2.5 rounded-full overflow-hidden p-0.5 border border-slate-800">
-                            <div className={`h-full rounded-full bg-gradient-to-r ${m.barColor} transition-all duration-500`} style={{ width: `${Math.min(pct, 100)}%` }}></div>
-                          </div>
+                        <div className="w-full bg-slate-900 h-2 rounded-full overflow-hidden mt-2">
+                          <div className={`bg-gradient-to-r ${member.barColor} h-full`} style={{ width: `${ridePct}%` }}></div>
                         </div>
-                      );
-                    })}
-                  </div>
-
+                      </div>
+                    );
+                  })}
                 </div>
               )}
 
             </main>
 
-            {/* Detailed Card View Modal */}
+            {/* Ride Detail Modal */}
             {selectedRide && (
-              <div className="fixed inset-0 z-50 bg-black/70 backdrop-blur-sm flex items-center justify-center p-3">
-                <div className="w-full max-w-sm bg-[#faf6ed] text-slate-900 rounded-3xl overflow-hidden shadow-2xl flex flex-col max-h-[85vh] animate-in fade-in zoom-in-95 duration-200">
-                  
-                  {/* Compact Header Image */}
-                  <div className="relative h-36 w-full shrink-0">
+              <div className="absolute inset-0 bg-slate-950/80 backdrop-blur-sm z-50 flex items-center justify-center p-4">
+                <div className="bg-slate-900 border border-slate-700 rounded-3xl w-full max-w-sm overflow-hidden shadow-2xl flex flex-col">
+                  <div className="relative h-48">
                     <img src={selectedRide.image} alt={selectedRide.name} className="w-full h-full object-cover" />
                     <button 
                       onClick={() => setSelectedRide(null)}
-                      className="absolute top-3 left-3 w-8 h-8 bg-white/90 hover:bg-white rounded-full flex items-center justify-center font-bold shadow-md text-slate-800 text-sm transition-transform active:scale-90"
+                      className="absolute top-3 right-3 bg-slate-900/80 text-slate-200 w-8 h-8 rounded-full flex items-center justify-center font-bold hover:bg-slate-800"
                     >
                       ✕
                     </button>
                   </div>
-
-                  {/* Scrollable Content inside Pop-up */}
-                  <div className="p-4 overflow-y-auto space-y-3 flex-1">
-                    <div>
-                      <div className="flex justify-between items-start gap-2">
-                        <h2 className="text-base font-bold text-[#1b2240] leading-tight font-serif">{selectedRide.name}</h2>
-                        <span className="inline-flex items-center space-x-1 px-2 py-0.5 bg-[#f4e6d4] text-[#8c5e31] rounded-full text-[10px] font-semibold shrink-0">
-                          <span>🏰</span>
-                          <span>{selectedRide.land}</span>
-                        </span>
-                      </div>
-                      <p className="text-[11px] text-slate-600 leading-snug mt-1 font-medium">
-                        {selectedRide.description}
-                      </p>
+                  <div className="p-4 space-y-3">
+                    <div className="flex justify-between items-start gap-2">
+                      <h3 className="text-lg font-serif font-bold text-amber-100">{selectedRide.name}</h3>
+                      <span className="text-xs bg-slate-800 text-amber-300 px-2 py-0.5 rounded-md border border-slate-700 whitespace-nowrap">{selectedRide.land}</span>
+                    </div>
+                    <p className="text-xs text-slate-300">{selectedRide.description}</p>
+                    
+                    <div className="grid grid-cols-2 gap-2 text-xs bg-slate-800/50 p-3 rounded-xl border border-slate-700/50">
+                      <div><strong className="text-slate-400">Duration:</strong> {selectedRide.duration}</div>
+                      <div><strong className="text-slate-400">Thrill Level:</strong> {selectedRide.thrillLevel}/5</div>
+                      <div><strong className="text-slate-400">Height:</strong> {selectedRide.heightRequirement}</div>
+                      <div><strong className="text-slate-400">Type:</strong> {selectedRide.rideType}</div>
                     </div>
 
-                    {/* Details Grid */}
-                    <div className="grid grid-cols-2 gap-2 bg-amber-100/50 p-2.5 rounded-xl border border-amber-200/60 text-[10px]">
-                      <div>
-                        <span className="text-slate-500 font-medium">Thrill:</span>
-                        <div className="flex space-x-0.5 mt-0.5">
-                          {[1, 2, 3, 4, 5].map((star) => (
-                            <span key={star} className={star <= selectedRide.thrillLevel ? "text-[#1b2240]" : "text-slate-300"}>
-                              🐭
-                            </span>
-                          ))}
-                        </div>
-                      </div>
-                      <div>
-                        <span className="text-slate-500 font-medium">Height:</span>
-                        <div className="font-bold text-[#1b2240] truncate">{selectedRide.heightRequirement}</div>
-                      </div>
-                      <div>
-                        <span className="text-slate-500 font-medium">Type:</span>
-                        <div className="font-bold text-[#1b2240] truncate">{selectedRide.rideType}</div>
-                      </div>
-                      <div>
-                        <span className="text-slate-500 font-medium">Duration:</span>
-                        <div className="font-bold text-[#1b2240] truncate">{selectedRide.duration}</div>
-                      </div>
-                    </div>
-
-                    {/* Who Rode Checkboxes */}
-                    <div className="space-y-1.5 pt-1">
-                      <div className="text-[10px] font-bold text-slate-700 uppercase tracking-wide">Who Visited / Rode?</div>
-                      <div className="grid grid-cols-2 gap-1.5">
-                        {FAMILY_MEMBERS.map(m => {
-                          const checked = (rideState[selectedRide.id] || []).includes(m.id);
-                          return (
-                            <button
-                              key={m.id}
-                              onClick={() => togglePerson(selectedRide.id, m.id)}
-                              className={`flex items-center space-x-2 p-1.5 rounded-lg border transition-all text-xs font-bold ${
-                                checked ? 'bg-emerald-100 border-emerald-500 text-emerald-900' : 'bg-slate-100 border-slate-300 text-slate-600'
-                              }`}
-                            >
-                              <img src={m.avatarImg} alt={m.name} className="w-5 h-5 rounded-full object-cover shrink-0" />
-                              <span className="truncate flex-1 text-left">{m.name}</span>
-                              <span className="text-xs font-black">{checked ? '✓' : '+'}</span>
-                            </button>
-                          );
-                        })}
-                      </div>
-                    </div>
-
-                    {/* Who Tried Food Checkboxes */}
-                    <div className="space-y-1.5">
-                      <div className="text-[10px] font-bold text-amber-800 uppercase tracking-wide flex items-center gap-1">
-                        🍴 Who Tried Food Here?
-                      </div>
-                      <div className="grid grid-cols-2 gap-1.5">
-                        {FAMILY_MEMBERS.map(m => {
-                          const foodChecked = (foodState[selectedRide.id] || []).includes(m.id);
-                          return (
-                            <button
-                              key={m.id}
-                              onClick={() => toggleFood(selectedRide.id, m.id)}
-                              className={`flex items-center space-x-2 p-1.5 rounded-lg border transition-all text-xs font-bold ${
-                                foodChecked ? 'bg-amber-100 border-amber-500 text-amber-900' : 'bg-slate-100 border-slate-300 text-slate-600'
-                              }`}
-                            >
-                              <img src={m.avatarImg} alt={m.name} className="w-5 h-5 rounded-full object-cover shrink-0" />
-                              <span className="truncate flex-1 text-left">{m.name}</span>
-                              <span className="text-xs font-black">{foodChecked ? '🍴' : '+'}</span>
-                            </button>
-                          );
-                        })}
-                      </div>
-                    </div>
-                  </div>
-
-                  {/* Footer Close Button */}
-                  <div className="p-3 bg-slate-100 border-t border-slate-200 shrink-0">
                     <button 
                       onClick={() => setSelectedRide(null)}
-                      className="w-full py-2.5 bg-[#ffc844] hover:bg-[#f5bc33] active:scale-98 text-slate-950 rounded-xl font-bold text-xs shadow-sm transition-all"
+                      className="w-full py-2.5 bg-amber-400 text-slate-950 font-bold rounded-xl text-xs hover:bg-amber-300 transition-all"
                     >
-                      Done / Close
+                      Close
                     </button>
                   </div>
-
                 </div>
               </div>
             )}
-
-            {/* Bottom Navigation */}
-            <nav className="h-14 bg-slate-950 border-t border-slate-800 flex justify-around items-center shrink-0">
-              <button onClick={() => setActiveTab('home')} className={`text-xs font-bold ${activeTab === 'home' ? 'text-amber-400' : 'text-slate-400'}`}>
-                🏰 Rides & Pavilions
-              </button>
-              <button onClick={() => setActiveTab('characters')} className={`text-xs font-bold ${activeTab === 'characters' ? 'text-pink-400' : 'text-slate-400'}`}>
-                🎭 Characters
-              </button>
-              <button onClick={() => setActiveTab('stats')} className={`text-xs font-bold ${activeTab === 'stats' ? 'text-amber-400' : 'text-slate-400'}`}>
-                📊 Leaderboard
-              </button>
-            </nav>
 
           </div>
         </div>
       );
     }
 
-    ReactDOM.createRoot(document.getElementById('root')).render(<App />);
+    ReactDOM.render(<App />, document.getElementById('root'));
   </script>
 </body>
 </html>
