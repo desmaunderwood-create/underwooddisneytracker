@@ -941,7 +941,7 @@
                 onClick={() => setActiveTab('rides')}
                 className={`flex-1 py-3 text-xs font-bold transition-all border-b-2 ${activeTab === 'rides' ? 'border-amber-400 text-amber-300 bg-slate-900' : 'border-transparent text-slate-400 hover:text-slate-200'}`}
               >
-                🎢 Rides
+                🎢 Attractions
               </button>
               <button 
                 onClick={() => setActiveTab('characters')}
@@ -974,7 +974,7 @@
                       className="bg-slate-800/60 border border-slate-700/60 rounded-xl p-3 text-center cursor-pointer hover:border-amber-400/50 transition-all"
                     >
                       <div className="text-2xl mb-1">🎢</div>
-                      <div className="text-xs font-bold text-slate-200">Explore Rides</div>
+                      <div className="text-xs font-bold text-slate-200">Explore Rides & Food</div>
                       <div className="text-[10px] text-slate-400">{RIDES_CATALOG.length} attractions cataloged</div>
                     </div>
 
@@ -1015,7 +1015,7 @@
                 </div>
               )}
 
-              {/* RIDES TAB */}
+              {/* RIDES & FOOD TAB */}
               {activeTab === 'rides' && (
                 <div>
                   {/* Parks Filter Tabs */}
@@ -1032,7 +1032,7 @@
                     ))}
                   </div>
 
-                  {/* Rides List */}
+                  {/* Rides & Pavilions List */}
                   <div className="space-y-3">
                     {filteredRides.map(ride => {
                       const riders = rideState[ride.id] || [];
@@ -1092,9 +1092,9 @@
                               </div>
                             </div>
 
-                            {/* Food / Snacks Row */}
+                            {/* Food / Snacks Row (Visible on All Attractions & EPCOT Pavilions) */}
                             <div className="flex items-center justify-between pt-1.5 border-t border-slate-800/80">
-                              <span className="text-[10px] font-bold text-slate-400 w-12 flex-shrink-0">🥨 Food</span>
+                              <span className="text-[10px] font-bold text-emerald-400 w-12 flex-shrink-0">🥨 Food</span>
                               <div className="grid grid-cols-4 gap-1.5 flex-1 ml-1">
                                 {FAMILY_MEMBERS.map(member => {
                                   const hasEaten = eaters.includes(member.id);
