@@ -57,7 +57,6 @@
         id: 'mom',
         name: 'Mom',
         tagline: 'MAKING MAGIC TOGETHER',
-        ribbonStyle: 'bg-gradient-to-r from-pink-300 via-purple-200 to-pink-300 text-purple-950 border-pink-300',
         barColor: 'from-pink-400 via-purple-400 to-indigo-500',
         avatarImg: 'https://raw.githubusercontent.com/desmaunderwood-create/underwooddisneytracker/main/docs/dez.png'
       },
@@ -65,7 +64,6 @@
         id: 'dad',
         name: 'Dad',
         tagline: 'BIG PLANS MORE RIDES',
-        ribbonStyle: 'bg-gradient-to-r from-sky-300 via-blue-200 to-indigo-300 text-slate-950 border-sky-300',
         barColor: 'from-sky-400 via-blue-500 to-indigo-600',
         avatarImg: 'https://raw.githubusercontent.com/desmaunderwood-create/underwooddisneytracker/main/docs/greg.png'
       },
@@ -73,7 +71,6 @@
         id: 'emma',
         name: 'Emma',
         tagline: 'DREAM IT RIDE IT',
-        ribbonStyle: 'bg-gradient-to-r from-rose-300 via-pink-200 to-rose-300 text-rose-950 border-rose-300',
         barColor: 'from-rose-400 via-pink-400 to-pink-600',
         avatarImg: 'https://raw.githubusercontent.com/desmaunderwood-create/underwooddisneytracker/main/docs/emma.png'
       },
@@ -81,7 +78,6 @@
         id: 'harper',
         name: 'Harper',
         tagline: 'MORE SMILES BIGGER ADVENTURES',
-        ribbonStyle: 'bg-gradient-to-r from-amber-200 via-purple-200 to-amber-200 text-purple-950 border-purple-300',
         barColor: 'from-purple-400 via-pink-400 to-amber-400',
         avatarImg: 'https://raw.githubusercontent.com/desmaunderwood-create/underwooddisneytracker/main/docs/harper.png'
       }
@@ -876,8 +872,9 @@
       });
 
       const filteredCharacters = CHARACTERS_CATALOG.filter(c => {
+        const matchesPark = activePark === 'ALL' || c.parkId === activePark;
         const matchesMember = activeMemberFilter === 'ALL' || (characterState[c.id] || []).includes(activeMemberFilter);
-        return matchesMember;
+        return matchesPark && matchesMember;
       });
 
       return (
@@ -1124,40 +1121,56 @@
 
               {/* CHARACTERS TAB */}
               {activeTab === 'characters' && (
-                <div className="space-y-3">
-                  <div className="bg-slate-800/40 border border-slate-700/50 p-3 rounded-xl text-xs text-slate-300 text-center">
-                    👑 Tap family members below to check off character meet & greets!
+                <div>
+                  {/* Parks Filter Tabs */}
+                  <div className="flex gap-2 overflow-x-auto pb-2 mb-3 no-scrollbar">
+                    {PARKS_CATALOG.map(park => (
+                      <button
+                        key={park.id}
+                        onClick={() => setActivePark(park.id)}
+                        className={`px-3 py-1.5 rounded-xl text-xs font-bold whitespace-nowrap transition-all flex items-center gap-1.5 ${activePark === park.id ? 'bg-amber-400 text-slate-950 font-extrabold shadow-lg shadow-amber-400/20' : 'bg-slate-800 text-slate-300 hover:bg-slate-700'}`}
+                      >
+                        <span>{park.icon}</span>
+                        <span>{park.name}</span>
+                      </button>
+                    ))}
                   </div>
 
-                  {filteredCharacters.map(char => {
-                    const meeters = characterState[char.id] || [];
-                    return (
-                      <div key={char.id} className="bg-slate-800/50 border border-slate-700/60 rounded-2xl p-3 flex flex-col gap-2">
-                        <div className="flex justify-between items-start">
-                          <div>
-                            <h4 className="font-bold text-sm text-amber-100">{char.name}</h4>
-                            <p className="text-[11px] text-slate-400">📍 {char.location} ({char.parkName})</p>
+                  <div className="space-y-3">
+                    <div className="bg-slate-800/40 border border-slate-700/50 p-3 rounded-xl text-xs text-slate-300 text-center">
+                      👑 Tap family members below to check off character meet & greets!
+                    </div>
+
+                    {filteredCharacters.map(char => {
+                      const meeters = characterState[char.id] || [];
+                      return (
+                        <div key={char.id} className="bg-slate-800/50 border border-slate-700/60 rounded-2xl p-3 flex flex-col gap-2">
+                          <div className="flex justify-between items-start">
+                            <div>
+                              <h4 className="font-bold text-sm text-amber-100">{char.name}</h4>
+                              <p className="text-[11px] text-slate-400">📍 {char.location} ({char.parkName})</p>
+                            </div>
+                          </div>
+
+                          <div className="grid grid-cols-4 gap-1.5 pt-2 border-t border-slate-800">
+                            {FAMILY_MEMBERS.map(member => {
+                              const isMet = meeters.includes(member.id);
+                              return (
+                                <button
+                                  key={member.id}
+                                  onClick={() => toggleCharacter(char.id, member.id)}
+                                  className={`flex items-center justify-center gap-1 py-1 rounded-lg text-[10px] font-bold transition-all border ${isMet ? 'bg-pink-500/20 text-pink-300 border-pink-500/50' : 'bg-slate-800 text-slate-400 border-slate-700'}`}
+                                >
+                                  <span>{isMet ? '💖' : '🤍'}</span>
+                                  <span className="truncate">{member.name}</span>
+                                </button>
+                              );
+                            })}
                           </div>
                         </div>
-
-                        <div className="grid grid-cols-4 gap-1.5 pt-2 border-t border-slate-800">
-                          {FAMILY_MEMBERS.map(member => {
-                            const isMet = meeters.includes(member.id);
-                            return (
-                              <button
-                                key={member.id}
-                                onClick={() => toggleCharacter(char.id, member.id)}
-                                className={`flex items-center justify-center gap-1 py-1 rounded-lg text-[10px] font-bold transition-all border ${isMet ? 'bg-pink-500/20 text-pink-300 border-pink-500/50' : 'bg-slate-800 text-slate-400 border-slate-700'}`}
-                              >
-                                <span>{isMet ? '💖' : '🤍'}</span>
-                                <span className="truncate">{member.name}</span>
-                              </button>
-                            );
-                          })}
-                        </div>
-                      </div>
-                    );
-                  })}
+                      );
+                    })}
+                  </div>
                 </div>
               )}
 
