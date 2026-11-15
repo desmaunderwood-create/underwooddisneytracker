@@ -1,6 +1,3 @@
-Here is the complete, fully updated script for your app, featuring all expanded ride catalogs across all 4 parks, along with the **Food & Snack tracker** row (`🥨 Food` with `😋` / `⭕` toggles) on every ride and pavilion card!
-
-```html
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -1050,19 +1047,19 @@ Here is the complete, fully updated script for your app, featuring all expanded 
                             <img 
                               src={ride.image} 
                               alt={ride.name} 
-                              className="w-20 h-20 rounded-xl object-cover border border-slate-700 cursor-pointer"
+                              className="w-20 h-20 rounded-xl object-cover border border-slate-700 cursor-pointer flex-shrink-0"
                               onClick={() => setSelectedRide(ride)}
                               onError={(e) => { e.target.src = 'https://via.placeholder.com/80'; }}
                             />
-                            <div className="flex-1">
+                            <div className="flex-1 min-w-0">
                               <div className="flex justify-between items-start gap-2">
                                 <h4 
-                                  className="font-bold text-sm text-amber-100 cursor-pointer hover:text-amber-300"
+                                  className="font-bold text-sm text-amber-100 cursor-pointer hover:text-amber-300 truncate"
                                   onClick={() => setSelectedRide(ride)}
                                 >
                                   {ride.name}
                                 </h4>
-                                <span className="text-[10px] bg-slate-900 text-slate-400 px-2 py-0.5 rounded-md border border-slate-700 whitespace-nowrap">
+                                <span className="text-[10px] bg-slate-900 text-slate-400 px-2 py-0.5 rounded-md border border-slate-700 whitespace-nowrap flex-shrink-0">
                                   {ride.land}
                                 </span>
                               </div>
@@ -1080,18 +1077,18 @@ Here is the complete, fully updated script for your app, featuring all expanded 
                           <div className="bg-slate-900/80 px-3 py-2 border-t border-slate-800 space-y-2">
                             {/* Ride / Visit Row */}
                             <div className="flex items-center justify-between">
-                              <span className="text-[10px] font-bold text-slate-400 w-12">🎢 Ride</span>
-                              <div className="flex flex-1 justify-around">
+                              <span className="text-[10px] font-bold text-slate-400 w-12 flex-shrink-0">🎢 Ride</span>
+                              <div className="grid grid-cols-4 gap-1.5 flex-1 ml-1">
                                 {FAMILY_MEMBERS.map(member => {
                                   const hasRidden = riders.includes(member.id);
                                   return (
                                     <button
                                       key={member.id}
                                       onClick={() => togglePerson(ride.id, member.id)}
-                                      className={`flex items-center gap-1 px-2 py-1 rounded-lg text-[10px] font-bold transition-all border ${hasRidden ? 'bg-amber-400/20 text-amber-300 border-amber-400/50' : 'bg-slate-800 text-slate-400 border-slate-700 hover:border-slate-600'}`}
+                                      className={`flex items-center justify-center gap-1 py-1 rounded-lg text-[10px] font-bold transition-all border ${hasRidden ? 'bg-amber-400/20 text-amber-300 border-amber-400/50' : 'bg-slate-800 text-slate-400 border-slate-700 hover:border-slate-600'}`}
                                     >
                                       <span>{hasRidden ? '✅' : '⭕'}</span>
-                                      <span>{member.name}</span>
+                                      <span className="truncate">{member.name}</span>
                                     </button>
                                   );
                                 })}
@@ -1100,18 +1097,18 @@ Here is the complete, fully updated script for your app, featuring all expanded 
 
                             {/* Food / Snacks Row */}
                             <div className="flex items-center justify-between pt-1.5 border-t border-slate-800/80">
-                              <span className="text-[10px] font-bold text-slate-400 w-12">🥨 Food</span>
-                              <div className="flex flex-1 justify-around">
+                              <span className="text-[10px] font-bold text-slate-400 w-12 flex-shrink-0">🥨 Food</span>
+                              <div className="grid grid-cols-4 gap-1.5 flex-1 ml-1">
                                 {FAMILY_MEMBERS.map(member => {
                                   const hasEaten = eaters.includes(member.id);
                                   return (
                                     <button
                                       key={member.id}
                                       onClick={() => toggleFood(ride.id, member.id)}
-                                      className={`flex items-center gap-1 px-2 py-1 rounded-lg text-[10px] font-bold transition-all border ${hasEaten ? 'bg-emerald-400/20 text-emerald-300 border-emerald-400/50' : 'bg-slate-800 text-slate-400 border-slate-700 hover:border-slate-600'}`}
+                                      className={`flex items-center justify-center gap-1 py-1 rounded-lg text-[10px] font-bold transition-all border ${hasEaten ? 'bg-emerald-400/20 text-emerald-300 border-emerald-400/50' : 'bg-slate-800 text-slate-400 border-slate-700 hover:border-slate-600'}`}
                                     >
                                       <span>{hasEaten ? '😋' : '⭕'}</span>
-                                      <span>{member.name}</span>
+                                      <span className="truncate">{member.name}</span>
                                     </button>
                                   );
                                 })}
@@ -1143,17 +1140,17 @@ Here is the complete, fully updated script for your app, featuring all expanded 
                           </div>
                         </div>
 
-                        <div className="flex justify-around items-center pt-2 border-t border-slate-800">
+                        <div className="grid grid-cols-4 gap-1.5 pt-2 border-t border-slate-800">
                           {FAMILY_MEMBERS.map(member => {
                             const isMet = meeters.includes(member.id);
                             return (
                               <button
                                 key={member.id}
                                 onClick={() => toggleCharacter(char.id, member.id)}
-                                className={`flex items-center gap-1.5 px-2.5 py-1 rounded-lg text-[10px] font-bold transition-all border ${isMet ? 'bg-pink-500/20 text-pink-300 border-pink-500/50' : 'bg-slate-800 text-slate-400 border-slate-700'}`}
+                                className={`flex items-center justify-center gap-1 py-1 rounded-lg text-[10px] font-bold transition-all border ${isMet ? 'bg-pink-500/20 text-pink-300 border-pink-500/50' : 'bg-slate-800 text-slate-400 border-slate-700'}`}
                               >
                                 <span>{isMet ? '💖' : '🤍'}</span>
-                                <span>{member.name}</span>
+                                <span className="truncate">{member.name}</span>
                               </button>
                             );
                           })}
@@ -1213,9 +1210,9 @@ Here is the complete, fully updated script for your app, featuring all expanded 
 
             {/* Ride Detail Modal */}
             {selectedRide && (
-              <div className="absolute inset-0 bg-slate-950/80 backdrop-blur-sm z-50 flex items-center justify-center p-4">
-                <div className="bg-slate-900 border border-slate-700 rounded-3xl w-full max-w-sm overflow-hidden shadow-2xl flex flex-col">
-                  <div className="relative h-48">
+              <div className="fixed inset-0 bg-slate-950/80 backdrop-blur-sm z-50 flex items-center justify-center p-4">
+                <div className="bg-slate-900 border border-slate-700 rounded-3xl w-full max-w-sm max-h-[90vh] overflow-y-auto shadow-2xl flex flex-col no-scrollbar">
+                  <div className="relative h-48 flex-shrink-0">
                     <img src={selectedRide.image} alt={selectedRide.name} className="w-full h-full object-cover" />
                     <button 
                       onClick={() => setSelectedRide(null)}
@@ -1258,5 +1255,3 @@ Here is the complete, fully updated script for your app, featuring all expanded 
   </script>
 </body>
 </html>
-
-```
