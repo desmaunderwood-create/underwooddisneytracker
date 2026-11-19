@@ -804,7 +804,7 @@
         }
 
         fetchAllWaitTimes();
-        const interval = setInterval(fetchAllWaitTimes, 60000); // Auto-refresh every 60 seconds
+        const interval = setInterval(fetchAllWaitTimes, 60000);
         return () => {
           isMounted = false;
           clearInterval(interval);
@@ -815,7 +815,6 @@
       const getLiveInfoForRide = (rideName) => {
         const norm = normalizeName(rideName);
         if (liveWaitTimes[norm]) return liveWaitTimes[norm];
-        // Partial match fallback
         const foundKey = Object.keys(liveWaitTimes).find(
           k => k.includes(norm) || (norm.length > 6 && norm.includes(k))
         );
@@ -1019,30 +1018,68 @@
             </header>
 
             {/* Content Body */}
-            <main className="flex-1 p-3 space-y-3 overflow-y-auto pb-20">
+            <main className="flex-1 p-3 space-y-3 overflow-y-auto pb-8">
               
+              {/* Park Filter Row (Shown on Rides & Characters) */}
+              {(activeTab === 'home' || activeTab === 'characters') && (
+                <div className="flex gap-1.5 overflow-x-auto no-scrollbar pb-0.5">
+                  <button 
+                    onClick={() => setActivePark('ALL')} 
+                    className={`px-3 py-1.5 rounded-full text-xs font-bold transition-all ${activePark === 'ALL' ? 'bg-amber-400 text-slate-950' : 'bg-slate-800 text-slate-300'}`}
+                  >
+                    All Parks
+                  </button>
+                  {PARKS_CATALOG.map(p => (
+                    <button 
+                      key={p.id} 
+                      onClick={() => setActivePark(p.id)} 
+                      className={`px-3 py-1.5 rounded-full text-xs font-bold whitespace-nowrap transition-all ${activePark === p.id ? 'bg-purple-600 text-white' : 'bg-slate-800 text-slate-300'}`}
+                    >
+                      {p.icon} {p.name}
+                    </button>
+                  ))}
+                </div>
+              )}
+
+              {/* Navigation Menu Bar (Moved right under Park Options!) */}
+              <nav className="grid grid-cols-4 gap-1.5 bg-slate-950/90 p-1.5 rounded-2xl border border-slate-800">
+                <button
+                  onClick={() => setActiveTab('home')}
+                  className={`py-2 px-1 rounded-xl text-[11px] font-bold transition-all ${
+                    activeTab === 'home' ? 'bg-amber-400 text-slate-950 shadow' : 'text-slate-400 hover:text-slate-200'
+                  }`}
+                >
+                  🏰 Rides
+                </button>
+                <button
+                  onClick={() => setActiveTab('characters')}
+                  className={`py-2 px-1 rounded-xl text-[11px] font-bold transition-all ${
+                    activeTab === 'characters' ? 'bg-amber-400 text-slate-950 shadow' : 'text-slate-400 hover:text-slate-200'
+                  }`}
+                >
+                  ✨ Characters
+                </button>
+                <button
+                  onClick={() => setActiveTab('stats')}
+                  className={`py-2 px-1 rounded-xl text-[11px] font-bold transition-all ${
+                    activeTab === 'stats' ? 'bg-amber-400 text-slate-950 shadow' : 'text-slate-400 hover:text-slate-200'
+                  }`}
+                >
+                  📊 Stats
+                </button>
+                <button
+                  onClick={() => setActiveTab('pass')}
+                  className={`py-2 px-1 rounded-xl text-[11px] font-bold transition-all ${
+                    activeTab === 'pass' ? 'bg-amber-400 text-slate-950 shadow' : 'text-slate-400 hover:text-slate-200'
+                  }`}
+                >
+                  🎟️ Pass Price
+                </button>
+              </nav>
+
               {/* --- RIDES TAB --- */}
               {activeTab === 'home' && (
                 <>
-                  {/* Park Filters */}
-                  <div className="flex gap-1.5 overflow-x-auto no-scrollbar pb-1">
-                    <button 
-                      onClick={() => setActivePark('ALL')} 
-                      className={`px-3 py-1.5 rounded-full text-xs font-bold transition-all ${activePark === 'ALL' ? 'bg-amber-400 text-slate-950' : 'bg-slate-800 text-slate-300'}`}
-                    >
-                      All Parks
-                    </button>
-                    {PARKS_CATALOG.map(p => (
-                      <button 
-                        key={p.id} 
-                        onClick={() => setActivePark(p.id)} 
-                        className={`px-3 py-1.5 rounded-full text-xs font-bold whitespace-nowrap transition-all ${activePark === p.id ? 'bg-purple-600 text-white' : 'bg-slate-800 text-slate-300'}`}
-                      >
-                        {p.icon} {p.name}
-                      </button>
-                    ))}
-                  </div>
-
                   {activeMemberFilter !== 'ALL' && (
                     <div className="bg-purple-950/60 border border-purple-500/30 rounded-xl p-2 flex justify-between items-center text-xs text-purple-200">
                       <span>Showing rides ridden by <strong>{FAMILY_MEMBERS.find(m => m.id === activeMemberFilter)?.name}</strong></span>
@@ -1141,25 +1178,6 @@
               {/* --- CHARACTERS TAB --- */}
               {activeTab === 'characters' && (
                 <>
-                  {/* Park Filters */}
-                  <div className="flex gap-1.5 overflow-x-auto no-scrollbar pb-1">
-                    <button 
-                      onClick={() => setActivePark('ALL')} 
-                      className={`px-3 py-1.5 rounded-full text-xs font-bold transition-all ${activePark === 'ALL' ? 'bg-amber-400 text-slate-950' : 'bg-slate-800 text-slate-300'}`}
-                    >
-                      All Parks
-                    </button>
-                    {PARKS_CATALOG.map(p => (
-                      <button 
-                        key={p.id} 
-                        onClick={() => setActivePark(p.id)} 
-                        className={`px-3 py-1.5 rounded-full text-xs font-bold whitespace-nowrap transition-all ${activePark === p.id ? 'bg-purple-600 text-white' : 'bg-slate-800 text-slate-300'}`}
-                      >
-                        {p.icon} {p.name}
-                      </button>
-                    ))}
-                  </div>
-
                   {activeMemberFilter !== 'ALL' && (
                     <div className="bg-purple-950/60 border border-purple-500/30 rounded-xl p-2 flex justify-between items-center text-xs text-purple-200">
                       <span>Showing characters met by <strong>{FAMILY_MEMBERS.find(m => m.id === activeMemberFilter)?.name}</strong></span>
@@ -1453,13 +1471,13 @@
 
             </main>
 
-            {/* Detailed Card View Modal with Live ThemeParks.wiki Wait Times */}
+            {/* Detailed Card View Modal (Check-off Buttons Moved Near Top!) */}
             {selectedRide && (() => {
               const liveInfo = getLiveInfoForRide(selectedRide.name);
               return (
                 <div className="absolute inset-0 z-50 bg-[#faf6ed] text-slate-900 flex flex-col overflow-y-auto">
                   {/* Header Image with Back & Heart Buttons */}
-                  <div className="relative h-64 w-full shrink-0">
+                  <div className="relative h-56 w-full shrink-0">
                     <img src={selectedRide.image} alt={selectedRide.name} className="w-full h-full object-cover" />
                     <button 
                       onClick={() => setSelectedRide(null)}
@@ -1473,115 +1491,44 @@
                   </div>
 
                   {/* Card Detail Content */}
-                  <div className="flex-1 p-5 -mt-6 bg-[#faf6ed] rounded-t-3xl flex flex-col justify-between">
-                    <div className="space-y-4">
-                      <div>
-                        <h2 className="text-2xl font-bold text-[#1b2240] leading-tight font-serif">{selectedRide.name}</h2>
-                        <div className="flex flex-wrap items-center gap-2 mt-2.5">
-                          <span className="inline-flex items-center space-x-1 px-3 py-1 bg-[#f4e6d4] text-[#8c5e31] rounded-full text-xs font-semibold">
-                            <span>🏰</span>
-                            <span>{selectedRide.land}</span>
-                          </span>
+                  <div className="flex-1 p-5 -mt-6 bg-[#faf6ed] rounded-t-3xl space-y-4">
+                    <div>
+                      <h2 className="text-2xl font-bold text-[#1b2240] leading-tight font-serif">{selectedRide.name}</h2>
+                      <div className="flex flex-wrap items-center gap-2 mt-2">
+                        <span className="inline-flex items-center space-x-1 px-3 py-1 bg-[#f4e6d4] text-[#8c5e31] rounded-full text-xs font-semibold">
+                          <span>🏰</span>
+                          <span>{selectedRide.land}</span>
+                        </span>
 
-                          {/* Live Wait Time Pill */}
-                          <span className={`inline-flex items-center space-x-1.5 px-3 py-1 rounded-full text-xs font-bold ${
-                            !liveInfo
-                              ? 'bg-slate-200 text-slate-600'
+                        {/* Live Wait Time Pill */}
+                        <span className={`inline-flex items-center space-x-1.5 px-3 py-1 rounded-full text-xs font-bold ${
+                          !liveInfo
+                            ? 'bg-slate-200 text-slate-600'
+                            : liveInfo.status === 'DOWN'
+                            ? 'bg-rose-100 text-rose-800 border border-rose-300'
+                            : liveInfo.status === 'CLOSED'
+                            ? 'bg-slate-200 text-slate-700'
+                            : 'bg-emerald-100 text-emerald-900 border border-emerald-300'
+                        }`}>
+                          <span>⏳</span>
+                          <span>
+                            {!liveInfo
+                              ? 'Live Wait Unavailable'
                               : liveInfo.status === 'DOWN'
-                              ? 'bg-rose-100 text-rose-800 border border-rose-300'
+                              ? 'Temporarily Down'
                               : liveInfo.status === 'CLOSED'
-                              ? 'bg-slate-200 text-slate-700'
-                              : 'bg-emerald-100 text-emerald-900 border border-emerald-300'
-                          }`}>
-                            <span>⏳</span>
-                            <span>
-                              {!liveInfo
-                                ? 'Live Wait Unavailable'
-                                : liveInfo.status === 'DOWN'
-                                ? 'Temporarily Down'
-                                : liveInfo.status === 'CLOSED'
-                                ? 'Park / Ride Closed'
-                                : liveInfo.waitTime !== null
-                                ? `${liveInfo.waitTime} min Standby Wait`
-                                : 'Operating (No Posted Wait)'}
-                            </span>
+                              ? 'Park / Ride Closed'
+                              : liveInfo.waitTime !== null
+                              ? `${liveInfo.waitTime} min Standby Wait`
+                              : 'Operating (No Posted Wait)'}
                           </span>
-                        </div>
-                      </div>
-
-                      <p className="text-xs text-slate-600 leading-relaxed font-medium">
-                        {selectedRide.description}
-                      </p>
-
-                      <div className="space-y-3.5 pt-2 text-xs">
-                        {/* Live Wait Time Row */}
-                        <div className="flex items-center space-x-3.5">
-                          <div className="w-6 text-center text-[#1b2240] text-lg font-bold">⏳</div>
-                          <div>
-                            <div className="font-semibold text-slate-500 text-[10px]">
-                              Live Wait Time {lastWaitUpdate ? `(Updated ${lastWaitUpdate.toLocaleTimeString([], { hour: 'numeric', minute: '2-digit' })})` : ''}
-                            </div>
-                            <div className="font-bold text-[#1b2240] text-xs">
-                              {!liveInfo
-                                ? 'Checking ThemeParks.wiki...'
-                                : liveInfo.status === 'DOWN'
-                                ? 'Temporarily Closed / Down'
-                                : liveInfo.status === 'CLOSED'
-                                ? 'Closed'
-                                : liveInfo.waitTime !== null
-                                ? `${liveInfo.waitTime} minutes`
-                                : 'Open (Walk-on / No Standby Posted)'}
-                            </div>
-                          </div>
-                        </div>
-
-                        {/* Thrill Level */}
-                        <div className="flex items-center space-x-3.5">
-                          <div className="w-6 text-center text-[#1b2240] text-lg font-bold">🎢</div>
-                          <div>
-                            <div className="font-semibold text-slate-500 text-[10px]">Thrill Level</div>
-                            <div className="flex space-x-1 mt-0.5">
-                              {[1, 2, 3, 4, 5].map((star) => (
-                                <span key={star} className={star <= selectedRide.thrillLevel ? "text-[#1b2240] text-sm" : "text-slate-300 text-sm"}>
-                                  🐭
-                                </span>
-                              ))}
-                            </div>
-                          </div>
-                        </div>
-
-                        {/* Height Requirement */}
-                        <div className="flex items-center space-x-3.5">
-                          <div className="w-6 text-center text-[#1b2240] text-lg font-bold">🧍</div>
-                          <div>
-                            <div className="font-semibold text-slate-500 text-[10px]">Height Requirement</div>
-                            <div className="font-bold text-[#1b2240] text-xs">{selectedRide.heightRequirement}</div>
-                          </div>
-                        </div>
-
-                        {/* Ride Type */}
-                        <div className="flex items-center space-x-3.5">
-                          <div className="w-6 text-center text-[#1b2240] text-lg font-bold">🎟️</div>
-                          <div>
-                            <div className="font-semibold text-slate-500 text-[10px]">Ride Type</div>
-                            <div className="font-bold text-[#1b2240] text-xs">{selectedRide.rideType}</div>
-                          </div>
-                        </div>
-
-                        {/* Duration */}
-                        <div className="flex items-center space-x-3.5">
-                          <div className="w-6 text-center text-[#1b2240] text-lg font-bold">⏱️</div>
-                          <div>
-                            <div className="font-semibold text-slate-500 text-[10px]">Duration</div>
-                            <div className="font-bold text-[#1b2240] text-xs">{selectedRide.duration}</div>
-                          </div>
-                        </div>
+                        </span>
                       </div>
                     </div>
 
-                    {/* Toggle Per-Person Buttons inside Detail Modal */}
-                    <div className="pt-6 pb-2 space-y-3">
-                      <div className="text-xs font-bold text-slate-700 uppercase tracking-wide">Who Rode This Ride?</div>
+                    {/* Who Rode This Ride? (Moved right near the top!) */}
+                    <div className="bg-white/80 p-3.5 rounded-2xl border border-[#e8dcc8] space-y-2.5 shadow-sm">
+                      <div className="text-[11px] font-bold text-[#1b2240] uppercase tracking-wide">Who Rode This Ride?</div>
                       <div className="grid grid-cols-2 gap-2">
                         {FAMILY_MEMBERS.map(m => {
                           const checked = (rideState[selectedRide.id] || []).includes(m.id);
@@ -1590,7 +1537,7 @@
                               key={m.id}
                               onClick={() => togglePerson(selectedRide.id, m.id)}
                               className={`flex items-center space-x-2 p-2 rounded-xl border transition-all text-xs font-bold ${
-                                checked ? 'bg-emerald-100 border-emerald-500 text-emerald-900' : 'bg-slate-100 border-slate-300 text-slate-600'
+                                checked ? 'bg-emerald-100 border-emerald-500 text-emerald-900' : 'bg-[#faf6ed] border-slate-300 text-slate-700'
                               }`}
                             >
                               <img src={m.avatarImg} alt={m.name} className="w-6 h-6 rounded-full object-cover" />
@@ -1600,33 +1547,87 @@
                           );
                         })}
                       </div>
-                      <button 
-                        onClick={() => setSelectedRide(null)}
-                        className="w-full mt-2 py-3 bg-[#ffc844] hover:bg-[#f5bc33] text-slate-950 rounded-2xl font-bold text-xs shadow-md"
-                      >
-                        Done / Back to Rides
-                      </button>
                     </div>
+
+                    <p className="text-xs text-slate-600 leading-relaxed font-medium">
+                      {selectedRide.description}
+                    </p>
+
+                    <div className="space-y-3 pt-1 text-xs">
+                      {/* Live Wait Time Row */}
+                      <div className="flex items-center space-x-3.5">
+                        <div className="w-6 text-center text-[#1b2240] text-lg font-bold">⏳</div>
+                        <div>
+                          <div className="font-semibold text-slate-500 text-[10px]">
+                            Live Wait Time {lastWaitUpdate ? `(Updated ${lastWaitUpdate.toLocaleTimeString([], { hour: 'numeric', minute: '2-digit' })})` : ''}
+                          </div>
+                          <div className="font-bold text-[#1b2240] text-xs">
+                            {!liveInfo
+                              ? 'Checking ThemeParks.wiki...'
+                              : liveInfo.status === 'DOWN'
+                              ? 'Temporarily Closed / Down'
+                              : liveInfo.status === 'CLOSED'
+                              ? 'Closed'
+                              : liveInfo.waitTime !== null
+                              ? `${liveInfo.waitTime} minutes`
+                              : 'Open (Walk-on / No Standby Posted)'}
+                          </div>
+                        </div>
+                      </div>
+
+                      {/* Thrill Level */}
+                      <div className="flex items-center space-x-3.5">
+                        <div className="w-6 text-center text-[#1b2240] text-lg font-bold">🎢</div>
+                        <div>
+                          <div className="font-semibold text-slate-500 text-[10px]">Thrill Level</div>
+                          <div className="flex space-x-1 mt-0.5">
+                            {[1, 2, 3, 4, 5].map((star) => (
+                              <span key={star} className={star <= selectedRide.thrillLevel ? "text-[#1b2240] text-sm" : "text-slate-300 text-sm"}>
+                                🐭
+                              </span>
+                            ))}
+                          </div>
+                        </div>
+                      </div>
+
+                      {/* Height Requirement */}
+                      <div className="flex items-center space-x-3.5">
+                        <div className="w-6 text-center text-[#1b2240] text-lg font-bold">🧍</div>
+                        <div>
+                          <div className="font-semibold text-slate-500 text-[10px]">Height Requirement</div>
+                          <div className="font-bold text-[#1b2240] text-xs">{selectedRide.heightRequirement}</div>
+                        </div>
+                      </div>
+
+                      {/* Ride Type */}
+                      <div className="flex items-center space-x-3.5">
+                        <div className="w-6 text-center text-[#1b2240] text-lg font-bold">🎟️</div>
+                        <div>
+                          <div className="font-semibold text-slate-500 text-[10px]">Ride Type</div>
+                          <div className="font-bold text-[#1b2240] text-xs">{selectedRide.rideType}</div>
+                        </div>
+                      </div>
+
+                      {/* Duration */}
+                      <div className="flex items-center space-x-3.5">
+                        <div className="w-6 text-center text-[#1b2240] text-lg font-bold">⏱️</div>
+                        <div>
+                          <div className="font-semibold text-slate-500 text-[10px]">Duration</div>
+                          <div className="font-bold text-[#1b2240] text-xs">{selectedRide.duration}</div>
+                        </div>
+                      </div>
+                    </div>
+
+                    <button 
+                      onClick={() => setSelectedRide(null)}
+                      className="w-full mt-2 py-3 bg-[#ffc844] hover:bg-[#f5bc33] text-slate-950 rounded-2xl font-bold text-xs shadow-md"
+                    >
+                      Done / Back to Rides
+                    </button>
                   </div>
                 </div>
               );
             })()}
-
-            {/* Bottom Navigation */}
-            <nav className="h-14 bg-slate-950 border-t border-slate-800 flex justify-around items-center shrink-0 px-1">
-              <button onClick={() => setActiveTab('home')} className={`text-[11px] font-bold ${activeTab === 'home' ? 'text-amber-400' : 'text-slate-400'}`}>
-                🏰 Rides
-              </button>
-              <button onClick={() => setActiveTab('characters')} className={`text-[11px] font-bold ${activeTab === 'characters' ? 'text-amber-400' : 'text-slate-400'}`}>
-                ✨ Characters
-              </button>
-              <button onClick={() => setActiveTab('stats')} className={`text-[11px] font-bold ${activeTab === 'stats' ? 'text-amber-400' : 'text-slate-400'}`}>
-                📊 Stats
-              </button>
-              <button onClick={() => setActiveTab('pass')} className={`text-[11px] font-bold ${activeTab === 'pass' ? 'text-amber-400' : 'text-slate-400'}`}>
-                🎟️ Pass Price
-              </button>
-            </nav>
 
           </div>
         </div>
