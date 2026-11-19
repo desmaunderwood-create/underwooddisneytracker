@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -58,7 +57,6 @@
         id: 'mom',
         name: 'Mom',
         tagline: 'MAKING MAGIC TOGETHER',
-        ribbonStyle: 'bg-gradient-to-r from-pink-300 via-purple-200 to-pink-300 text-purple-950 border-pink-300',
         barColor: 'from-pink-400 via-purple-400 to-indigo-500',
         avatarImg: 'https://raw.githubusercontent.com/desmaunderwood-create/underwooddisneytracker/main/docs/dez.png'
       },
@@ -66,7 +64,6 @@
         id: 'dad',
         name: 'Dad',
         tagline: 'BIG PLANS MORE RIDES',
-        ribbonStyle: 'bg-gradient-to-r from-sky-300 via-blue-200 to-indigo-300 text-slate-950 border-sky-300',
         barColor: 'from-sky-400 via-blue-500 to-indigo-600',
         avatarImg: 'https://raw.githubusercontent.com/desmaunderwood-create/underwooddisneytracker/main/docs/greg.png'
       },
@@ -74,7 +71,6 @@
         id: 'emma',
         name: 'Emma',
         tagline: 'DREAM IT RIDE IT',
-        ribbonStyle: 'bg-gradient-to-r from-rose-300 via-pink-200 to-rose-300 text-rose-950 border-rose-300',
         barColor: 'from-rose-400 via-pink-400 to-pink-600',
         avatarImg: 'https://raw.githubusercontent.com/desmaunderwood-create/underwooddisneytracker/main/docs/emma.png'
       },
@@ -82,22 +78,79 @@
         id: 'harper',
         name: 'Harper',
         tagline: 'MORE SMILES BIGGER ADVENTURES',
-        ribbonStyle: 'bg-gradient-to-r from-amber-200 via-purple-200 to-amber-200 text-purple-950 border-purple-300',
         barColor: 'from-purple-400 via-pink-400 to-amber-400',
         avatarImg: 'https://raw.githubusercontent.com/desmaunderwood-create/underwooddisneytracker/main/docs/harper.png'
       }
     ];
 
-    // Disney World Parks Catalog
+    // Disney World Parks Catalog with ThemeParks.wiki Entity IDs
     const PARKS_CATALOG = [
-      { id: 'mk', name: 'Magic Kingdom', icon: '🏰' },
-      { id: 'epcot', name: 'EPCOT', icon: '🌐' },
-      { id: 'hs', name: "Hollywood Studios", icon: '🎬' },
-      { id: 'ak', name: "Animal Kingdom", icon: '🌴' }
+      { id: 'mk', name: 'Magic Kingdom', icon: '🏰', wikiId: '75ea578a-adc8-4116-a54d-dccb60765ef9' },
+      { id: 'epcot', name: 'EPCOT', icon: '🌐', wikiId: '47f90d2c-e191-4239-a466-5892ef59a88b' },
+      { id: 'hs', name: "Hollywood Studios", icon: '🎬', wikiId: '288747d1-8b4f-4a64-867e-ea7c9b27bad8' },
+      { id: 'ak', name: "Animal Kingdom", icon: '🌴', wikiId: '1c84a229-8862-4648-9c71-378ddd2c7693' }
     ];
 
-    // Rides List with Direct Raw GitHub Image Links
+    // Character Meet & Greets Catalog by Park
+    const CHARACTERS_CATALOG = [
+      { id: 'mk-cinderella', parkId: 'mk', parkName: 'Magic Kingdom', name: 'Cinderella', location: 'Princess Fairytale Hall' },
+      { id: 'mk-tiana', parkId: 'mk', parkName: 'Magic Kingdom', name: 'Tiana', location: 'Princess Fairytale Hall' },
+      { id: 'mk-ariel', parkId: 'mk', parkName: 'Magic Kingdom', name: 'Ariel', location: "Ariel's Grotto" },
+      { id: 'mk-pooh', parkId: 'mk', parkName: 'Magic Kingdom', name: 'Winnie the Pooh & Friends', location: 'Fantasyland' },
+      { id: 'mk-mirabel', parkId: 'mk', parkName: 'Magic Kingdom', name: 'Mirabel', location: 'Fairytale Garden' },
+      { id: 'mk-peter-pan', parkId: 'mk', parkName: 'Magic Kingdom', name: 'Peter Pan', location: 'Fantasyland' },
+      { id: 'mk-mickey', parkId: 'mk', parkName: 'Magic Kingdom', name: 'Mickey Mouse', location: 'Town Square Theater' },
+      { id: 'mk-minnie', parkId: 'mk', parkName: 'Magic Kingdom', name: 'Minnie Mouse', location: "Pete's Silly Slideshow" },
+      { id: 'mk-goofy', parkId: 'mk', parkName: 'Magic Kingdom', name: 'Goofy', location: "Pete's Silly Slideshow" },
+      { id: 'mk-donald', parkId: 'mk', parkName: 'Magic Kingdom', name: 'Donald Duck', location: "Pete's Silly Slideshow" },
+      { id: 'mk-daisy', parkId: 'mk', parkName: 'Magic Kingdom', name: 'Daisy Duck', location: "Pete's Silly Slideshow" },
+      { id: 'mk-mulan', parkId: 'mk', parkName: 'Magic Kingdom', name: 'Mulan', location: 'Adventureland' },
+      { id: 'mk-aladdin', parkId: 'mk', parkName: 'Magic Kingdom', name: 'Aladdin', location: 'Adventureland' },
+      { id: 'mk-jasmine', parkId: 'mk', parkName: 'Magic Kingdom', name: 'Jasmine', location: 'Adventureland' },
+      { id: 'mk-jack-sparrow', parkId: 'mk', parkName: 'Magic Kingdom', name: 'Jack Sparrow', location: 'Adventureland' },
+      { id: 'mk-belle', parkId: 'mk', parkName: 'Magic Kingdom', name: 'Belle (Enchanted Tales with Belle)', location: 'Fantasyland' },
+
+      { id: 'ep-moana', parkId: 'epcot', parkName: 'EPCOT', name: 'Moana', location: 'World Nature' },
+      { id: 'ep-mickey', parkId: 'epcot', parkName: 'EPCOT', name: 'Mickey Mouse', location: 'Meet Disney Pixar Pals / Magic Eye' },
+      { id: 'ep-figment', parkId: 'epcot', parkName: 'EPCOT', name: 'Figment', location: 'ImageWorks' },
+      { id: 'ep-pluto', parkId: 'epcot', parkName: 'EPCOT', name: 'Pluto', location: 'World Celebration' },
+
+      { id: 'hs-ariel', parkId: 'hs', parkName: 'Hollywood Studios', name: 'Ariel (Live Action)', location: 'Walt Disney Presents' },
+      { id: 'hs-edna', parkId: 'hs', parkName: 'Hollywood Studios', name: 'Edna Mode', location: 'Pixar Place' },
+      { id: 'hs-sulley', parkId: 'hs', parkName: 'Hollywood Studios', name: 'Sulley', location: 'Pixar Place' },
+      { id: 'hs-mrs-incredible', parkId: 'hs', parkName: 'Hollywood Studios', name: 'Mrs. Incredible', location: 'Pixar Place' },
+      { id: 'hs-frozone', parkId: 'hs', parkName: 'Hollywood Studios', name: 'Frozone', location: 'Pixar Place' },
+      { id: 'hs-joy', parkId: 'hs', parkName: 'Hollywood Studios', name: 'Joy', location: 'Pixar Plaza' },
+      { id: 'hs-olaf', parkId: 'hs', parkName: 'Hollywood Studios', name: 'Olaf', location: 'Celebrity Spotlight' },
+      { id: 'hs-darth-vader', parkId: 'hs', parkName: 'Hollywood Studios', name: 'Darth Vader', location: 'Star Wars Launch Bay' },
+      { id: 'hs-mickey', parkId: 'hs', parkName: 'Hollywood Studios', name: 'Mickey Mouse', location: 'Red Carpet Dreams' },
+      { id: 'hs-minnie', parkId: 'hs', parkName: 'Hollywood Studios', name: 'Minnie Mouse', location: 'Red Carpet Dreams' },
+      { id: 'hs-chewbacca', parkId: 'hs', parkName: 'Hollywood Studios', name: 'Chewbacca', location: 'Star Wars Launch Bay' },
+      { id: 'hs-pluto', parkId: 'hs', parkName: 'Hollywood Studios', name: 'Pluto', location: 'Animation Courtyard' },
+      { id: 'hs-chip', parkId: 'hs', parkName: 'Hollywood Studios', name: 'Chip', location: 'Brown Derby Lawn' },
+      { id: 'hs-dale', parkId: 'hs', parkName: 'Hollywood Studios', name: 'Dale', location: 'Brown Derby Lawn' },
+      { id: 'hs-goofy', parkId: 'hs', parkName: 'Hollywood Studios', name: 'Goofy', location: 'Grand Avenue' },
+      { id: 'hs-donald', parkId: 'hs', parkName: 'Hollywood Studios', name: 'Donald Duck', location: 'Echo Lake' },
+      { id: 'hs-mulan', parkId: 'hs', parkName: 'Hollywood Studios', name: 'Mulan', location: 'Animation Courtyard' },
+      { id: 'hs-rapunzel', parkId: 'hs', parkName: 'Hollywood Studios', name: 'Rapunzel', location: 'Animation Courtyard' },
+      { id: 'hs-stitch', parkId: 'hs', parkName: 'Hollywood Studios', name: 'Stitch', location: 'Celebrity Spotlight' },
+
+      { id: 'ak-judy', parkId: 'ak', parkName: 'Animal Kingdom', name: 'Judy Hopps', location: 'Discovery Island' },
+      { id: 'ak-nick', parkId: 'ak', parkName: 'Animal Kingdom', name: 'Nick Wilde', location: 'Discovery Island' },
+      { id: 'ak-dug', parkId: 'ak', parkName: 'Animal Kingdom', name: 'Dug', location: 'Wilderness Explorers Club' },
+      { id: 'ak-russell', parkId: 'ak', parkName: 'Animal Kingdom', name: 'Russell', location: 'Wilderness Explorers Club' },
+      { id: 'ak-moana', parkId: 'ak', parkName: 'Animal Kingdom', name: 'Moana', location: 'Character Landing' },
+      { id: 'ak-kevin', parkId: 'ak', parkName: 'Animal Kingdom', name: 'Kevin', location: 'Discovery Island Roaming' },
+      { id: 'ak-goofy', parkId: 'ak', parkName: 'Animal Kingdom', name: 'Goofy', location: 'DinoLand U.S.A.' },
+      { id: 'ak-pocahontas', parkId: 'ak', parkName: 'Animal Kingdom', name: 'Pocahontas', location: 'Discovery Island Trails' },
+      { id: 'ak-donald', parkId: 'ak', parkName: 'Animal Kingdom', name: 'Donald Duck', location: 'Dino-Suite / Discovery Island' },
+      { id: 'ak-daisy', parkId: 'ak', parkName: 'Animal Kingdom', name: 'Daisy Duck', location: 'DinoLand U.S.A.' },
+      { id: 'ak-pluto', parkId: 'ak', parkName: 'Animal Kingdom', name: 'Pluto', location: 'DinoLand U.S.A.' }
+    ];
+
+    // Full Rides & Pavilions List with Direct Raw GitHub Image Links
     const RIDES_CATALOG = [
+      // --- MAGIC KINGDOM ---
       {
         id: 'space-mountain',
         parkId: 'mk',
@@ -195,6 +248,344 @@
         description: 'Race through the diamond mine on a swinging coaster car.'
       },
       {
+        id: 'aladdin-carpets',
+        parkId: 'mk',
+        name: "The Magic Carpets of Aladdin",
+        land: 'Adventureland',
+        duration: '1.5 minutes',
+        thrillLevel: 1,
+        heightRequirement: 'Any Height',
+        rideType: 'Aerial Carousel',
+        image: 'https://github.com/desmaunderwood-create/underwooddisneytracker/blob/main/docs/aladdin.jpg?raw=true',
+        description: 'Take flight on a magical flying carpet over Agrabah!'
+      },
+      {
+        id: 'buzz-lightyear',
+        parkId: 'mk',
+        name: "Buzz Lightyear's Space Ranger Spin",
+        land: 'Tomorrowland',
+        duration: '4 minutes',
+        thrillLevel: 1,
+        heightRequirement: 'Any Height',
+        rideType: 'Interactive Dark Ride',
+        image: 'https://github.com/desmaunderwood-create/underwooddisneytracker/blob/main/docs/buzz.jpg?raw=true',
+        description: 'Battle Evil Emperor Zurg by firing lasers to score points.'
+      },
+      {
+        id: 'dumbo-elephant',
+        parkId: 'mk',
+        name: "Dumbo the Flying Elephant",
+        land: 'Fantasyland',
+        duration: '1.5 minutes',
+        thrillLevel: 1,
+        heightRequirement: 'Any Height',
+        rideType: 'Aerial Carousel',
+        image: 'https://github.com/desmaunderwood-create/underwooddisneytracker/blob/main/docs/dumbo.jpg?raw=true',
+        description: 'Soar high in the sky aboard everyone’s favorite flying circus elephant.'
+      },
+      {
+        id: 'under-the-sea',
+        parkId: 'mk',
+        name: "Under the Sea ~ Journey of The Little Mermaid",
+        land: 'Fantasyland',
+        duration: '6 minutes',
+        thrillLevel: 1,
+        heightRequirement: 'Any Height',
+        rideType: 'Slow Dark Ride',
+        image: 'https://github.com/desmaunderwood-create/underwooddisneytracker/blob/main/docs/mermaid.png?raw=true',
+        description: 'Dive into Ariel’s wondrous world and relive scenes from the classic movie.'
+      },
+      {
+        id: 'many-adventures-pooh',
+        parkId: 'mk',
+        name: "The Many Adventures of Winnie the Pooh",
+        land: 'Fantasyland',
+        duration: '4 minutes',
+        thrillLevel: 1,
+        heightRequirement: 'Any Height',
+        rideType: 'Slow Dark Ride',
+        image: 'https://github.com/desmaunderwood-create/underwooddisneytracker/blob/main/docs/pooh.jpg?raw=true',
+        description: 'Bounce through the Hundred Acre Wood in a Hunny Pot.'
+      },
+      {
+        id: 'its-a-small-world',
+        parkId: 'mk',
+        name: "It's a Small World",
+        land: 'Fantasyland',
+        duration: '10 minutes',
+        thrillLevel: 1,
+        heightRequirement: 'Any Height',
+        rideType: 'Boat Cruise',
+        image: 'https://github.com/desmaunderwood-create/underwooddisneytracker/blob/main/docs/sw.jpeg?raw=true',
+        description: 'Embark on a joyful boat tour around the globe singing the classic song.'
+      },
+      {
+        id: 'mad-tea-party',
+        parkId: 'mk',
+        name: 'Mad Tea Party',
+        land: 'Fantasyland',
+        duration: '1.5 minutes',
+        thrillLevel: 2,
+        heightRequirement: 'Any Height',
+        rideType: 'Spinning Teacup Ride',
+        image: 'https://github.com/desmaunderwood-create/underwooddisneytracker/blob/main/docs/tc.jpeg?raw=true',
+        description: 'Spin round and round in a giant teacup at the Mad Hatter’s unbirthday party!'
+      },
+      {
+        id: 'peoplemover',
+        parkId: 'mk',
+        name: 'Tomorrowland Transit Authority PeopleMover',
+        land: 'Tomorrowland',
+        duration: '10 minutes',
+        thrillLevel: 1,
+        heightRequirement: 'Any Height',
+        rideType: 'Elevated Tram Tour',
+        image: 'https://github.com/desmaunderwood-create/underwooddisneytracker/blob/main/docs/images-1.jpeg?raw=true',
+        description: 'Take a relaxing, breezy elevated tour above Tomorrowland and peek inside Space Mountain!'
+      },
+      {
+        id: 'jungle-cruise',
+        parkId: 'mk',
+        name: 'Jungle Cruise',
+        land: 'Adventureland',
+        duration: '10 minutes',
+        thrillLevel: 1,
+        heightRequirement: 'Any Height',
+        rideType: 'Guided Riverboat Tour',
+        image: 'https://github.com/desmaunderwood-create/underwooddisneytracker/blob/main/docs/images.jpeg?raw=true',
+        description: 'Embark on a comedic riverboat expedition past exotic wildlife and the eighth wonder of the world!'
+      },
+      {
+        id: 'tomorrowland-speedway',
+        parkId: 'mk',
+        name: 'Tomorrowland Speedway',
+        land: 'Tomorrowland',
+        duration: '4.5 minutes',
+        thrillLevel: 1,
+        heightRequirement: '32" (81 cm)',
+        rideType: 'Guided Race Car Track',
+        image: 'https://github.com/desmaunderwood-create/underwooddisneytracker/blob/main/docs/images-2.jpeg?raw=true',
+        description: 'Get behind the wheel of your own gas-powered race car and cruise around a scenic track!'
+      },
+      {
+        id: 'carousel-of-progress',
+        parkId: 'mk',
+        name: "Walt Disney's Carousel of Progress",
+        land: 'Tomorrowland',
+        duration: '21 minutes',
+        thrillLevel: 1,
+        heightRequirement: 'Any Height',
+        rideType: 'Rotating Theater Show',
+        image: 'https://github.com/desmaunderwood-create/underwooddisneytracker/blob/main/docs/images-3.jpeg?raw=true',
+        description: 'Follow an American family through four generations of technological progress in a rotating theater!'
+      },
+
+      // --- EPCOT ---
+      {
+        id: 'spaceship-earth',
+        parkId: 'epcot',
+        name: 'Spaceship Earth',
+        land: 'World Celebration',
+        duration: '15 minutes',
+        thrillLevel: 1,
+        heightRequirement: 'Any Height',
+        rideType: 'Slow Dark Ride',
+        image: 'https://github.com/desmaunderwood-create/underwooddisneytracker/blob/main/docs/images-4.jpeg?raw=true',
+        description: 'Travel through time inside EPCOT’s iconic geosphere to witness the history of human communication!'
+      },
+      {
+        id: 'journey-into-imagination',
+        parkId: 'epcot',
+        name: 'Journey Into Imagination With Figment',
+        land: 'World Celebration',
+        duration: '6 minutes',
+        thrillLevel: 1,
+        heightRequirement: 'Any Height',
+        rideType: 'Slow Dark Ride',
+        image: 'https://github.com/desmaunderwood-create/underwooddisneytracker/blob/main/docs/images-5.jpeg?raw=true',
+        description: 'Explore the sensory labs with playful purple dragon Figment and discover the power of imagination!'
+      },
+      {
+        id: 'soarin',
+        parkId: 'epcot',
+        name: "Soarin' Around the World",
+        land: 'World Nature',
+        duration: '5 minutes',
+        thrillLevel: 2,
+        heightRequirement: '40" (102 cm)',
+        rideType: 'Hang-Gliding Flight Simulator',
+        image: 'https://github.com/desmaunderwood-create/underwooddisneytracker/blob/main/docs/images-6.jpeg?raw=true',
+        description: 'Take flight on a breathtaking hang-gliding adventure over global wonders with wind and scents!'
+      },
+      {
+        id: 'living-with-the-land',
+        parkId: 'epcot',
+        name: 'Living with the Land',
+        land: 'World Nature',
+        duration: '14 minutes',
+        thrillLevel: 1,
+        heightRequirement: 'Any Height',
+        rideType: 'Indoor Boat Cruise',
+        image: 'https://github.com/desmaunderwood-create/underwooddisneytracker/blob/main/docs/images-7.jpeg?raw=true',
+        description: 'Cruise through ecosystems and futuristic greenhouses showcasing innovative Disney agriculture!'
+      },
+      {
+        id: 'seas-with-nemo',
+        parkId: 'epcot',
+        name: 'The Seas with Nemo & Friends',
+        land: 'World Nature',
+        duration: '4 minutes',
+        thrillLevel: 1,
+        heightRequirement: 'Any Height',
+        rideType: 'Slow Clam-Mobile Dark Ride',
+        image: 'https://github.com/desmaunderwood-create/underwooddisneytracker/blob/main/docs/images.jpeg?raw=true',
+        description: 'Board a "clamobile" and dive under the sea to help Marlin and Dory find Nemo!'
+      },
+      {
+        id: 'epcot-american-adventure',
+        parkId: 'epcot',
+        name: 'The American Adventure Pavilion',
+        land: 'World Showcase',
+        duration: '29 minutes',
+        thrillLevel: 1,
+        heightRequirement: 'Any Height',
+        rideType: 'Country Pavilion & Stage Show',
+        image: 'https://github.com/desmaunderwood-create/underwooddisneytracker/blob/main/docs/amer.jpg?raw=true',
+        description: 'Explore patriotic history, traditional colonial architecture, and delicious American classic eats!'
+      },
+      {
+        id: 'epcot-canada',
+        parkId: 'epcot',
+        name: 'Canada Pavilion',
+        land: 'World Showcase',
+        duration: 'Self-guided',
+        thrillLevel: 1,
+        heightRequirement: 'Any Height',
+        rideType: 'Country Pavilion & 360 Film',
+        image: 'https://github.com/desmaunderwood-create/underwooddisneytracker/blob/main/docs/can.jpg?raw=true',
+        description: 'Stroll through gorgeous gardens, waterfalls, and taste famous Canadian snacks and poutine!'
+      },
+      {
+        id: 'epcot-china',
+        parkId: 'epcot',
+        name: 'China Pavilion',
+        land: 'World Showcase',
+        duration: 'Self-guided',
+        thrillLevel: 1,
+        heightRequirement: 'Any Height',
+        rideType: 'Country Pavilion & 360 Film',
+        image: 'https://github.com/desmaunderwood-create/underwooddisneytracker/blob/main/docs/china.jpg?raw=true',
+        description: 'Marvel at the Temple of Heaven, authentic gardens, shopping, and delicious Chinese cuisine!'
+      },
+      {
+        id: 'epcot-france',
+        parkId: 'epcot',
+        name: 'France Pavilion',
+        land: 'World Showcase',
+        duration: 'Self-guided',
+        thrillLevel: 1,
+        heightRequirement: 'Any Height',
+        rideType: 'Country Pavilion & Dining',
+        image: 'https://github.com/desmaunderwood-create/underwooddisneytracker/blob/main/docs/fran.jpg?raw=true',
+        description: 'Enjoy Parisian architecture, authentic bakeries, crêpes, ice cream, and Remy’s Ratatouille Adventure!'
+      },
+      {
+        id: 'frozen-ever-after',
+        parkId: 'epcot',
+        name: 'Frozen Ever After',
+        land: 'World Showcase (Norway)',
+        duration: '5 minutes',
+        thrillLevel: 2,
+        heightRequirement: 'Any Height',
+        rideType: 'Musical Dark Boat Ride',
+        image: 'https://github.com/desmaunderwood-create/underwooddisneytracker/blob/main/docs/frozen.jpg?raw=true',
+        description: 'Voyage to Arendelle on an ancient Nordic vessel and sing along with Anna, Elsa, and Olaf!'
+      },
+      {
+        id: 'epcot-germany',
+        parkId: 'epcot',
+        name: 'Germany Pavilion',
+        land: 'World Showcase',
+        duration: 'Self-guided',
+        thrillLevel: 1,
+        heightRequirement: 'Any Height',
+        rideType: 'Country Pavilion & Dining',
+        image: 'https://github.com/desmaunderwood-create/underwooddisneytracker/blob/main/docs/germ.jpg?raw=true',
+        description: 'Discover fairytale Bavarian architecture, miniature train village, pretzels, and caramel sweets!'
+      },
+      {
+        id: 'epcot-italy',
+        parkId: 'epcot',
+        name: 'Italy Pavilion',
+        land: 'World Showcase',
+        duration: 'Self-guided',
+        thrillLevel: 1,
+        heightRequirement: 'Any Height',
+        rideType: 'Country Pavilion & Dining',
+        image: 'https://github.com/desmaunderwood-create/underwooddisneytracker/blob/main/docs/italy.jpg?raw=true',
+        description: 'Take in Venetian bridges, St. Mark’s Campanile, authentic pizza, gelato, and Italian wines!'
+      },
+      {
+        id: 'epcot-japan',
+        parkId: 'epcot',
+        name: 'Japan Pavilion',
+        land: 'World Showcase',
+        duration: 'Self-guided',
+        thrillLevel: 1,
+        heightRequirement: 'Any Height',
+        rideType: 'Country Pavilion & Shopping',
+        image: 'https://github.com/desmaunderwood-create/underwooddisneytracker/blob/main/docs/japan.jpg?raw=true',
+        description: 'Admire the majestic Torii gate, five-story pagoda, huge Mitsukoshi store, sushi, and shaved ice!'
+      },
+      {
+        id: 'epcot-mexico',
+        parkId: 'epcot',
+        name: 'Mexico Pavilion',
+        land: 'World Showcase',
+        duration: 'Self-guided',
+        thrillLevel: 1,
+        heightRequirement: 'Any Height',
+        rideType: 'Country Pavilion & Boat Ride',
+        image: 'https://github.com/desmaunderwood-create/underwooddisneytracker/blob/main/docs/mexico.jpg?raw=true',
+        description: 'Step inside a Mesoamerican pyramid with twilight market, Gran Fiesta Tour boat ride, and tacos!'
+      },
+      {
+        id: 'epcot-morocco',
+        parkId: 'epcot',
+        name: 'Morocco Pavilion',
+        land: 'World Showcase',
+        duration: 'Self-guided',
+        thrillLevel: 1,
+        heightRequirement: 'Any Height',
+        rideType: 'Country Pavilion & Culture',
+        image: 'https://github.com/desmaunderwood-create/underwooddisneytracker/blob/main/docs/mor.jpg?raw=true',
+        description: 'Wander intricately detailed mosaic bazaars, serene courtyards, and delicious Mediterranean dining!'
+      },
+      {
+        id: 'epcot-norway',
+        parkId: 'epcot',
+        name: 'Norway Pavilion',
+        land: 'World Showcase',
+        duration: 'Self-guided',
+        thrillLevel: 1,
+        heightRequirement: 'Any Height',
+        rideType: 'Country Pavilion & Dark Ride',
+        image: 'https://github.com/desmaunderwood-create/underwooddisneytracker/blob/main/docs/norway.jpeg?raw=true',
+        description: 'Experience Scandinavian charm, School Bread pastries, Viking heritage, and Frozen Ever After!'
+      },
+      {
+        id: 'epcot-uk',
+        parkId: 'epcot',
+        name: 'United Kingdom Pavilion',
+        land: 'World Showcase',
+        duration: 'Self-guided',
+        thrillLevel: 1,
+        heightRequirement: 'Any Height',
+        rideType: 'Country Pavilion & Entertainment',
+        image: 'https://github.com/desmaunderwood-create/underwooddisneytracker/blob/main/docs/uk.jpg?raw=true',
+        description: 'Enjoy cobblestone streets, iconic red phone booths, live music, and classic fish and chips!'
+      },
+      {
         id: 'guardians-rewind',
         parkId: 'epcot',
         name: 'Guardians of the Galaxy: Cosmic Rewind',
@@ -218,6 +609,8 @@
         image: 'https://images.unsplash.com/photo-1555396273-367ea4eb4db5?auto=format&fit=crop&q=80&w=800',
         description: 'Shrink down to Remy size and zip through Paris kitchen.'
       },
+
+      // --- HOLLYWOOD STUDIOS ---
       {
         id: 'rise-resistance',
         parkId: 'hs',
@@ -239,9 +632,59 @@
         thrillLevel: 2,
         heightRequirement: '38" (97 cm)',
         rideType: 'Family Coaster',
-        image: 'https://images.unsplash.com/photo-1534447677768-be436bb09401?auto=format&fit=crop&q=80&w=800',
+        image: 'https://github.com/desmaunderwood-create/underwooddisneytracker/blob/main/docs/dog.jpg?raw=true',
         description: 'Zip around Andy backyard on Slinky Dog mega coaster.'
       },
+      {
+        id: 'tower-of-terror',
+        parkId: 'hs',
+        name: 'The Twilight Zone Tower of Terror',
+        land: 'Sunset Boulevard',
+        duration: '3.5 minutes',
+        thrillLevel: 5,
+        heightRequirement: '40" (102 cm)',
+        rideType: 'Thrill Drop Elevator Ride',
+        image: 'https://github.com/desmaunderwood-create/underwooddisneytracker/blob/main/docs/tower-of-terror-disney-world-795.jpg?raw=true',
+        description: 'Step into the haunted Hollywood Tower Hotel and plunge down a darkened elevator shaft!'
+      },
+      {
+        id: 'toy-story-mania',
+        parkId: 'hs',
+        name: 'Toy Story Mania!',
+        land: 'Toy Story Land',
+        duration: '6.5 minutes',
+        thrillLevel: 1,
+        heightRequirement: 'Any Height',
+        rideType: '4D Interactive Carnival Ride',
+        image: 'https://github.com/desmaunderwood-create/underwooddisneytracker/blob/main/docs/images-8.jpeg?raw=true',
+        description: 'Put on 3D glasses and compete in fast-paced midway target games hosted by Toy Story pals!'
+      },
+      {
+        id: 'runaway-railway',
+        parkId: 'hs',
+        name: "Mickey & Minnie's Runaway Railway",
+        land: 'Hollywood Boulevard',
+        duration: '4.5 minutes',
+        thrillLevel: 1,
+        heightRequirement: 'Any Height',
+        rideType: 'Trackless Cartoon Dark Ride',
+        image: 'https://github.com/desmaunderwood-create/underwooddisneytracker/blob/main/docs/images-9.jpeg?raw=true',
+        description: 'Burst through the movie screen into a zany Mickey Mouse cartoon world where anything can happen!'
+      },
+      {
+        id: 'rock-n-roller-coaster',
+        parkId: 'hs',
+        name: "Rock 'n' Roller Coaster",
+        land: 'Sunset Boulevard',
+        duration: '1.5 minutes',
+        thrillLevel: 5,
+        heightRequirement: '48" (122 cm)',
+        rideType: 'High-Speed Inverting Launch Coaster',
+        image: 'https://images.unsplash.com/photo-1513889961551-628c1e5e2ee9?auto=format&fit=crop&q=80&w=800',
+        description: 'Blast off from 0 to 60 mph in 2.8 seconds through twists, loops, and rock music!'
+      },
+
+      // --- ANIMAL KINGDOM ---
       {
         id: 'flight-of-passage',
         parkId: 'ak',
@@ -265,29 +708,129 @@
         rideType: 'Thrill Coaster',
         image: 'https://images.unsplash.com/photo-1469854523086-cc02fe5d8800?auto=format&fit=crop&q=80&w=800',
         description: 'Coaster through icy Himalayan peaks while escaping Yeti.'
+      },
+      {
+        id: 'kilimanjaro-safaris',
+        parkId: 'ak',
+        name: 'Kilimanjaro Safaris',
+        land: 'Africa',
+        duration: '18 minutes',
+        thrillLevel: 1,
+        heightRequirement: 'Any Height',
+        rideType: 'Open-Air Safari Expedition',
+        image: 'https://images.unsplash.com/photo-1516426122078-c23e76319801?auto=format&fit=crop&q=80&w=800',
+        description: 'Set off in an open-sided safari vehicle across the Harambe Wildlife Reserve to spot live elephants, lions, and giraffes!'
+      },
+      {
+        id: 'navi-river-journey',
+        parkId: 'ak',
+        name: "Na'vi River Journey",
+        land: 'Pandora',
+        duration: '4.5 minutes',
+        thrillLevel: 1,
+        heightRequirement: 'Any Height',
+        rideType: 'Bioluminescent Boat Ride',
+        image: 'https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&q=80&w=800',
+        description: 'Drift down a sacred river hidden within Pandora’s glowing bioluminescent rainforest!'
       }
     ];
+
+    // Helper to normalize ride names to match ThemeParks.wiki live data automatically
+    const normalizeName = (str) =>
+      str.toLowerCase()
+        .replace(/^(star wars:|avatar|the twilight zone|walt disney's)\s*/g, '')
+        .replace(/[^a-z0-9]/g, '');
 
     function App() {
       const [activeTab, setActiveTab] = useState('home');
       const [activePark, setActivePark] = useState('mk');
       const [activeMemberFilter, setActiveMemberFilter] = useState('ALL');
       const [rideState, setRideState] = useState({});
+      const [characterState, setCharacterState] = useState({});
       const [selectedRide, setSelectedRide] = useState(null);
 
-      // Pass Price & Visits State
-      const [passPrice, setPassPrice] = useState('');
+      // Live Wait Times from ThemeParks.wiki
+      const [liveWaitTimes, setLiveWaitTimes] = useState({});
+      const [lastWaitUpdate, setLastWaitUpdate] = useState(null);
+
+      // Individual Pass Tracker State (per family member)
+      const [selectedPassMember, setSelectedPassMember] = useState('mom');
+      const [passDataByMember, setPassDataByMember] = useState({
+        mom: { price: '', visits: [] },
+        dad: { price: '', visits: [] },
+        emma: { price: '', visits: [] },
+        harper: { price: '', visits: [] }
+      });
       const [selectedPassPark, setSelectedPassPark] = useState('Magic Kingdom');
       const [visitDate, setVisitDate] = useState(() => new Date().toISOString().split('T')[0]);
-      const [parkVisits, setParkVisits] = useState([]);
 
-      // Listen for updates from Firestore document: trackers/familyProgress
+      // Fetch Live Wait Times for all 4 WDW Parks from ThemeParks.wiki
+      useEffect(() => {
+        let isMounted = true;
+
+        async function fetchAllWaitTimes() {
+          try {
+            const results = await Promise.all(
+              PARKS_CATALOG.map(p =>
+                fetch(`https://api.themeparks.wiki/v1/entity/${p.wikiId}/live`)
+                  .then(res => res.ok ? res.json() : null)
+                  .catch(() => null)
+              )
+            );
+
+            const waitMap = {};
+            results.forEach(parkData => {
+              if (parkData && Array.isArray(parkData.liveData)) {
+                parkData.liveData.forEach(entity => {
+                  if (entity.entityType === 'ATTRACTION' && entity.name) {
+                    const key = normalizeName(entity.name);
+                    waitMap[key] = {
+                      status: entity.status || 'UNKNOWN',
+                      waitTime: entity.queue?.STANDBY?.waitTime ?? null,
+                      returnTime: entity.queue?.RETURN_TIME?.state ?? null
+                    };
+                  }
+                });
+              }
+            });
+
+            if (isMounted && Object.keys(waitMap).length > 0) {
+              setLiveWaitTimes(waitMap);
+              setLastWaitUpdate(new Date());
+            }
+          } catch (err) {
+            console.error("ThemeParks.wiki Fetch Error:", err);
+          }
+        }
+
+        fetchAllWaitTimes();
+        const interval = setInterval(fetchAllWaitTimes, 60000); // Auto-refresh every 60 seconds
+        return () => {
+          isMounted = false;
+          clearInterval(interval);
+        };
+      }, []);
+
+      // Helper to look up live wait info for a ride
+      const getLiveInfoForRide = (rideName) => {
+        const norm = normalizeName(rideName);
+        if (liveWaitTimes[norm]) return liveWaitTimes[norm];
+        // Partial match fallback
+        const foundKey = Object.keys(liveWaitTimes).find(
+          k => k.includes(norm) || (norm.length > 6 && norm.includes(k))
+        );
+        return foundKey ? liveWaitTimes[foundKey] : null;
+      };
+
+      // Listen for Rides & Characters updates from Firestore: trackers/familyProgress
       useEffect(() => {
         if (!db) return;
         const docRef = db.collection('trackers').doc('familyProgress');
         const unsubscribe = docRef.onSnapshot((doc) => {
-          if (doc.exists && doc.data().rideState) {
-            setRideState(doc.data().rideState);
+          if (doc.exists) {
+            const data = doc.data();
+            if (data.rideState) setRideState(data.rideState);
+            if (data.characterState) setCharacterState(data.characterState);
           }
         }, (error) => {
           console.error("Firestore Listen Error:", error);
@@ -295,15 +838,16 @@
         return () => unsubscribe();
       }, []);
 
-      // Listen for Pass Price & Visits from Firestore document: trackers/passTracker
+      // Listen for Individual Pass Price & Visits from Firestore: trackers/passTrackerV2
       useEffect(() => {
         if (!db) return;
-        const passDocRef = db.collection('trackers').doc('passTracker');
+        const passDocRef = db.collection('trackers').doc('passTrackerV2');
         const unsubscribe = passDocRef.onSnapshot((doc) => {
-          if (doc.exists) {
-            const data = doc.data();
-            if (data.passPrice !== undefined) setPassPrice(data.passPrice);
-            if (Array.isArray(data.visits)) setParkVisits(data.visits);
+          if (doc.exists && doc.data().members) {
+            setPassDataByMember(prev => ({
+              ...prev,
+              ...doc.data().members
+            }));
           }
         }, (error) => {
           console.error("Firestore Pass Tracker Listen Error:", error);
@@ -311,14 +855,14 @@
         return () => unsubscribe();
       }, []);
 
-      // Toggle person check-off and write to Firestore
+      // Toggle person check-off for Rides
       const togglePerson = (rideId, memberId) => {
         const currentRiders = rideState[rideId] || [];
         const isRidden = currentRiders.includes(memberId);
-        const updated = isRidden 
-          ? currentRiders.filter(id => id !== memberId) 
+        const updated = isRidden
+          ? currentRiders.filter(id => id !== memberId)
           : [...currentRiders, memberId];
-        
+
         const nextState = { ...rideState, [rideId]: updated };
         setRideState(nextState);
 
@@ -329,55 +873,108 @@
         }
       };
 
-      // Update Annual Pass Price in Firestore
-      const handleSavePassPrice = (val) => {
-        setPassPrice(val);
+      // Toggle person check-off for Characters
+      const toggleCharacter = (charId, memberId) => {
+        const currentVisitors = characterState[charId] || [];
+        const isMet = currentVisitors.includes(memberId);
+        const updated = isMet
+          ? currentVisitors.filter(id => id !== memberId)
+          : [...currentVisitors, memberId];
+
+        const nextState = { ...characterState, [charId]: updated };
+        setCharacterState(nextState);
+
         if (db) {
-          db.collection('trackers').doc('passTracker')
-            .set({ passPrice: val }, { merge: true })
+          db.collection('trackers').doc('familyProgress')
+            .set({ characterState: nextState }, { merge: true })
+            .catch(err => console.error("Firestore Character Save Error:", err));
+        }
+      };
+
+      // Update Individual Annual Pass Price
+      const handleSaveMemberPassPrice = (val) => {
+        const updatedMemberData = {
+          ...passDataByMember[selectedPassMember],
+          price: val
+        };
+        const nextMembers = {
+          ...passDataByMember,
+          [selectedPassMember]: updatedMemberData
+        };
+        setPassDataByMember(nextMembers);
+
+        if (db) {
+          db.collection('trackers').doc('passTrackerV2')
+            .set({ members: nextMembers }, { merge: true })
             .catch(err => console.error("Firestore Pass Price Save Error:", err));
         }
       };
 
-      // Save a New Park Visit
-      const handleAddVisit = () => {
+      // Save a Park Visit for Selected Member (or All Family Members)
+      const handleAddMemberVisit = (applyToAll = false) => {
         if (!visitDate) return;
-        const newVisit = {
-          id: Date.now().toString(),
-          park: selectedPassPark,
-          date: visitDate
-        };
-        const updatedVisits = [newVisit, ...parkVisits].sort((a, b) => b.date.localeCompare(a.date));
-        setParkVisits(updatedVisits);
+        const targetIds = applyToAll ? FAMILY_MEMBERS.map(m => m.id) : [selectedPassMember];
+        const nextMembers = { ...passDataByMember };
+
+        targetIds.forEach(mId => {
+          const current = nextMembers[mId] || { price: '', visits: [] };
+          const newVisit = {
+            id: `${Date.now()}-${mId}`,
+            park: selectedPassPark,
+            date: visitDate
+          };
+          nextMembers[mId] = {
+            ...current,
+            visits: [newVisit, ...(current.visits || [])].sort((a, b) => b.date.localeCompare(a.date))
+          };
+        });
+
+        setPassDataByMember(nextMembers);
 
         if (db) {
-          db.collection('trackers').doc('passTracker')
-            .set({ visits: updatedVisits }, { merge: true })
+          db.collection('trackers').doc('passTrackerV2')
+            .set({ members: nextMembers }, { merge: true })
             .catch(err => console.error("Firestore Add Visit Error:", err));
         }
       };
 
-      // Delete a Saved Park Visit
-      const handleDeleteVisit = (id) => {
-        const updatedVisits = parkVisits.filter(v => v.id !== id);
-        setParkVisits(updatedVisits);
+      // Delete a Saved Park Visit for Selected Member
+      const handleDeleteMemberVisit = (visitId) => {
+        const current = passDataByMember[selectedPassMember] || { price: '', visits: [] };
+        const updatedVisits = (current.visits || []).filter(v => v.id !== visitId);
+        const nextMembers = {
+          ...passDataByMember,
+          [selectedPassMember]: {
+            ...current,
+            visits: updatedVisits
+          }
+        };
+        setPassDataByMember(nextMembers);
 
         if (db) {
-          db.collection('trackers').doc('passTracker')
-            .set({ visits: updatedVisits }, { merge: true })
+          db.collection('trackers').doc('passTrackerV2')
+            .set({ members: nextMembers }, { merge: true })
             .catch(err => console.error("Firestore Delete Visit Error:", err));
         }
       };
 
-      // Calculate Cost Per Visit
-      const numericPrice = parseFloat(passPrice) || 0;
-      const costPerVisit = parkVisits.length > 0 && numericPrice > 0
-        ? `$${(numericPrice / parkVisits.length).toFixed(2)}`
+      // Active Member Pass Calculations
+      const activeMemberPass = passDataByMember[selectedPassMember] || { price: '', visits: [] };
+      const memberNumericPrice = parseFloat(activeMemberPass.price) || 0;
+      const memberVisitsList = activeMemberPass.visits || [];
+      const memberCostPerVisit = memberVisitsList.length > 0 && memberNumericPrice > 0
+        ? `$${(memberNumericPrice / memberVisitsList.length).toFixed(2)}`
         : '—';
 
       const filteredRides = RIDES_CATALOG.filter(r => {
         const matchesPark = activePark === 'ALL' || r.parkId === activePark;
         const matchesMember = activeMemberFilter === 'ALL' || (rideState[r.id] || []).includes(activeMemberFilter);
+        return matchesPark && matchesMember;
+      });
+
+      const filteredCharacters = CHARACTERS_CATALOG.filter(c => {
+        const matchesPark = activePark === 'ALL' || c.parkId === activePark;
+        const matchesMember = activeMemberFilter === 'ALL' || (characterState[c.id] || []).includes(activeMemberFilter);
         return matchesPark && matchesMember;
       });
 
@@ -424,6 +1021,7 @@
             {/* Content Body */}
             <main className="flex-1 p-3 space-y-3 overflow-y-auto pb-20">
               
+              {/* --- RIDES TAB --- */}
               {activeTab === 'home' && (
                 <>
                   {/* Park Filters */}
@@ -456,15 +1054,40 @@
                   <div className="space-y-2.5">
                     {filteredRides.map(ride => {
                       const riders = rideState[ride.id] || [];
+                      const liveInfo = getLiveInfoForRide(ride.name);
+
                       return (
                         <div key={ride.id} className="bg-slate-800/80 hover:bg-slate-800 p-3 rounded-2xl border border-slate-700/80 transition-all">
                           <div className="flex space-x-3 cursor-pointer" onClick={() => setSelectedRide(ride)}>
-                            <img 
-                              src={ride.image} 
-                              alt={ride.name} 
-                              className="w-16 h-16 rounded-xl object-cover shrink-0" 
-                              onError={(e) => { e.target.src = 'https://placehold.co/100x100/1e293b/f59e0b?text=Ride'; }}
-                            />
+                            <div className="relative shrink-0">
+                              <img 
+                                src={ride.image} 
+                                alt={ride.name} 
+                                className="w-16 h-16 rounded-xl object-cover" 
+                                onError={(e) => { e.target.src = 'https://placehold.co/100x100/1e293b/f59e0b?text=Ride'; }}
+                              />
+                              {/* Live Wait Time Badge on Thumbnail */}
+                              {liveInfo && (
+                                <div className={`absolute -bottom-1.5 left-1/2 -translate-x-1/2 px-1.5 py-0.5 rounded-md text-[9px] font-extrabold whitespace-nowrap shadow ${
+                                  liveInfo.status === 'DOWN'
+                                    ? 'bg-rose-600 text-white'
+                                    : liveInfo.status === 'CLOSED'
+                                    ? 'bg-slate-700 text-slate-300'
+                                    : liveInfo.waitTime !== null
+                                    ? 'bg-emerald-500 text-slate-950'
+                                    : 'bg-sky-500 text-slate-950'
+                                }`}>
+                                  {liveInfo.status === 'DOWN'
+                                    ? 'DOWN'
+                                    : liveInfo.status === 'CLOSED'
+                                    ? 'CLOSED'
+                                    : liveInfo.waitTime !== null
+                                    ? `${liveInfo.waitTime}m wait`
+                                    : 'OPEN'}
+                                </div>
+                              )}
+                            </div>
+
                             <div className="flex-1 min-w-0">
                               <h3 className="text-xs font-bold text-slate-100 flex items-center justify-between">
                                 <span className="truncate">{ride.name}</span>
@@ -476,7 +1099,7 @@
                           </div>
 
                           {/* Family Check-off Row */}
-                          <div className="mt-2.5 pt-2 border-t border-slate-700/60 flex items-center justify-between">
+                          <div className="mt-3 pt-2 border-t border-slate-700/60 flex items-center justify-between">
                             <span className="text-[9px] font-bold text-slate-400 uppercase">Who Rode?</span>
                             <div className="flex space-x-2">
                               {FAMILY_MEMBERS.map(m => {
@@ -508,7 +1131,6 @@
                               })}
                             </div>
                           </div>
-
                         </div>
                       );
                     })}
@@ -516,9 +1138,92 @@
                 </>
               )}
 
+              {/* --- CHARACTERS TAB --- */}
+              {activeTab === 'characters' && (
+                <>
+                  {/* Park Filters */}
+                  <div className="flex gap-1.5 overflow-x-auto no-scrollbar pb-1">
+                    <button 
+                      onClick={() => setActivePark('ALL')} 
+                      className={`px-3 py-1.5 rounded-full text-xs font-bold transition-all ${activePark === 'ALL' ? 'bg-amber-400 text-slate-950' : 'bg-slate-800 text-slate-300'}`}
+                    >
+                      All Parks
+                    </button>
+                    {PARKS_CATALOG.map(p => (
+                      <button 
+                        key={p.id} 
+                        onClick={() => setActivePark(p.id)} 
+                        className={`px-3 py-1.5 rounded-full text-xs font-bold whitespace-nowrap transition-all ${activePark === p.id ? 'bg-purple-600 text-white' : 'bg-slate-800 text-slate-300'}`}
+                      >
+                        {p.icon} {p.name}
+                      </button>
+                    ))}
+                  </div>
+
+                  {activeMemberFilter !== 'ALL' && (
+                    <div className="bg-purple-950/60 border border-purple-500/30 rounded-xl p-2 flex justify-between items-center text-xs text-purple-200">
+                      <span>Showing characters met by <strong>{FAMILY_MEMBERS.find(m => m.id === activeMemberFilter)?.name}</strong></span>
+                      <button onClick={() => setActiveMemberFilter('ALL')} className="text-amber-300 font-bold underline text-[10px]">Clear Filter</button>
+                    </div>
+                  )}
+
+                  {/* Characters List */}
+                  <div className="space-y-2.5">
+                    {filteredCharacters.map(char => {
+                      const visitors = characterState[char.id] || [];
+                      const parkObj = PARKS_CATALOG.find(p => p.id === char.parkId);
+                      return (
+                        <div key={char.id} className="bg-slate-800/80 p-3 rounded-2xl border border-slate-700/80">
+                          <div className="flex items-center justify-between">
+                            <div>
+                              <h3 className="text-xs font-bold text-slate-100">{char.name}</h3>
+                              <div className="text-[10px] text-amber-300 font-semibold mt-0.5">
+                                {parkObj ? parkObj.icon : '✨'} {char.parkName} • {char.location}
+                              </div>
+                            </div>
+                          </div>
+
+                          {/* Family Check-off Row */}
+                          <div className="mt-2.5 pt-2 border-t border-slate-700/60 flex items-center justify-between">
+                            <span className="text-[9px] font-bold text-slate-400 uppercase">Who Met?</span>
+                            <div className="flex space-x-2">
+                              {FAMILY_MEMBERS.map(m => {
+                                const checked = visitors.includes(m.id);
+                                return (
+                                  <button
+                                    key={m.id}
+                                    onClick={() => toggleCharacter(char.id, m.id)}
+                                    className={`relative w-8 h-8 rounded-full overflow-hidden border-2 transition-all ${
+                                      checked ? 'border-pink-400 ring-2 ring-pink-400/40 scale-105' : 'border-slate-600 opacity-40 hover:opacity-75'
+                                    }`}
+                                  >
+                                    <img 
+                                      src={m.avatarImg} 
+                                      alt={m.name} 
+                                      className="w-full h-full object-cover" 
+                                      onError={(e) => { e.target.src = 'https://placehold.co/100x100/1e293b/f59e0b?text=' + m.name; }}
+                                    />
+                                    {checked && (
+                                      <div className="absolute inset-0 bg-pink-500/50 flex items-center justify-center font-bold text-white text-xs">
+                                        ✓
+                                      </div>
+                                    )}
+                                  </button>
+                                );
+                              })}
+                            </div>
+                          </div>
+                        </div>
+                      );
+                    })}
+                  </div>
+                </>
+              )}
+
+              {/* --- STATS / LEADERBOARD TAB --- */}
               {activeTab === 'stats' && (
                 <div className="space-y-4">
-                  <h2 className="text-sm font-bold text-slate-100 uppercase tracking-wide">Family Leaderboard</h2>
+                  <h2 className="text-sm font-bold text-slate-100 uppercase tracking-wide">Ride Leaderboard</h2>
                   <div className="bg-slate-800/90 p-4 rounded-2xl border border-slate-700 space-y-4">
                     {FAMILY_MEMBERS.map(m => {
                       const count = Object.values(rideState).filter(r => r.includes(m.id)).length;
@@ -539,21 +1244,83 @@
                       );
                     })}
                   </div>
+
+                  <h2 className="text-sm font-bold text-slate-100 uppercase tracking-wide pt-1">Character Meet Leaderboard</h2>
+                  <div className="bg-slate-800/90 p-4 rounded-2xl border border-slate-700 space-y-4">
+                    {FAMILY_MEMBERS.map(m => {
+                      const count = Object.values(characterState).filter(c => c.includes(m.id)).length;
+                      const pct = Math.round((count / CHARACTERS_CATALOG.length) * 100);
+                      return (
+                        <div key={m.id} className="space-y-1.5">
+                          <div className="flex items-center justify-between text-xs">
+                            <div className="flex items-center space-x-2">
+                              <img src={m.avatarImg} alt={m.name} className="w-6 h-6 rounded-full object-cover border border-pink-300" onError={(e) => { e.target.src = 'https://placehold.co/100x100/1e293b/f59e0b?text=' + m.name; }} />
+                              <span className="font-bold text-slate-200">{m.name}</span>
+                            </div>
+                            <span className="font-bold text-pink-300">{count} / {CHARACTERS_CATALOG.length} met ({pct}%)</span>
+                          </div>
+                          <div className="w-full bg-slate-900 h-2.5 rounded-full overflow-hidden p-0.5 border border-slate-800">
+                            <div className={`h-full rounded-full bg-gradient-to-r ${m.barColor} transition-all duration-500`} style={{ width: `${pct}%` }}></div>
+                          </div>
+                        </div>
+                      );
+                    })}
+                  </div>
                 </div>
               )}
 
+              {/* --- PASS PRICE TAB (PER FAMILY MEMBER) --- */}
               {activeTab === 'pass' && (
                 <div className="space-y-4">
-                  <div className="text-[10px] uppercase font-bold text-emerald-400 tracking-widest px-1">
-                    Passholder Assistant
+                  <div className="flex items-center justify-between px-1">
+                    <div className="text-[10px] uppercase font-bold text-emerald-400 tracking-widest">
+                      Passholder Assistant
+                    </div>
+                    <div className="text-[10px] text-slate-400 font-semibold">
+                      Individual Pass Tracker
+                    </div>
                   </div>
 
-                  {/* Pass Price & Visit Logger Card */}
+                  {/* Family Summary Mini-Cards */}
+                  <div className="grid grid-cols-4 gap-1.5">
+                    {FAMILY_MEMBERS.map(m => {
+                      const mData = passDataByMember[m.id] || { price: '', visits: [] };
+                      const mPrice = parseFloat(mData.price) || 0;
+                      const mCount = (mData.visits || []).length;
+                      const mCpv = mCount > 0 && mPrice > 0 ? `$${(mPrice / mCount).toFixed(0)}` : '—';
+                      const isSelected = selectedPassMember === m.id;
+
+                      return (
+                        <button
+                          key={m.id}
+                          onClick={() => setSelectedPassMember(m.id)}
+                          className={`p-2 rounded-2xl border flex flex-col items-center transition-all ${
+                            isSelected
+                              ? 'bg-emerald-500/15 border-emerald-400 shadow-md scale-[1.02]'
+                              : 'bg-slate-800/70 border-slate-700/80 opacity-75 hover:opacity-100'
+                          }`}
+                        >
+                          <img
+                            src={m.avatarImg}
+                            alt={m.name}
+                            className={`w-8 h-8 rounded-full object-cover border ${isSelected ? 'border-emerald-400' : 'border-slate-600'}`}
+                          />
+                          <span className="text-[10px] font-bold text-slate-100 mt-1">{m.name}</span>
+                          <span className="text-[10px] font-extrabold text-emerald-400">{mCpv}/visit</span>
+                          <span className="text-[9px] text-slate-400">{mCount} {mCount === 1 ? 'day' : 'days'}</span>
+                        </button>
+                      );
+                    })}
+                  </div>
+
+                  {/* Individual Pass Price & Visit Logger Card */}
                   <div className="bg-slate-800/90 p-4 rounded-2xl border border-slate-700 space-y-4">
                     <div className="flex items-center justify-between">
-                      <label className="text-xs font-bold text-slate-100">Annual Pass Price</label>
+                      <label className="text-xs font-bold text-slate-100">
+                        {FAMILY_MEMBERS.find(m => m.id === selectedPassMember)?.name}'s Pass Price
+                      </label>
                       <div className="text-xs font-semibold text-emerald-400">
-                        Cost per visit <span className="font-extrabold text-sm ml-1">{costPerVisit}</span>
+                        Cost per visit <span className="font-extrabold text-sm ml-1">{memberCostPerVisit}</span>
                       </div>
                     </div>
 
@@ -564,8 +1331,8 @@
                         type="number"
                         step="0.01"
                         placeholder="0.00"
-                        value={passPrice}
-                        onChange={(e) => handleSavePassPrice(e.target.value)}
+                        value={activeMemberPass.price}
+                        onChange={(e) => handleSaveMemberPassPrice(e.target.value)}
                         className="w-full bg-slate-900 border border-slate-700 focus:border-emerald-400 focus:outline-none rounded-xl py-2.5 pl-8 pr-3 text-sm font-bold text-slate-100 placeholder-slate-600 transition-colors"
                       />
                     </div>
@@ -606,34 +1373,48 @@
                       />
                     </div>
 
-                    {/* Save Visit Button */}
-                    <button
-                      type="button"
-                      onClick={handleAddVisit}
-                      className="w-full bg-emerald-600 hover:bg-emerald-500 active:scale-[0.99] text-white font-bold py-3 rounded-xl text-xs transition-all flex items-center justify-center gap-1.5 shadow-md"
-                    >
-                      <span className="text-base leading-none">+</span>
-                      <span>Save visit</span>
-                    </button>
+                    {/* Save Visit Buttons (Individual + Whole Family shortcut) */}
+                    <div className="grid grid-cols-2 gap-2">
+                      <button
+                        type="button"
+                        onClick={() => handleAddMemberVisit(false)}
+                        className="bg-emerald-600 hover:bg-emerald-500 active:scale-[0.99] text-white font-bold py-3 px-2 rounded-xl text-[11px] transition-all flex items-center justify-center gap-1 shadow-md"
+                      >
+                        <span className="text-sm leading-none">+</span>
+                        <span>Save for {FAMILY_MEMBERS.find(m => m.id === selectedPassMember)?.name}</span>
+                      </button>
+                      <button
+                        type="button"
+                        onClick={() => handleAddMemberVisit(true)}
+                        className="bg-slate-700 hover:bg-slate-600 active:scale-[0.99] text-emerald-300 border border-emerald-500/30 font-bold py-3 px-2 rounded-xl text-[11px] transition-all flex items-center justify-center gap-1 shadow-md"
+                      >
+                        <span>👨‍👩‍👧‍👧</span>
+                        <span>Save for All 4</span>
+                      </button>
+                    </div>
                   </div>
 
-                  {/* Visits List */}
+                  {/* Visits List for Selected Member */}
                   <div className="space-y-2.5">
                     <div className="flex items-center justify-between px-1">
-                      <h3 className="text-sm font-bold text-slate-100">Visits</h3>
+                      <h3 className="text-sm font-bold text-slate-100">
+                        {FAMILY_MEMBERS.find(m => m.id === selectedPassMember)?.name}'s Visits
+                      </h3>
                       <span className="bg-emerald-500/20 text-emerald-300 border border-emerald-500/30 text-[11px] font-extrabold px-2.5 py-0.5 rounded-full">
-                        {parkVisits.length}
+                        {memberVisitsList.length}
                       </span>
                     </div>
 
-                    {parkVisits.length === 0 ? (
+                    {memberVisitsList.length === 0 ? (
                       <div className="bg-slate-800/50 border border-slate-700/70 rounded-2xl p-6 text-center space-y-1.5">
                         <div className="text-2xl opacity-60">🎟️</div>
-                        <p className="text-xs text-slate-400">Your saved park visits will appear here.</p>
+                        <p className="text-xs text-slate-400">
+                          No saved park visits for {FAMILY_MEMBERS.find(m => m.id === selectedPassMember)?.name} yet.
+                        </p>
                       </div>
                     ) : (
                       <div className="space-y-2">
-                        {parkVisits.map((visit) => {
+                        {memberVisitsList.map((visit) => {
                           const parkObj = PARKS_CATALOG.find(p => p.name === visit.park);
                           const [y, m, d] = visit.date.split('-');
                           const formattedDate = new Date(y, m - 1, d).toLocaleDateString('en-US', {
@@ -656,7 +1437,7 @@
                                 </div>
                               </div>
                               <button
-                                onClick={() => handleDeleteVisit(visit.id)}
+                                onClick={() => handleDeleteMemberVisit(visit.id)}
                                 className="text-slate-500 hover:text-rose-400 text-[10px] font-bold px-2 py-1 rounded-lg transition-colors"
                               >
                                 Remove
@@ -672,124 +1453,177 @@
 
             </main>
 
-            {/* Detailed Card View Modal */}
-            {selectedRide && (
-              <div className="absolute inset-0 z-50 bg-[#faf6ed] text-slate-900 flex flex-col overflow-y-auto">
-                {/* Header Image with Back & Heart Buttons */}
-                <div className="relative h-64 w-full shrink-0">
-                  <img src={selectedRide.image} alt={selectedRide.name} className="w-full h-full object-cover" />
-                  <button 
-                    onClick={() => setSelectedRide(null)}
-                    className="absolute top-4 left-4 w-9 h-9 bg-white/90 rounded-full flex items-center justify-center font-bold shadow text-slate-800 active:scale-95"
-                  >
-                    ❮
-                  </button>
-                  <button className="absolute top-4 right-4 w-9 h-9 bg-white/90 rounded-full flex items-center justify-center shadow text-pink-600 font-bold active:scale-95">
-                    ♥
-                  </button>
-                </div>
+            {/* Detailed Card View Modal with Live ThemeParks.wiki Wait Times */}
+            {selectedRide && (() => {
+              const liveInfo = getLiveInfoForRide(selectedRide.name);
+              return (
+                <div className="absolute inset-0 z-50 bg-[#faf6ed] text-slate-900 flex flex-col overflow-y-auto">
+                  {/* Header Image with Back & Heart Buttons */}
+                  <div className="relative h-64 w-full shrink-0">
+                    <img src={selectedRide.image} alt={selectedRide.name} className="w-full h-full object-cover" />
+                    <button 
+                      onClick={() => setSelectedRide(null)}
+                      className="absolute top-4 left-4 w-9 h-9 bg-white/90 rounded-full flex items-center justify-center font-bold shadow text-slate-800 active:scale-95"
+                    >
+                      ❮
+                    </button>
+                    <button className="absolute top-4 right-4 w-9 h-9 bg-white/90 rounded-full flex items-center justify-center shadow text-pink-600 font-bold active:scale-95">
+                      ♥
+                    </button>
+                  </div>
 
-                {/* Card Detail Content */}
-                <div className="flex-1 p-5 -mt-6 bg-[#faf6ed] rounded-t-3xl flex flex-col justify-between">
-                  <div className="space-y-4">
-                    <div>
-                      <h2 className="text-2xl font-bold text-[#1b2240] leading-tight font-serif">{selectedRide.name}</h2>
-                      <span className="inline-flex items-center space-x-1 mt-2.5 px-3 py-1 bg-[#f4e6d4] text-[#8c5e31] rounded-full text-xs font-semibold">
-                        <span>🏰</span>
-                        <span>{selectedRide.land}</span>
-                      </span>
-                    </div>
+                  {/* Card Detail Content */}
+                  <div className="flex-1 p-5 -mt-6 bg-[#faf6ed] rounded-t-3xl flex flex-col justify-between">
+                    <div className="space-y-4">
+                      <div>
+                        <h2 className="text-2xl font-bold text-[#1b2240] leading-tight font-serif">{selectedRide.name}</h2>
+                        <div className="flex flex-wrap items-center gap-2 mt-2.5">
+                          <span className="inline-flex items-center space-x-1 px-3 py-1 bg-[#f4e6d4] text-[#8c5e31] rounded-full text-xs font-semibold">
+                            <span>🏰</span>
+                            <span>{selectedRide.land}</span>
+                          </span>
 
-                    <p className="text-xs text-slate-600 leading-relaxed font-medium">
-                      {selectedRide.description}
-                    </p>
+                          {/* Live Wait Time Pill */}
+                          <span className={`inline-flex items-center space-x-1.5 px-3 py-1 rounded-full text-xs font-bold ${
+                            !liveInfo
+                              ? 'bg-slate-200 text-slate-600'
+                              : liveInfo.status === 'DOWN'
+                              ? 'bg-rose-100 text-rose-800 border border-rose-300'
+                              : liveInfo.status === 'CLOSED'
+                              ? 'bg-slate-200 text-slate-700'
+                              : 'bg-emerald-100 text-emerald-900 border border-emerald-300'
+                          }`}>
+                            <span>⏳</span>
+                            <span>
+                              {!liveInfo
+                                ? 'Live Wait Unavailable'
+                                : liveInfo.status === 'DOWN'
+                                ? 'Temporarily Down'
+                                : liveInfo.status === 'CLOSED'
+                                ? 'Park / Ride Closed'
+                                : liveInfo.waitTime !== null
+                                ? `${liveInfo.waitTime} min Standby Wait`
+                                : 'Operating (No Posted Wait)'}
+                            </span>
+                          </span>
+                        </div>
+                      </div>
 
-                    <div className="space-y-3.5 pt-2 text-xs">
-                      {/* Thrill Level */}
-                      <div className="flex items-center space-x-3.5">
-                        <div className="w-6 text-center text-[#1b2240] text-lg font-bold">🎢</div>
-                        <div>
-                          <div className="font-semibold text-slate-500 text-[10px]">Thrill Level</div>
-                          <div className="flex space-x-1 mt-0.5">
-                            {[1, 2, 3, 4, 5].map((star) => (
-                              <span key={star} className={star <= selectedRide.thrillLevel ? "text-[#1b2240] text-sm" : "text-slate-300 text-sm"}>
-                                🐭
-                              </span>
-                            ))}
+                      <p className="text-xs text-slate-600 leading-relaxed font-medium">
+                        {selectedRide.description}
+                      </p>
+
+                      <div className="space-y-3.5 pt-2 text-xs">
+                        {/* Live Wait Time Row */}
+                        <div className="flex items-center space-x-3.5">
+                          <div className="w-6 text-center text-[#1b2240] text-lg font-bold">⏳</div>
+                          <div>
+                            <div className="font-semibold text-slate-500 text-[10px]">
+                              Live Wait Time {lastWaitUpdate ? `(Updated ${lastWaitUpdate.toLocaleTimeString([], { hour: 'numeric', minute: '2-digit' })})` : ''}
+                            </div>
+                            <div className="font-bold text-[#1b2240] text-xs">
+                              {!liveInfo
+                                ? 'Checking ThemeParks.wiki...'
+                                : liveInfo.status === 'DOWN'
+                                ? 'Temporarily Closed / Down'
+                                : liveInfo.status === 'CLOSED'
+                                ? 'Closed'
+                                : liveInfo.waitTime !== null
+                                ? `${liveInfo.waitTime} minutes`
+                                : 'Open (Walk-on / No Standby Posted)'}
+                            </div>
+                          </div>
+                        </div>
+
+                        {/* Thrill Level */}
+                        <div className="flex items-center space-x-3.5">
+                          <div className="w-6 text-center text-[#1b2240] text-lg font-bold">🎢</div>
+                          <div>
+                            <div className="font-semibold text-slate-500 text-[10px]">Thrill Level</div>
+                            <div className="flex space-x-1 mt-0.5">
+                              {[1, 2, 3, 4, 5].map((star) => (
+                                <span key={star} className={star <= selectedRide.thrillLevel ? "text-[#1b2240] text-sm" : "text-slate-300 text-sm"}>
+                                  🐭
+                                </span>
+                              ))}
+                            </div>
+                          </div>
+                        </div>
+
+                        {/* Height Requirement */}
+                        <div className="flex items-center space-x-3.5">
+                          <div className="w-6 text-center text-[#1b2240] text-lg font-bold">🧍</div>
+                          <div>
+                            <div className="font-semibold text-slate-500 text-[10px]">Height Requirement</div>
+                            <div className="font-bold text-[#1b2240] text-xs">{selectedRide.heightRequirement}</div>
+                          </div>
+                        </div>
+
+                        {/* Ride Type */}
+                        <div className="flex items-center space-x-3.5">
+                          <div className="w-6 text-center text-[#1b2240] text-lg font-bold">🎟️</div>
+                          <div>
+                            <div className="font-semibold text-slate-500 text-[10px]">Ride Type</div>
+                            <div className="font-bold text-[#1b2240] text-xs">{selectedRide.rideType}</div>
+                          </div>
+                        </div>
+
+                        {/* Duration */}
+                        <div className="flex items-center space-x-3.5">
+                          <div className="w-6 text-center text-[#1b2240] text-lg font-bold">⏱️</div>
+                          <div>
+                            <div className="font-semibold text-slate-500 text-[10px]">Duration</div>
+                            <div className="font-bold text-[#1b2240] text-xs">{selectedRide.duration}</div>
                           </div>
                         </div>
                       </div>
-
-                      {/* Height Requirement */}
-                      <div className="flex items-center space-x-3.5">
-                        <div className="w-6 text-center text-[#1b2240] text-lg font-bold">🧍</div>
-                        <div>
-                          <div className="font-semibold text-slate-500 text-[10px]">Height Requirement</div>
-                          <div className="font-bold text-[#1b2240] text-xs">{selectedRide.heightRequirement}</div>
-                        </div>
-                      </div>
-
-                      {/* Ride Type */}
-                      <div className="flex items-center space-x-3.5">
-                        <div className="w-6 text-center text-[#1b2240] text-lg font-bold">🎟️</div>
-                        <div>
-                          <div className="font-semibold text-slate-500 text-[10px]">Ride Type</div>
-                          <div className="font-bold text-[#1b2240] text-xs">{selectedRide.rideType}</div>
-                        </div>
-                      </div>
-
-                      {/* Duration */}
-                      <div className="flex items-center space-x-3.5">
-                        <div className="w-6 text-center text-[#1b2240] text-lg font-bold">⏱️</div>
-                        <div>
-                          <div className="font-semibold text-slate-500 text-[10px]">Duration</div>
-                          <div className="font-bold text-[#1b2240] text-xs">{selectedRide.duration}</div>
-                        </div>
-                      </div>
                     </div>
-                  </div>
 
-                  {/* Toggle Per-Person Buttons inside Detail Modal */}
-                  <div className="pt-6 pb-2 space-y-3">
-                    <div className="text-xs font-bold text-slate-700 uppercase tracking-wide">Who Rode This Ride?</div>
-                    <div className="grid grid-cols-2 gap-2">
-                      {FAMILY_MEMBERS.map(m => {
-                        const checked = (rideState[selectedRide.id] || []).includes(m.id);
-                        return (
-                          <button
-                            key={m.id}
-                            onClick={() => togglePerson(selectedRide.id, m.id)}
-                            className={`flex items-center space-x-2 p-2 rounded-xl border transition-all text-xs font-bold ${
-                              checked ? 'bg-emerald-100 border-emerald-500 text-emerald-900' : 'bg-slate-100 border-slate-300 text-slate-600'
-                            }`}
-                          >
-                            <img src={m.avatarImg} alt={m.name} className="w-6 h-6 rounded-full object-cover" />
-                            <span>{m.name}</span>
-                            <span className="ml-auto font-black">{checked ? '✓' : '+'}</span>
-                          </button>
-                        );
-                      })}
+                    {/* Toggle Per-Person Buttons inside Detail Modal */}
+                    <div className="pt-6 pb-2 space-y-3">
+                      <div className="text-xs font-bold text-slate-700 uppercase tracking-wide">Who Rode This Ride?</div>
+                      <div className="grid grid-cols-2 gap-2">
+                        {FAMILY_MEMBERS.map(m => {
+                          const checked = (rideState[selectedRide.id] || []).includes(m.id);
+                          return (
+                            <button
+                              key={m.id}
+                              onClick={() => togglePerson(selectedRide.id, m.id)}
+                              className={`flex items-center space-x-2 p-2 rounded-xl border transition-all text-xs font-bold ${
+                                checked ? 'bg-emerald-100 border-emerald-500 text-emerald-900' : 'bg-slate-100 border-slate-300 text-slate-600'
+                              }`}
+                            >
+                              <img src={m.avatarImg} alt={m.name} className="w-6 h-6 rounded-full object-cover" />
+                              <span>{m.name}</span>
+                              <span className="ml-auto font-black">{checked ? '✓' : '+'}</span>
+                            </button>
+                          );
+                        })}
+                      </div>
+                      <button 
+                        onClick={() => setSelectedRide(null)}
+                        className="w-full mt-2 py-3 bg-[#ffc844] hover:bg-[#f5bc33] text-slate-950 rounded-2xl font-bold text-xs shadow-md"
+                      >
+                        Done / Back to Rides
+                      </button>
                     </div>
-                    <button 
-                      onClick={() => setSelectedRide(null)}
-                      className="w-full mt-2 py-3 bg-[#ffc844] hover:bg-[#f5bc33] text-slate-950 rounded-2xl font-bold text-xs shadow-md"
-                    >
-                      Done / Back to Rides
-                    </button>
                   </div>
                 </div>
-              </div>
-            )}
+              );
+            })()}
 
             {/* Bottom Navigation */}
-            <nav className="h-14 bg-slate-950 border-t border-slate-800 flex justify-around items-center shrink-0">
-              <button onClick={() => setActiveTab('home')} className={`text-xs font-bold ${activeTab === 'home' ? 'text-amber-400' : 'text-slate-400'}`}>
+            <nav className="h-14 bg-slate-950 border-t border-slate-800 flex justify-around items-center shrink-0 px-1">
+              <button onClick={() => setActiveTab('home')} className={`text-[11px] font-bold ${activeTab === 'home' ? 'text-amber-400' : 'text-slate-400'}`}>
                 🏰 Rides
               </button>
-              <button onClick={() => setActiveTab('stats')} className={`text-xs font-bold ${activeTab === 'stats' ? 'text-amber-400' : 'text-slate-400'}`}>
-                📊 Leaderboard
+              <button onClick={() => setActiveTab('characters')} className={`text-[11px] font-bold ${activeTab === 'characters' ? 'text-amber-400' : 'text-slate-400'}`}>
+                ✨ Characters
               </button>
-              <button onClick={() => setActiveTab('pass')} className={`text-xs font-bold ${activeTab === 'pass' ? 'text-amber-400' : 'text-slate-400'}`}>
+              <button onClick={() => setActiveTab('stats')} className={`text-[11px] font-bold ${activeTab === 'stats' ? 'text-amber-400' : 'text-slate-400'}`}>
+                📊 Stats
+              </button>
+              <button onClick={() => setActiveTab('pass')} className={`text-[11px] font-bold ${activeTab === 'pass' ? 'text-amber-400' : 'text-slate-400'}`}>
                 🎟️ Pass Price
               </button>
             </nav>
