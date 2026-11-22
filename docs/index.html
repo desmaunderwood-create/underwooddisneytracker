@@ -94,97 +94,124 @@
     // Disney World Snacks Checklist by Park
     const FOOD_CATALOG = [
       // --- MAGIC KINGDOM ---
-      { id: 'mk-dole-whip', parkId: 'mk', parkName: 'Magic Kingdom', name: 'Dole Whip Pineapple Soft Serve', location: 'Aloha Isle, Adventureland' }, //[cite: 1]
-      { id: 'mk-tianas-beignets', parkId: 'mk', parkName: 'Magic Kingdom', name: "Tiana's Famous Beignets", location: 'Golden Oak Outpost Frontierland' }, //[cite: 1]
-      { id: 'mk-waffle-hazelnut', parkId: 'mk', parkName: 'Magic Kingdom', name: 'Waffle with Chocolate-Hazelnut Spread', location: 'Sleepy Hollow, Liberty Square' }, //[cite: 1]
-      { id: 'mk-plaza-sundae', parkId: 'mk', parkName: 'Magic Kingdom', name: 'The Plaza Ice Cream Sundae', location: 'Plaza Ice Cream Parlor, Main Street' }, //[cite: 1]
-      { id: 'mk-cheshire-tail', parkId: 'mk', parkName: 'Magic Kingdom', name: 'Cheshire Cat Tail', location: 'Cheshire Cafe, Fantasyland' }, //[cite: 1]
-      { id: 'mk-lefous-brew', parkId: 'mk', parkName: 'Magic Kingdom', name: "LeFou's Brew", location: "Gaston's Tavern, Fantasyland" }, //[cite: 1]
-      { id: 'mk-creme-brulee-croissant', parkId: 'mk', parkName: 'Magic Kingdom', name: 'Creme Brulee Croissant', location: "Gaston's Tavern, Fantasyland" }, //[cite: 1]
+      { id: 'mk-dole-whip', parkId: 'mk', parkName: 'Magic Kingdom', name: 'Dole Whip Pineapple Soft Serve', location: 'Aloha Isle, Adventureland' },
+      { id: 'mk-tianas-beignets', parkId: 'mk', parkName: 'Magic Kingdom', name: "Tiana's Famous Beignets", location: 'Golden Oak Outpost Frontierland' },
+      { id: 'mk-waffle-hazelnut', parkId: 'mk', parkName: 'Magic Kingdom', name: 'Waffle with Chocolate-Hazelnut Spread', location: 'Sleepy Hollow, Liberty Square' },
+      { id: 'mk-plaza-sundae', parkId: 'mk', parkName: 'Magic Kingdom', name: 'The Plaza Ice Cream Sundae', location: 'Plaza Ice Cream Parlor, Main Street' },
+      { id: 'mk-cheshire-tail', parkId: 'mk', parkName: 'Magic Kingdom', name: 'Cheshire Cat Tail', location: 'Cheshire Cafe, Fantasyland' },
+      { id: 'mk-lefous-brew', parkId: 'mk', parkName: 'Magic Kingdom', name: "LeFou's Brew", location: "Gaston's Tavern, Fantasyland" },
+      { id: 'mk-creme-brulee-croissant', parkId: 'mk', parkName: 'Magic Kingdom', name: 'Creme Brulee Croissant', location: "Gaston's Tavern, Fantasyland" },
 
       // --- HOLLYWOOD STUDIOS ---
-      { id: 'hs-tatooine-sunset', parkId: 'hs', parkName: 'Hollywood Studios', name: 'Tatooine Sunset', location: "Ronto Roasters, Galaxy's Edge" }, //[cite: 1]
-      { id: 'hs-wookiee-cookie', parkId: 'hs', parkName: 'Hollywood Studios', name: 'Wookiee Cookie', location: 'Backlot Express, Echo Lake' }, //[cite: 1]
-      { id: 'hs-outpost-popcorn', parkId: 'hs', parkName: 'Hollywood Studios', name: 'Outpost Popcorn Mix', location: "Kat Saka's Kettle, Galaxy's Edge" }, //[cite: 1]
-      { id: 'hs-blue-milk', parkId: 'hs', parkName: 'Hollywood Studios', name: 'Blue Milk', location: "Milk Stand, Galaxy's Edge" }, //[cite: 1]
-      { id: 'hs-jack-jack-cookie', parkId: 'hs', parkName: 'Hollywood Studios', name: 'Jack Jack Num Num Cookie', location: 'Neighborhood Bakery, Pixar Plaza' }, //[cite: 1]
-      { id: 'hs-lunch-box-tart', parkId: 'hs', parkName: 'Hollywood Studios', name: 'Lunch Box Tart', location: "Woody's Lunch Box, Toy Story Land" }, //[cite: 1]
-      { id: 'hs-mickey-brownie-sundae', parkId: 'hs', parkName: 'Hollywood Studios', name: 'Mickey Brownie Sundae', location: 'Hollywood Scoops Sunset Boulevard' }, //[cite: 1]
+      { id: 'hs-tatooine-sunset', parkId: 'hs', parkName: 'Hollywood Studios', name: 'Tatooine Sunset', location: "Ronto Roasters, Galaxy's Edge" },
+      { id: 'hs-wookiee-cookie', parkId: 'hs', parkName: 'Hollywood Studios', name: 'Wookiee Cookie', location: 'Backlot Express, Echo Lake' },
+      { id: 'hs-outpost-popcorn', parkId: 'hs', parkName: 'Hollywood Studios', name: 'Outpost Popcorn Mix', location: "Kat Saka's Kettle, Galaxy's Edge" },
+      { id: 'hs-blue-milk', parkId: 'hs', parkName: 'Hollywood Studios', name: 'Blue Milk', location: "Milk Stand, Galaxy's Edge" },
+      { id: 'hs-jack-jack-cookie', parkId: 'hs', parkName: 'Hollywood Studios', name: 'Jack Jack Num Num Cookie', location: 'Neighborhood Bakery, Pixar Plaza' },
+      { id: 'hs-lunch-box-tart', parkId: 'hs', parkName: 'Hollywood Studios', name: 'Lunch Box Tart', location: "Woody's Lunch Box, Toy Story Land" },
+      { id: 'hs-mickey-brownie-sundae', parkId: 'hs', parkName: 'Hollywood Studios', name: 'Mickey Brownie Sundae', location: 'Hollywood Scoops Sunset Boulevard' },
 
       // --- ANIMAL KINGDOM ---
-      { id: 'ak-night-blossom', parkId: 'ak', parkName: 'Animal Kingdom', name: 'Night Blossom Drink', location: 'Pongu Pongu, Pandora' }, //[cite: 1]
-      { id: 'ak-kamals-fries', parkId: 'ak', parkName: 'Animal Kingdom', name: "Mr. Kamal's Seasoned Fries", location: "Mr. Kamal's, Asia" }, //[cite: 1]
-      { id: 'ak-pineapple-float', parkId: 'ak', parkName: 'Animal Kingdom', name: 'Pineapple Juice Float', location: 'Tamu Tamu Refreshments, Africa' }, //[cite: 1]
-      { id: 'ak-pandoran-fruits', parkId: 'ak', parkName: 'Animal Kingdom', name: 'Tropical Pandoran Forest Fruits', location: "Satu'li Canteen, Pandora" }, //[cite: 1]
-      { id: 'ak-cheeseburger-pods', parkId: 'ak', parkName: 'Animal Kingdom', name: 'Cheeseburger Pods', location: "Satu'li Canteen, Pandora" }, //[cite: 1]
-      { id: 'ak-colossal-cinnamon-roll', parkId: 'ak', parkName: 'Animal Kingdom', name: 'Colossal Cinnamon Roll', location: 'Kusafiri Coffee Shop, Africa' }, //[cite: 1]
-      { id: 'ak-pulled-pork-mac', parkId: 'ak', parkName: 'Animal Kingdom', name: "Pulled Pork Mac n' Cheese", location: 'Flame Tree BBQ, Discovery Island' }, //[cite: 1]
+      { id: 'ak-night-blossom', parkId: 'ak', parkName: 'Animal Kingdom', name: 'Night Blossom Drink', location: 'Pongu Pongu, Pandora' },
+      { id: 'ak-kamals-fries', parkId: 'ak', parkName: 'Animal Kingdom', name: "Mr. Kamal's Seasoned Fries", location: "Mr. Kamal's, Asia" },
+      { id: 'ak-pineapple-float', parkId: 'ak', parkName: 'Animal Kingdom', name: 'Pineapple Juice Float', location: 'Tamu Tamu Refreshments, Africa' },
+      { id: 'ak-pandoran-fruits', parkId: 'ak', parkName: 'Animal Kingdom', name: 'Tropical Pandoran Forest Fruits', location: "Satu'li Canteen, Pandora" },
+      { id: 'ak-cheeseburger-pods', parkId: 'ak', parkName: 'Animal Kingdom', name: 'Cheeseburger Pods', location: "Satu'li Canteen, Pandora" },
+      { id: 'ak-colossal-cinnamon-roll', parkId: 'ak', parkName: 'Animal Kingdom', name: 'Colossal Cinnamon Roll', location: 'Kusafiri Coffee Shop, Africa' },
+      { id: 'ak-pulled-pork-mac', parkId: 'ak', parkName: 'Animal Kingdom', name: "Pulled Pork Mac n' Cheese", location: 'Flame Tree BBQ, Discovery Island' },
 
       // --- EPCOT ---
-      { id: 'ep-maple-popcorn', parkId: 'epcot', parkName: 'EPCOT', name: 'Maple Popcorn', location: 'Popcorn Cart, Canada Pavilion' }, //[cite: 1]
-      { id: 'ep-macaron-sandwich', parkId: 'epcot', parkName: 'EPCOT', name: 'Ice Cream Macaron Sandwich', location: "L'Artisan des Glaces, France Pavilion" }, //[cite: 1]
-      { id: 'ep-rainbow-kakigori', parkId: 'epcot', parkName: 'EPCOT', name: 'Rainbow Kakigori', location: 'Kabuki Cafe, Japan Pavilion' }, //[cite: 1]
-      { id: 'ep-turkey-leg', parkId: 'epcot', parkName: 'EPCOT', name: 'Jumbo Turkey Leg', location: 'Fife & Drum Tavern, America Pavilion' }, //[cite: 1]
-      { id: 'ep-pretzel-bread-pudding', parkId: 'epcot', parkName: 'EPCOT', name: 'Pretzel Bread Pudding', location: 'Sommerfest, Germany Pavilion' }, //[cite: 1]
-      { id: 'ep-pot-stickers', parkId: 'epcot', parkName: 'EPCOT', name: 'Pot Stickers', location: 'Lotus Blossom Café, China Pavilion' }, //[cite: 1]
-      { id: 'ep-school-bread', parkId: 'epcot', parkName: 'EPCOT', name: 'School Bread', location: 'Kringla Bakery Og Cafe, Norway Pavilion' } //[cite: 1]
+      { id: 'ep-maple-popcorn', parkId: 'epcot', parkName: 'EPCOT', name: 'Maple Popcorn', location: 'Popcorn Cart, Canada Pavilion' },
+      { id: 'ep-macaron-sandwich', parkId: 'epcot', parkName: 'EPCOT', name: 'Ice Cream Macaron Sandwich', location: "L'Artisan des Glaces, France Pavilion" },
+      { id: 'ep-rainbow-kakigori', parkId: 'epcot', parkName: 'EPCOT', name: 'Rainbow Kakigori', location: 'Kabuki Cafe, Japan Pavilion' },
+      { id: 'ep-turkey-leg', parkId: 'epcot', parkName: 'EPCOT', name: 'Jumbo Turkey Leg', location: 'Fife & Drum Tavern, America Pavilion' },
+      { id: 'ep-pretzel-bread-pudding', parkId: 'epcot', parkName: 'EPCOT', name: 'Pretzel Bread Pudding', location: 'Sommerfest, Germany Pavilion' },
+      { id: 'ep-pot-stickers', parkId: 'epcot', parkName: 'EPCOT', name: 'Pot Stickers', location: 'Lotus Blossom Café, China Pavilion' },
+      { id: 'ep-school-bread', parkId: 'epcot', parkName: 'EPCOT', name: 'School Bread', location: 'Kringla Bakery Og Cafe, Norway Pavilion' }
     ];
 
     // Character Meet & Greets Catalog by Park
     const CHARACTERS_CATALOG = [
-      { id: 'mk-cinderella', parkId: 'mk', parkName: 'Magic Kingdom', name: 'Cinderella', location: 'Princess Fairytale Hall' },
-      { id: 'mk-tiana', parkId: 'mk', parkName: 'Magic Kingdom', name: 'Tiana', location: 'Princess Fairytale Hall' },
-      { id: 'mk-ariel', parkId: 'mk', parkName: 'Magic Kingdom', name: 'Ariel', location: "Ariel's Grotto" },
-      { id: 'mk-pooh', parkId: 'mk', parkName: 'Magic Kingdom', name: 'Winnie the Pooh & Friends', location: 'Fantasyland' },
-      { id: 'mk-mirabel', parkId: 'mk', parkName: 'Magic Kingdom', name: 'Mirabel', location: 'Fairytale Garden' },
-      { id: 'mk-peter-pan', parkId: 'mk', parkName: 'Magic Kingdom', name: 'Peter Pan', location: 'Fantasyland' },
-      { id: 'mk-mickey', parkId: 'mk', parkName: 'Magic Kingdom', name: 'Mickey Mouse', location: 'Town Square Theater' },
-      { id: 'mk-minnie', parkId: 'mk', parkName: 'Magic Kingdom', name: 'Minnie Mouse', location: "Pete's Silly Slideshow" },
-      { id: 'mk-goofy', parkId: 'mk', parkName: 'Magic Kingdom', name: 'Goofy', location: "Pete's Silly Slideshow" },
-      { id: 'mk-donald', parkId: 'mk', parkName: 'Magic Kingdom', name: 'Donald Duck', location: "Pete's Silly Slideshow" },
-      { id: 'mk-daisy', parkId: 'mk', parkName: 'Magic Kingdom', name: 'Daisy Duck', location: "Pete's Silly Slideshow" },
-      { id: 'mk-mulan', parkId: 'mk', parkName: 'Magic Kingdom', name: 'Mulan', location: 'Adventureland' },
-      { id: 'mk-aladdin', parkId: 'mk', parkName: 'Magic Kingdom', name: 'Aladdin', location: 'Adventureland' },
-      { id: 'mk-jasmine', parkId: 'mk', parkName: 'Magic Kingdom', name: 'Jasmine', location: 'Adventureland' },
-      { id: 'mk-jack-sparrow', parkId: 'mk', parkName: 'Magic Kingdom', name: 'Jack Sparrow', location: 'Adventureland' },
-      { id: 'mk-belle', parkId: 'mk', parkName: 'Magic Kingdom', name: 'Belle (Enchanted Tales with Belle)', location: 'Fantasyland' },
+      // --- MAGIC KINGDOM ---
+      { id: 'mk-mickey', parkId: 'mk', parkName: 'Magic Kingdom', name: 'Mickey Mouse', location: 'Main Street, U.S.A. • Town Square Theater' },
+      { id: 'mk-snow-white', parkId: 'mk', parkName: 'Magic Kingdom', name: 'Snow White', location: 'Main Street, U.S.A. • Near Town Square Theater' },
+      { id: 'mk-mirabel', parkId: 'mk', parkName: 'Magic Kingdom', name: 'Mirabel', location: 'Fantasyland • Fairytale Garden' },
+      { id: 'mk-drizella-anastasia', parkId: 'mk', parkName: 'Magic Kingdom', name: 'Drizella & Anastasia', location: 'Fantasyland • By Cinderella Fountain' },
+      { id: 'mk-cinderella', parkId: 'mk', parkName: 'Magic Kingdom', name: 'Cinderella', location: 'Fantasyland • Princess Fairytale Hall' },
+      { id: 'mk-elena', parkId: 'mk', parkName: 'Magic Kingdom', name: 'Elena', location: 'Fantasyland • Princess Fairytale Hall' },
+      { id: 'mk-tiana', parkId: 'mk', parkName: 'Magic Kingdom', name: 'Tiana', location: 'Fantasyland • Princess Fairytale Hall' },
+      { id: 'mk-rapunzel', parkId: 'mk', parkName: 'Magic Kingdom', name: 'Rapunzel', location: 'Fantasyland • Princess Fairytale Hall' },
+      { id: 'mk-peter-pan', parkId: 'mk', parkName: 'Magic Kingdom', name: 'Peter Pan', location: 'Fantasyland • In Front of Neverland Map' },
+      { id: 'mk-ariel', parkId: 'mk', parkName: 'Magic Kingdom', name: 'Ariel', location: "Fantasyland • Ariel's Grotto" },
+      { id: 'mk-pooh', parkId: 'mk', parkName: 'Magic Kingdom', name: 'Winnie the Pooh & Tigger', location: 'Fantasyland • By Many Adventures of Winnie the Pooh' },
+      { id: 'mk-donald', parkId: 'mk', parkName: 'Magic Kingdom', name: 'Donald Duck', location: "Fantasyland • Pete's Silly Sideshow" },
+      { id: 'mk-goofy', parkId: 'mk', parkName: 'Magic Kingdom', name: 'Goofy', location: "Fantasyland • Pete's Silly Sideshow" },
+      { id: 'mk-minnie', parkId: 'mk', parkName: 'Magic Kingdom', name: 'Minnie Mouse', location: "Fantasyland • Pete's Silly Sideshow" },
+      { id: 'mk-daisy', parkId: 'mk', parkName: 'Magic Kingdom', name: 'Daisy Duck', location: "Fantasyland • Pete's Silly Sideshow" },
+      { id: 'mk-country-bears', parkId: 'mk', parkName: 'Magic Kingdom', name: 'Country Bears', location: 'Frontierland' },
+      { id: 'mk-merida', parkId: 'mk', parkName: 'Magic Kingdom', name: 'Merida', location: 'Liberty Square • Enchanted Glade Gazebo' },
+      { id: 'mk-jack-sparrow', parkId: 'mk', parkName: 'Magic Kingdom', name: 'Captain Jack Sparrow', location: 'Adventureland • Adventureland Stage' },
+      { id: 'mk-aladdin', parkId: 'mk', parkName: 'Magic Kingdom', name: 'Aladdin', location: 'Adventureland • Near The Magic Carpets' },
+      { id: 'mk-jasmine', parkId: 'mk', parkName: 'Magic Kingdom', name: 'Jasmine', location: 'Adventureland • Near The Magic Carpets' },
+      { id: 'mk-chip-dale', parkId: 'mk', parkName: 'Magic Kingdom', name: 'Chip & Dale', location: 'Tomorrowland • Near Buzz Lightyear Exit Courtyard' },
+      { id: 'mk-stitch', parkId: 'mk', parkName: 'Magic Kingdom', name: 'Stitch', location: 'Tomorrowland • Rocket Tower Plaza Stage & Roaming' },
 
-      { id: 'ep-moana', parkId: 'epcot', parkName: 'EPCOT', name: 'Moana', location: 'World Nature' },
-      { id: 'ep-mickey', parkId: 'epcot', parkName: 'EPCOT', name: 'Mickey Mouse', location: 'Meet Disney Pixar Pals / Magic Eye' },
-      { id: 'ep-figment', parkId: 'epcot', parkName: 'EPCOT', name: 'Figment', location: 'ImageWorks' },
-      { id: 'ep-pluto', parkId: 'epcot', parkName: 'EPCOT', name: 'Pluto', location: 'World Celebration' },
+      // --- EPCOT ---
+      { id: 'ep-pluto', parkId: 'epcot', parkName: 'EPCOT', name: 'Pluto', location: 'World Celebration • Near Park Entrance' },
+      { id: 'ep-goofy', parkId: 'epcot', parkName: 'EPCOT', name: 'Goofy', location: 'World Celebration • CommuniCore Hall' },
+      { id: 'ep-mickey', parkId: 'epcot', parkName: 'EPCOT', name: 'Mickey Mouse', location: 'World Celebration • CommuniCore Hall' },
+      { id: 'ep-minnie', parkId: 'epcot', parkName: 'EPCOT', name: 'Minnie Mouse', location: 'World Celebration • CommuniCore Hall' },
+      { id: 'ep-figment', parkId: 'epcot', parkName: 'EPCOT', name: 'Figment', location: 'World Celebration • ImageWorks' },
+      { id: 'ep-joy', parkId: 'epcot', parkName: 'EPCOT', name: 'Joy', location: 'World Celebration • ImageWorks' },
+      { id: 'ep-moana', parkId: 'epcot', parkName: 'EPCOT', name: 'Moana', location: 'World Nature • Near Journey of Water' },
+      { id: 'ep-asha', parkId: 'epcot', parkName: 'EPCOT', name: 'Asha', location: 'World Showcase • World Showcase Plaza' },
+      { id: 'ep-donald', parkId: 'epcot', parkName: 'EPCOT', name: 'Three Caballeros Donald Duck', location: 'Mexico Pavilion • Aztec Pyramid' },
+      { id: 'ep-anna', parkId: 'epcot', parkName: 'EPCOT', name: 'Anna', location: 'Norway Pavilion • Royal Sommerhus' },
+      { id: 'ep-elsa', parkId: 'epcot', parkName: 'EPCOT', name: 'Elsa', location: 'Norway Pavilion • Royal Sommerhus' },
+      { id: 'ep-mulan', parkId: 'epcot', parkName: 'EPCOT', name: 'Mulan', location: 'China Pavilion • Reflections of China' },
+      { id: 'ep-snow-white', parkId: 'epcot', parkName: 'EPCOT', name: 'Snow White', location: 'Germany Pavilion • Near the Wishing Well' },
+      { id: 'ep-jasmine', parkId: 'epcot', parkName: 'EPCOT', name: 'Jasmine', location: 'Morocco Pavilion • Back of the Market' },
+      { id: 'ep-belle', parkId: 'epcot', parkName: 'EPCOT', name: 'Belle', location: 'France Pavilion • Near World Showcase Lagoon' },
+      { id: 'ep-aurora', parkId: 'epcot', parkName: 'EPCOT', name: 'Princess Aurora', location: 'France Pavilion • Gazebo' },
+      { id: 'ep-mary-poppins', parkId: 'epcot', parkName: 'EPCOT', name: 'Mary Poppins', location: 'United Kingdom Pavilion • Near Rose & Crown Pub' },
+      { id: 'ep-alice', parkId: 'epcot', parkName: 'EPCOT', name: 'Alice', location: 'United Kingdom Pavilion • Garden outside Tea Caddy' },
+      { id: 'ep-pooh', parkId: 'epcot', parkName: 'EPCOT', name: 'Winnie the Pooh', location: 'United Kingdom Pavilion • Christopher Robins Room' },
 
-      { id: 'hs-ariel', parkId: 'hs', parkName: 'Hollywood Studios', name: 'Ariel (Live Action)', location: 'Walt Disney Presents' },
-      { id: 'hs-edna', parkId: 'hs', parkName: 'Hollywood Studios', name: 'Edna Mode', location: 'Pixar Place' },
-      { id: 'hs-sulley', parkId: 'hs', parkName: 'Hollywood Studios', name: 'Sulley', location: 'Pixar Place' },
-      { id: 'hs-mrs-incredible', parkId: 'hs', parkName: 'Hollywood Studios', name: 'Mrs. Incredible', location: 'Pixar Place' },
-      { id: 'hs-frozone', parkId: 'hs', parkName: 'Hollywood Studios', name: 'Frozone', location: 'Pixar Place' },
-      { id: 'hs-joy', parkId: 'hs', parkName: 'Hollywood Studios', name: 'Joy', location: 'Pixar Plaza' },
-      { id: 'hs-olaf', parkId: 'hs', parkName: 'Hollywood Studios', name: 'Olaf', location: 'Celebrity Spotlight' },
-      { id: 'hs-darth-vader', parkId: 'hs', parkName: 'Hollywood Studios', name: 'Darth Vader', location: 'Star Wars Launch Bay' },
-      { id: 'hs-mickey', parkId: 'hs', parkName: 'Hollywood Studios', name: 'Mickey Mouse', location: 'Red Carpet Dreams' },
-      { id: 'hs-minnie', parkId: 'hs', parkName: 'Hollywood Studios', name: 'Minnie Mouse', location: 'Red Carpet Dreams' },
-      { id: 'hs-chewbacca', parkId: 'hs', parkName: 'Hollywood Studios', name: 'Chewbacca', location: 'Star Wars Launch Bay' },
-      { id: 'hs-pluto', parkId: 'hs', parkName: 'Hollywood Studios', name: 'Pluto', location: 'Animation Courtyard' },
-      { id: 'hs-chip', parkId: 'hs', parkName: 'Hollywood Studios', name: 'Chip', location: 'Brown Derby Lawn' },
-      { id: 'hs-dale', parkId: 'hs', parkName: 'Hollywood Studios', name: 'Dale', location: 'Brown Derby Lawn' },
-      { id: 'hs-goofy', parkId: 'hs', parkName: 'Hollywood Studios', name: 'Goofy', location: 'Grand Avenue' },
-      { id: 'hs-donald', parkId: 'hs', parkName: 'Hollywood Studios', name: 'Donald Duck', location: 'Echo Lake' },
-      { id: 'hs-mulan', parkId: 'hs', parkName: 'Hollywood Studios', name: 'Mulan', location: 'Animation Courtyard' },
-      { id: 'hs-rapunzel', parkId: 'hs', parkName: 'Hollywood Studios', name: 'Rapunzel', location: 'Animation Courtyard' },
-      { id: 'hs-stitch', parkId: 'hs', parkName: 'Hollywood Studios', name: 'Stitch', location: 'Celebrity Spotlight' },
+      // --- HOLLYWOOD STUDIOS ---
+      { id: 'hs-chip', parkId: 'hs', parkName: 'Hollywood Studios', name: 'Chip and Dale', location: 'Animation Courtyard • Outside Hollywood Brown Derby' },
+      { id: 'hs-vampirina', parkId: 'hs', parkName: 'Hollywood Studios', name: 'Vampirina', location: 'Animation Courtyard • Outside Disney Jr. Dance Party' },
+      { id: 'hs-doc-mcstuffins', parkId: 'hs', parkName: 'Hollywood Studios', name: 'Doc McStuffins', location: 'Animation Courtyard • Outside Disney Jr. Dance Party' },
+      { id: 'hs-fancy-nancy', parkId: 'hs', parkName: 'Hollywood Studios', name: 'Fancy Nancy', location: 'Animation Courtyard • Outside Disney Jr. Dance Party' },
+      { id: 'hs-bb8', parkId: 'hs', parkName: 'Hollywood Studios', name: 'BB-8', location: 'Animation Courtyard • Star Wars Launch Bay' },
+      { id: 'hs-chewbacca', parkId: 'hs', parkName: 'Hollywood Studios', name: 'Chewbacca', location: 'Animation Courtyard • Star Wars Launch Bay' },
+      { id: 'hs-darth-vader', parkId: 'hs', parkName: 'Hollywood Studios', name: 'Darth Vader', location: 'Animation Courtyard • Star Wars Launch Bay' },
+      { id: 'hs-ariel', parkId: 'hs', parkName: 'Hollywood Studios', name: 'Live Action Ariel', location: "Animation Courtyard • One Man's Dream" },
+      { id: 'hs-mrs-incredible', parkId: 'hs', parkName: 'Hollywood Studios', name: 'Mr. & Mrs. Incredible', location: 'Pixar Plaza • Near Edna Mode Experience' },
+      { id: 'hs-frozone', parkId: 'hs', parkName: 'Hollywood Studios', name: 'Frozone', location: 'Pixar Plaza • Near Edna Mode Experience' },
+      { id: 'hs-sulley', parkId: 'hs', parkName: 'Hollywood Studios', name: 'Sulley', location: 'Pixar Plaza • Near Edna Mode Experience' },
+      { id: 'hs-edna', parkId: 'hs', parkName: 'Hollywood Studios', name: 'Edna Mode', location: 'Pixar Plaza • Edna Mode Experience' },
+      { id: 'hs-woody', parkId: 'hs', parkName: 'Hollywood Studios', name: 'Woody', location: 'Toy Story Land • Near Toy Story Mania' },
+      { id: 'hs-jessie', parkId: 'hs', parkName: 'Hollywood Studios', name: 'Jessie', location: 'Toy Story Land • Near Toy Story Mania' },
+      { id: 'hs-buzz', parkId: 'hs', parkName: 'Hollywood Studios', name: 'Buzz Lightyear', location: 'Toy Story Land • Near Toy Story Mania' },
+      { id: 'hs-green-army', parkId: 'hs', parkName: 'Hollywood Studios', name: 'Green Army Drum Corps', location: 'Toy Story Land • Around Toy Story Land' },
+      { id: 'hs-stormtroopers', parkId: 'hs', parkName: 'Hollywood Studios', name: 'Stormtroopers', location: "Star Wars: Galaxy's Edge • Around Batuu" },
+      { id: 'hs-kylo-ren', parkId: 'hs', parkName: 'Hollywood Studios', name: 'Kylo Ren', location: "Star Wars: Galaxy's Edge • Around Batuu" },
+      { id: 'hs-rey', parkId: 'hs', parkName: 'Hollywood Studios', name: 'Rey', location: "Star Wars: Galaxy's Edge • Around Batuu" },
+      { id: 'hs-vi-moradi', parkId: 'hs', parkName: 'Hollywood Studios', name: 'Vi Moradi', location: "Star Wars: Galaxy's Edge • Around Batuu" },
+      { id: 'hs-mandalorian-grogu', parkId: 'hs', parkName: 'Hollywood Studios', name: 'The Mandalorian and Grogu', location: "Star Wars: Galaxy's Edge • Around Batuu" },
+      { id: 'hs-mickey', parkId: 'hs', parkName: 'Hollywood Studios', name: 'Mickey Mouse', location: 'Commissary Lane • Red Carpet Dreams' },
+      { id: 'hs-minnie', parkId: 'hs', parkName: 'Hollywood Studios', name: 'Minnie Mouse', location: 'Commissary Lane • Red Carpet Dreams' },
+      { id: 'hs-olaf', parkId: 'hs', parkName: 'Hollywood Studios', name: 'Olaf', location: 'Commissary Lane • Celebrity Spotlight' },
 
-      { id: 'ak-judy', parkId: 'ak', parkName: 'Animal Kingdom', name: 'Judy Hopps', location: 'Discovery Island' },
-      { id: 'ak-nick', parkId: 'ak', parkName: 'Animal Kingdom', name: 'Nick Wilde', location: 'Discovery Island' },
-      { id: 'ak-dug', parkId: 'ak', parkName: 'Animal Kingdom', name: 'Dug', location: 'Wilderness Explorers Club' },
-      { id: 'ak-russell', parkId: 'ak', parkName: 'Animal Kingdom', name: 'Russell', location: 'Wilderness Explorers Club' },
-      { id: 'ak-moana', parkId: 'ak', parkName: 'Animal Kingdom', name: 'Moana', location: 'Character Landing' },
-      { id: 'ak-kevin', parkId: 'ak', parkName: 'Animal Kingdom', name: 'Kevin', location: 'Discovery Island Roaming' },
-      { id: 'ak-goofy', parkId: 'ak', parkName: 'Animal Kingdom', name: 'Goofy', location: 'DinoLand U.S.A.' },
-      { id: 'ak-pocahontas', parkId: 'ak', parkName: 'Animal Kingdom', name: 'Pocahontas', location: 'Discovery Island Trails' },
-      { id: 'ak-donald', parkId: 'ak', parkName: 'Animal Kingdom', name: 'Donald Duck', location: 'Dino-Suite / Discovery Island' },
-      { id: 'ak-daisy', parkId: 'ak', parkName: 'Animal Kingdom', name: 'Daisy Duck', location: 'DinoLand U.S.A.' },
-      { id: 'ak-pluto', parkId: 'ak', parkName: 'Animal Kingdom', name: 'Pluto', location: 'DinoLand U.S.A.' }
+      // --- ANIMAL KINGDOM ---
+      { id: 'ak-devine', parkId: 'ak', parkName: 'Animal Kingdom', name: 'DeVine', location: 'The Oasis • Near Park Entrance' },
+      { id: 'ak-moana', parkId: 'ak', parkName: 'Animal Kingdom', name: 'Moana', location: 'Discovery Island • Character Landing' },
+      { id: 'ak-dug', parkId: 'ak', parkName: 'Animal Kingdom', name: 'Dug', location: 'Discovery Island • Wilderness Explorers Clubhouse' },
+      { id: 'ak-russell', parkId: 'ak', parkName: 'Animal Kingdom', name: 'Russell', location: 'Discovery Island • Wilderness Explorers Clubhouse' },
+      { id: 'ak-fredricksen', parkId: 'ak', parkName: 'Animal Kingdom', name: 'Mr. Fredricksen', location: 'Discovery Island • Wilderness Explorers Clubhouse' },
+      { id: 'ak-kevin', parkId: 'ak', parkName: 'Animal Kingdom', name: 'Kevin', location: 'Discovery Island • Wilderness Explorers Clubhouse' },
+      { id: 'ak-mickey', parkId: 'ak', parkName: 'Animal Kingdom', name: 'Mickey Mouse', location: 'Discovery Island • Adventurers Outpost' },
+      { id: 'ak-minnie', parkId: 'ak', parkName: 'Animal Kingdom', name: 'Minnie Mouse', location: 'Discovery Island • Adventurers Outpost' }
     ];
 
     // Full Rides & Pavilions List with Direct Raw GitHub Image Links
