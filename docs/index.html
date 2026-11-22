@@ -1611,7 +1611,7 @@
             {selectedRide && (() => {
               const liveInfo = getLiveInfoForRide(selectedRide.name);
               return (
-                <div className="absolute inset-0 z-50 bg-[#faf6ed] text-slate-900 flex flex-col overflow-y-auto">
+                <div className="fixed inset-0 z-50 bg-[#faf6ed] text-slate-900 flex flex-col overflow-y-auto max-w-md mx-auto">
                   {/* Header Image with Back & Heart Buttons */}
                   <div className="relative h-56 w-full shrink-0">
                     <img src={selectedRide.image} alt={selectedRide.name} className="w-full h-full object-cover" />
